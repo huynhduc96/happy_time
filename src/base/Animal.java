@@ -157,20 +157,7 @@ public abstract class Animal {
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg8))));
     }
 
-    public void addToLayer() {
-
-        Animation animation = new SpriteAnimation(imageView
-                , Duration.millis(1000.0),
-                12, 4,
-                0, 0,
-                64, 64
-        );
-
-        animation.setCycleCount(Animation.INDEFINITE);
-        animation.play();
-        this.layer.getChildren().add(this.imageView);
-
-    }
+    public abstract void addToLayer();
 
     public void removeFromLayer() {
         this.layer.getChildren().remove(this.imageView);

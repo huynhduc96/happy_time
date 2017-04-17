@@ -1,8 +1,6 @@
 package main;
 
-import base.Animal;
-import base.Chicken;
-import base.Settings;
+import base.*;
 import base.jsonObject.JsonObject;
 import base.jsonObject.ReadJson;
 import javafx.animation.AnimationTimer;
@@ -26,6 +24,8 @@ public class Game extends Application {
     Pane playLayer;
     Scene scene;
     List<Chicken> listChicken = new ArrayList<>();
+    List<Pig> listPig = new ArrayList<>();
+    List<Cow> listCow = new ArrayList<>();
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
 
@@ -66,18 +66,28 @@ public class Game extends Application {
             @Override
             public void handle(long now) {
             addChicken();
+            addCow();
+            addPig();
                 // movement
 
                 listChicken.forEach(sprite -> sprite.move());
+                listCow.forEach(sprite -> sprite.move());
+                listPig.forEach(sprite -> sprite.move());
 
                 // update sprites in scene
 
                 listChicken.forEach(sprite -> sprite.updateUI());
+                listPig.forEach(sprite -> sprite.updateUI());
+                listCow.forEach(sprite -> sprite.updateUI());
 
                 // check if sprite can be removed
                 listChicken.forEach(sprite -> sprite.checkRemovability());
+                listPig.forEach(sprite -> sprite.checkRemovability());
+                listCow.forEach(sprite -> sprite.checkRemovability());
 
                 removeSprites( listChicken);
+                removeSprites( listPig);
+                removeSprites( listCow);
             }
 
         };
@@ -109,10 +119,7 @@ public class Game extends Application {
         if(  rnd.nextInt(100) != 0) {
             return;
         }
-        // image
-        Image chickenImage =  new Image(String.valueOf(classLoader.getResource("res/Pets/chicken/left.dds.png")));
 
-        // random speed
 
 
         // create a sprite
@@ -120,5 +127,36 @@ public class Game extends Application {
 
         // manage sprite
         listChicken.add( chicken);
+    }
+
+    void addPig(){
+        Random rnd = new Random();
+        if(  rnd.nextInt(100) != 0) {
+            return;
+        }
+        // image
+
+        // random speed
+
+
+        // create a sprite
+        Pig pig = new Pig( playLayer, Settings.PIG, 200, 100, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+
+        // manage sprite
+        listPig.add( pig);
+    }
+
+    void addCow(){
+        Random rnd = new Random();
+        if(  rnd.nextInt(100) != 0) {
+            return;
+        }
+
+
+        // create a sprite
+        Cow cow = new Cow( playLayer, Settings.COW, 300, 100, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+
+        // manage sprite
+        listCow.add(cow);
     }
 }
