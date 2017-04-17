@@ -1,5 +1,6 @@
 package base;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import javafx.animation.Animation;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,7 +41,7 @@ public abstract class Animal {
     double w;
     double h;
 
-    int death =0;
+    int death = 0;
     int eat = 0;
 
     boolean canMove = true;
@@ -171,13 +172,53 @@ public abstract class Animal {
             return;
 
         if (direction == Settings.ANIMAL_DOWN) {
-            x += dx;
-            y += dy;
-            r += dr;
+            x += 0;
+            y += Settings.ANIMAL_SPEED;
+            r += 0;
         }
 
-        // ---> di chuyen trái,phải,chéo trái,chéo phải
+        if (direction == Settings.ANIMAL_UP) {
+            x += 0;
+            y -= Settings.ANIMAL_SPEED;
+            r += 0;
+        }
 
+        if (direction == Settings.ANIMAL_LEFT) {
+            x -= Settings.ANIMAL_SPEED;
+            y += 0;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_RIGHT) {
+            x += Settings.ANIMAL_SPEED;
+            y += 0;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_UP_LEFT) {
+            x -= Settings.ANIMAL_SPEED;
+            y -= Settings.ANIMAL_SPEED;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_UP_RIGHT) {
+            x += Settings.ANIMAL_SPEED;
+            y -= Settings.ANIMAL_SPEED;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_DOWN_LEFT) {
+            x -= Settings.ANIMAL_SPEED;
+            y += Settings.ANIMAL_SPEED;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_DOWN_RIGHT) {
+            x += Settings.ANIMAL_SPEED;
+            y += Settings.ANIMAL_SPEED;
+            r += 0;
+        }
+        changeDirection();
     }
 
     //----------------------------------------------------------------------------
@@ -185,6 +226,39 @@ public abstract class Animal {
     public void changeDirection() {
         // ham se thay  doi lai gia tri cua bien direction
         // khi đến vị trí cuối map thì di chuyển ra phía khác
+//        if ( (Double.compare( getY(), 450) > 0) || (Double.compare( getY(), 120) < 0) ||
+//                (Double.compare( getX(), 600) > 0) || (Double.compare( getX(), 100) < 0) )  {
+//            setRemovable(true);
+//            Random a = new Random();
+//            direction = a.nextInt(7);
+//        }
+        if (Double.compare( getX(), 600) > 0) {
+            while (direction != 2 && direction!= 4 && direction!= 5) {
+                Random a = new Random();
+                direction = a.nextInt(7);
+            }
+        }
+
+        if (Double.compare( getX(), 100) < 0) {
+            while (direction != 3 && direction!= 6 && direction!= 7) {
+                Random a = new Random();
+                direction = a.nextInt(7);
+            }
+        }
+
+        if (Double.compare( getY(), 400) > 0) {
+            while (direction != 0 && direction!= 4 && direction!= 6) {
+                Random a = new Random();
+                direction = a.nextInt(7);
+            }
+        }
+
+        if (Double.compare( getY(), 120) < 0) {
+            while (direction != 1 && direction!= 5 && direction!= 7) {
+                Random a = new Random();
+                direction = a.nextInt(7);
+            }
+        }
     }
 
 
@@ -239,15 +313,15 @@ public abstract class Animal {
 
         }
 
-        if(eat == 1){
+        if (eat == 1) {
             imageView.setImage(arrImage.get(Settings.ANIMAL_EAT));
-            eat =0;
+            eat = 0;
 
         }
 
-        if(death == 1){
+        if (death == 1) {
             imageView.setImage(arrImage.get(Settings.ANIMAL_DEATH));
-            death =0;
+            death = 0;
 
         }
 
@@ -257,8 +331,6 @@ public abstract class Animal {
 
     }
 
-
-    
 
     public double getCenterX() {
         return x + w * 0.5;
