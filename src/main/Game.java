@@ -1,8 +1,10 @@
 package main;
 
-import base.Animal;
-import base.Chicken;
-import base.Settings;
+import base.*;
+import base.animalstype.Animal;
+import base.animalstype.Chicken;
+import base.animalstype.Cow;
+import base.animalstype.Pig;
 import base.jsonObject.JsonObject;
 import base.jsonObject.ReadJson;
 import javafx.animation.AnimationTimer;
@@ -17,7 +19,6 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by huynh on 07-Apr-17.
@@ -26,6 +27,8 @@ public class Game extends Application {
     Pane playLayer;
     Scene scene;
     List<Chicken> listChicken = new ArrayList<>();
+    List<Pig> listPig = new ArrayList<>();
+    List<Cow> listCow = new ArrayList<>();
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
 
@@ -60,24 +63,34 @@ public class Game extends Application {
 
         primaryStage.setScene( scene);
         primaryStage.show();
-
+//        addChicken();
+//        addCow();
+        addPig();
         AnimationTimer gameLoop = new AnimationTimer() {
 
             @Override
             public void handle(long now) {
-            addChicken();
+
                 // movement
 
                 listChicken.forEach(sprite -> sprite.move());
+                listCow.forEach(sprite -> sprite.move());
+                listPig.forEach(sprite -> sprite.move());
 
                 // update sprites in scene
 
                 listChicken.forEach(sprite -> sprite.updateUI());
+                listPig.forEach(sprite -> sprite.updateUI());
+                listCow.forEach(sprite -> sprite.updateUI());
 
                 // check if sprite can be removed
                 listChicken.forEach(sprite -> sprite.checkRemovability());
+                listPig.forEach(sprite -> sprite.checkRemovability());
+                listCow.forEach(sprite -> sprite.checkRemovability());
 
                 removeSprites( listChicken);
+                removeSprites( listPig);
+                removeSprites( listCow);
             }
 
         };
@@ -105,20 +118,29 @@ public class Game extends Application {
     }
 
     void addChicken(){
-        Random rnd = new Random();
-        if(  rnd.nextInt(100) != 0) {
-            return;
-        }
-        // image
-        Image chickenImage =  new Image(String.valueOf(classLoader.getResource("res/Pets/chicken/left.dds.png")));
-
-        // random speed
-
 
         // create a sprite
-        Chicken chicken = new Chicken( playLayer, Settings.CHIKEN, 100, 100, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
-
+        Chicken chicken = new Chicken( playLayer, Settings.CHIKEN, 200, 200, 0, 0, 0,
+                0, 1,1);
         // manage sprite
         listChicken.add( chicken);
+    }
+
+    void addPig(){
+
+        // create a sprite
+        Pig pig = new Pig( playLayer, Settings.PIG, 200, 300, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+
+        // manage sprite
+        listPig.add( pig);
+    }
+
+    void addCow(){
+
+        // create a sprite
+        Cow cow = new Cow( playLayer, Settings.COW, 300, 200, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+
+        // manage sprite
+        listCow.add(cow);
     }
 }
