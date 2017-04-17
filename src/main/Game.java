@@ -60,14 +60,14 @@ public class Game extends Application {
 
         primaryStage.setScene( scene);
         primaryStage.show();
-
+        addChicken();
+        addCow();
+        addPig();
         AnimationTimer gameLoop = new AnimationTimer() {
 
             @Override
             public void handle(long now) {
-            addChicken();
-            addCow();
-            addPig();
+
                 // movement
 
                 listChicken.forEach(sprite -> sprite.move());
@@ -115,12 +115,6 @@ public class Game extends Application {
     }
 
     void addChicken(){
-        Random rnd = new Random();
-        if(  rnd.nextInt(100) != 0) {
-            return;
-        }
-
-
 
         // create a sprite
         Chicken chicken = new Chicken( playLayer, Settings.CHIKEN, 200, 200, 0, 0, 0,
@@ -130,14 +124,6 @@ public class Game extends Application {
     }
 
     void addPig(){
-        Random rnd = new Random();
-        if(  rnd.nextInt(100) != 0) {
-            return;
-        }
-        // image
-
-        // random speed
-
 
         // create a sprite
         Pig pig = new Pig( playLayer, Settings.PIG, 200, 300, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
@@ -147,11 +133,6 @@ public class Game extends Application {
     }
 
     void addCow(){
-        Random rnd = new Random();
-        if(  rnd.nextInt(100) != 0) {
-            return;
-        }
-
 
         // create a sprite
         Cow cow = new Cow( playLayer, Settings.COW, 300, 200, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
