@@ -34,6 +34,4 @@ public class Chicken extends Animal {
             setRemovable(true);
         }
     }
-
-
 }

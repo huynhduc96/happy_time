@@ -117,8 +117,8 @@ public class Game extends Application {
     void addChicken(){
 
         // create a sprite
-        Chicken chicken = new Chicken( playLayer, Settings.CHIKEN, 100, 100, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
-
+        Chicken chicken = new Chicken( playLayer, Settings.CHIKEN, 200, 200, 0, 0, 0,
+                0, 1,1);
         // manage sprite
         listChicken.add( chicken);
     }
@@ -126,7 +126,7 @@ public class Game extends Application {
     void addPig(){
 
         // create a sprite
-        Pig pig = new Pig( playLayer, Settings.PIG, 200, 100, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+        Pig pig = new Pig( playLayer, Settings.PIG, 200, 300, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
 
         // manage sprite
         listPig.add( pig);
@@ -135,7 +135,7 @@ public class Game extends Application {
     void addCow(){
 
         // create a sprite
-        Cow cow = new Cow( playLayer, Settings.COW, 300, 100, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+        Cow cow = new Cow( playLayer, Settings.COW, 300, 200, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
 
         // manage sprite
         listCow.add(cow);
