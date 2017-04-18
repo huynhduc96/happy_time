@@ -132,7 +132,7 @@ public abstract class Animal {
         String tmg4 = "res/pets/" + s + "/up_left.dds.png";
         String tmg5 = "res/pets/" + s + "/down_left.dds.png";
         String tmg6 = "res/pets/" + s + "/up_left.dds.png";
-        String tmg7 = "res/pets/" + s + "/up_left.dds.png";
+        String tmg7 = "res/pets/" + s + "/down_left.dds.png";
         String tmg8 = "res/pets/" + s + "/eat.dds.png";
         String tmg9 = "res/pets/" + s + "/death.dds.png";
         nameImage.add(tmg0);
