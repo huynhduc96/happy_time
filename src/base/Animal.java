@@ -37,6 +37,7 @@ public abstract class Animal {
     double sick;
 
     boolean removable = false;
+    boolean isScale = false;
 
     double w;
     double h;
@@ -48,31 +49,6 @@ public abstract class Animal {
     ArrayList<String> nameImage = new ArrayList<>();
     ArrayList<Image> arrImage = new ArrayList<>();
     ClassLoader classLoader = this.getClass().getClassLoader();
-
-//    public Animal(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr,
-//                  double health, double sick) {
-//        this.layer = layer;
-//        this.image = image;
-//        this.x = x;
-//        this.y = y;
-//        this.r = r;
-//        this.dx = dx;
-//        this.dy = dy;
-//        this.dr = dr;
-//
-//        this.health = health;
-//        this.sick = sick;
-//
-//        this.imageView = new ImageView(image);
-//        this.imageView.setVisible(false);
-//        this.imageView.relocate(x, y);
-//
-//        this.imageView.setRotate(r);
-//        this.w = image.getWidth(); // imageView.getBoundsInParent().getWidth();
-//        this.h = image.getHeight(); // imageView.getBoundsInParent().getHeight();
-//
-//        addToLayer();
-//    }
 
     public Animal(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr,
                   double health, double sick) {
@@ -232,29 +208,29 @@ public abstract class Animal {
 //            Random a = new Random();
 //            direction = a.nextInt(7);
 //        }
-        if (Double.compare( getX(), 600) > 0) {
-            while (direction != 2 && direction!= 4 && direction!= 5) {
+        if (Double.compare(getX(), 600) > 0) {
+            while (direction != 2 && direction != 4 && direction != 5) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare( getX(), 100) < 0) {
-            while (direction != 3 && direction!= 6 && direction!= 7) {
+        if (Double.compare(getX(), 100) < 0) {
+            while (direction != 3 && direction != 6 && direction != 7) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare( getY(), 400) > 0) {
-            while (direction != 0 && direction!= 4 && direction!= 6) {
+        if (Double.compare(getY(), 400) > 0) {
+            while (direction != 0 && direction != 4 && direction != 6) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare( getY(), 120) < 0) {
-            while (direction != 1 && direction!= 5 && direction!= 7) {
+        if (Double.compare(getY(), 120) < 0) {
+            while (direction != 1 && direction != 5 && direction != 7) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
@@ -284,51 +260,69 @@ public abstract class Animal {
         switch (direction) {
             case 0: // ANIMAL_UP = 0;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_UP));
+                if (isScale) {
+                    isScale = false;
+                    imageView.setScaleX(-1);
+                }
                 break;
             case 1: // ANIMAL_DOWN = 1;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN));
+                if (isScale) {
+                    isScale = false;
+                    imageView.setScaleX(1);
+                }
                 break;
             case 2: // ANIMAL_LEFT = 2;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_LEFT));
+                if (isScale) {
+                    isScale = false;
+                    imageView.setScaleX(1);
+                }
                 break;
             case 3: // ANIMAL_RIGHT = 3;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_RIGHT));
+                isScale = true;
                 imageView.setScaleX(-1);
                 break;
             case 4: //ANIMAL_UP_LEFT = 4;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_UP_LEFT));
+                if (isScale) {
+                    isScale = false;
+                    imageView.setScaleX(1);
+                }
                 break;
             case 5: // ANIMAL_DOWN_LEFT = 5;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN_LEFT));
+                if (isScale) {
+                    isScale = false;
+                    imageView.setScaleX(1);
+                }
                 break;
             case 6: // ANIMAL_UP_RIGHT = 6;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_UP_RIGHT));
                 imageView.setScaleX(-1);
+                isScale = true;
                 break;
             case 7: //  ANIMAL_DOWN_RIGHT = 7;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN_RIGHT));
                 imageView.setScaleX(-1);
+                isScale = true;
                 break;
-
-
         }
 
         if (eat == 1) {
             imageView.setImage(arrImage.get(Settings.ANIMAL_EAT));
             eat = 0;
-
         }
 
         if (death == 1) {
             imageView.setImage(arrImage.get(Settings.ANIMAL_DEATH));
             death = 0;
-
         }
 
         imageView.relocate(x, y);
 
         imageView.setRotate(r);
-
     }
 
 

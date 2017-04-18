@@ -60,8 +60,8 @@ public class Game extends Application {
 
         primaryStage.setScene( scene);
         primaryStage.show();
-        addChicken();
-        addCow();
+//        addChicken();
+//        addCow();
         addPig();
         AnimationTimer gameLoop = new AnimationTimer() {
 
