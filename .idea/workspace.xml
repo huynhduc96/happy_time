@@ -2,154 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5e52df2-2211-42bf-907d-12f190530bbf" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/description.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/03.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/04.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/back.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/data/user.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/effects/dust_particle.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/effects/water_particle.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/death.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/down.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/down_left.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/eat.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/left.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/pic.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/shadow.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/up.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/up_left.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/death.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/down.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/down_left.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/eat.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/left.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/pic.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/shadow.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/up.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/up_left.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/death.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/down.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/down_left.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/eat.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/left.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/pic.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/shadow.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/up.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/up_left.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/egg/hover.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/egg/mask.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/egg/normal.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/flour/hover.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/flour/mask.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/flour/normal.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meat/hover.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meat/mask.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meat/normal.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meatSirloin/hover.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meatSirloin/mask.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meatSirloin/normal.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/milk/hover.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/milk/mask.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/milk/normal.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/sourCream/hover.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/sourCream/mask.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/sourCream/normal.dds.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/action_sell_buy.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/action_upgrade.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/action_watering.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/action_well.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/action_well_auto.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/airplane_flyin.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear0_panda_scream.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear0_scare_flee.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear1_brown_scream.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear1_scare_flee.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear2_grizzly_scream.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear3_white_scream.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear_landing.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cage_breaking.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cage_broke_bear_flee.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cage_click.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/car_came.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cat_flyout.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cat_voice.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/chicken_die.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/chicken_flyout.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/chicken_hungry.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/chicken_voice.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cow_die.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cow_flyout.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cow_hungry.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cow_voice.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/dog0_bay.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/dog1_bay.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/dog2_bay.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/dog3_bay.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/dog_voice.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fanfare_aim.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fanfare_award.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fanfare_best_time.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fanfare_level_complete.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fanfare_medal.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fool_action.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/gag_hit.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/house_board_landing.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/house_click.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/house_crash.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/house_downgrade.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/house_landing.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/item_add.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/item_cancel.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/music_game.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/music_mainmenu.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ostrich_die.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ostrich_flyout.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ostrich_hungry.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ostrich_voice.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/pig_die.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/pig_flyout.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/pig_hungry.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/pig_voice.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/product_crack.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/product_landing.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/product_take.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/tick_money.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/tick_time.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ui_button_click.wav" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ui_button_hover.wav" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/Animal.class" afterPath="$PROJECT_DIR$/out/production/oop/base/Animal.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/Chicken.class" afterPath="$PROJECT_DIR$/out/production/oop/base/Chicken.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/Cow.class" afterPath="$PROJECT_DIR$/out/production/oop/base/Cow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/Pig.class" afterPath="$PROJECT_DIR$/out/production/oop/base/Pig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/Settings.class" afterPath="$PROJECT_DIR$/out/production/oop/base/Settings.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/SpriteAnimation.class" afterPath="$PROJECT_DIR$/out/production/oop/base/SpriteAnimation.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoChicken.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoChicken.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoCow.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoCow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoGrass.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoGrass.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoPig.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoPig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoUser1.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoUser1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoWarehouse.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoWarehouse.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JsonObject.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JsonObject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListChicken.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListChicken.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListCow.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListCow.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListPig.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListPig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ReadJson.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ReadJson.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/main/Game$1.class" afterPath="$PROJECT_DIR$/out/production/oop/main/Game$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/main/Game.class" afterPath="$PROJECT_DIR$/out/production/oop/main/Game.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/sounds/action_sell_buy.wav" afterPath="$PROJECT_DIR$/src/res/sounds/action_sell_buy.wav" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_6_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_6_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Animal.java" afterPath="$PROJECT_DIR$/src/base/Animal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Chicken.java" afterPath="$PROJECT_DIR$/src/base/Chicken.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Game.java" afterPath="$PROJECT_DIR$/src/main/Game.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -188,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chicken.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Chicken.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/base/Chicken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="946">
-              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+            <state relative-caret-position="209">
+              <caret line="50" column="24" lean-forward="true" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -200,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Animal.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/base/Animal.java">
+      <file leaf-file-name="Settings.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/base/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="173" column="19" lean-forward="false" selection-start-line="173" selection-start-column="19" selection-end-line="173" selection-end-column="19" />
+            <state relative-caret-position="377">
+              <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -231,6 +84,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -273,8 +131,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -366,6 +222,8 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -786,11 +644,13 @@
       <workItem from="1492479423263" duration="4694000" />
       <workItem from="1492554045767" duration="3216000" />
       <workItem from="1492625171301" duration="793000" />
+      <workItem from="1492681645106" duration="28000" />
+      <workItem from="1492681857974" duration="538000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8703000" />
+    <option name="totallyTimeSpent" value="9269000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -799,7 +659,6 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -823,6 +682,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -842,6 +702,90 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1562">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/jsonObject/ReadJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="67" lean-forward="false" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Chicken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1210">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Animal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/SpriteAnimation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1562">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/jsonObject/ReadJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="67" lean-forward="false" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Chicken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1210">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Animal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/SpriteAnimation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1562">
@@ -954,21 +898,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/Chicken.java">
+    <entry file="file://$PROJECT_DIR$/src/base/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="946">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="377">
+          <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/base/Animal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="173" column="19" lean-forward="false" selection-start-line="173" selection-start-column="19" selection-end-line="173" selection-end-column="19" />
+        <state relative-caret-position="77">
+          <caret line="191" column="0" lean-forward="true" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Chicken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="50" column="24" lean-forward="true" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
