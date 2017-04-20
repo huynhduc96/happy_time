@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="res/|res/data/|res/effects/|res/pets/chicken/|res/pets/cow/|res/pets/pig/|res/products/egg/|res/products/flour/|res/products/meat/|res/products/meatSirloin/|res/products/milk/|res/products/sourCream/|res/sounds/|res/pets/|res/products/" kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="gson-2.6.2.jar"/>
+	<classpathentry kind="output" path="out/production/oop"/>
+</classpath>

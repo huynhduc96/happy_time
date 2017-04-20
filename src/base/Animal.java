@@ -4,6 +4,8 @@ import javafx.animation.Animation;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
@@ -156,7 +158,28 @@ public abstract class Animal {
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg7))));
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg8))));
     }
-
+    private String getName(){
+        String typeAnimal = null;
+        if (type == Settings.CHIKEN) {
+            typeAnimal = "chicken";
+        } else if (type == Settings.COW) {
+            typeAnimal = "cow";
+        } else if (type == Settings.PIG) {
+            typeAnimal = "pig";
+        }
+        return typeAnimal;
+    }
+    public void getSound(String model){
+        if(!(model.equals("hungry") || model.equals("die")
+                || model.equals("flyout") || model.equals("voice"))) return;
+        String file_name = this.getName() + "_" + model + ".mp3";
+        String musicFile = "src/res/sounds2/" + file_name;     // For example
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(5); // volumn
+        mediaPlayer.setCycleCount(1); // times
+        mediaPlayer.play();
+    }
     public abstract void addToLayer();
 
     public void removeFromLayer() {

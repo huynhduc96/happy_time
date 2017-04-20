@@ -1,17 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/base/Cow.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/base/Pig.java" />
+    <list default="true" id="a5e52df2-2211-42bf-907d-12f190530bbf" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/description.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/03.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/04.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/back.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/data/user.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/effects/dust_particle.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/effects/water_particle.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/death.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/down.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/down_left.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/eat.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/left.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/pic.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/shadow.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/up.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/chicken/up_left.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/death.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/down.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/down_left.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/eat.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/left.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/pic.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/shadow.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/up.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/cow/up_left.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/death.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/down.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/down_left.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/eat.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/left.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/pic.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/shadow.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/up.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/pets/pig/up_left.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/egg/hover.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/egg/mask.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/egg/normal.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/flour/hover.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/flour/mask.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/flour/normal.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meat/hover.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meat/mask.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meat/normal.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meatSirloin/hover.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meatSirloin/mask.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/meatSirloin/normal.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/milk/hover.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/milk/mask.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/milk/normal.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/sourCream/hover.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/sourCream/mask.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/products/sourCream/normal.dds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/action_sell_buy.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/action_upgrade.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/action_watering.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/action_well.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/action_well_auto.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/airplane_flyin.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear0_panda_scream.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear0_scare_flee.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear1_brown_scream.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear1_scare_flee.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear2_grizzly_scream.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear3_white_scream.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/bear_landing.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cage_breaking.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cage_broke_bear_flee.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cage_click.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/car_came.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cat_flyout.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cat_voice.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/chicken_die.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/chicken_flyout.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/chicken_hungry.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/chicken_voice.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cow_die.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cow_flyout.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cow_hungry.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/cow_voice.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/dog0_bay.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/dog1_bay.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/dog2_bay.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/dog3_bay.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/dog_voice.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fanfare_aim.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fanfare_award.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fanfare_best_time.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fanfare_level_complete.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fanfare_medal.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/fool_action.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/gag_hit.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/house_board_landing.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/house_click.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/house_crash.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/house_downgrade.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/house_landing.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/item_add.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/item_cancel.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/music_game.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/music_mainmenu.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ostrich_die.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ostrich_flyout.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ostrich_hungry.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ostrich_voice.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/pig_die.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/pig_flyout.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/pig_hungry.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/pig_voice.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/product_crack.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/product_landing.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/product_take.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/tick_money.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/tick_time.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ui_button_click.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/oop/res/sounds/ui_button_hover.wav" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/Animal.class" afterPath="$PROJECT_DIR$/out/production/oop/base/Animal.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/Chicken.class" afterPath="$PROJECT_DIR$/out/production/oop/base/Chicken.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/Cow.class" afterPath="$PROJECT_DIR$/out/production/oop/base/Cow.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/Pig.class" afterPath="$PROJECT_DIR$/out/production/oop/base/Pig.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/Settings.class" afterPath="$PROJECT_DIR$/out/production/oop/base/Settings.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/SpriteAnimation.class" afterPath="$PROJECT_DIR$/out/production/oop/base/SpriteAnimation.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoChicken.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoChicken.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoCow.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoCow.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoGrass.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoGrass.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoPig.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoPig.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoUser1.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoUser1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoWarehouse.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JoWarehouse.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JsonObject.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/JsonObject.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListChicken.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListChicken.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListCow.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListCow.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListPig.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ListPig.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ReadJson.class" afterPath="$PROJECT_DIR$/out/production/oop/base/jsonObject/ReadJson.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/main/Game$1.class" afterPath="$PROJECT_DIR$/out/production/oop/main/Game$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/oop/main/Game.class" afterPath="$PROJECT_DIR$/out/production/oop/main/Game.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/sounds/action_sell_buy.wav" afterPath="$PROJECT_DIR$/src/res/sounds/action_sell_buy.wav" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_6_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_6_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Animal.java" afterPath="$PROJECT_DIR$/src/base/Animal.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Chicken.java" afterPath="$PROJECT_DIR$/src/base/Chicken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Game.java" afterPath="$PROJECT_DIR$/src/main/Game.java" />
     </list>
-    <ignored path="JavaFxApplication.iws" />
-    <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,65 +162,27 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DebuggerManager">
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </breakpoint_any>
-    <ui_properties converted="true" />
-    <breakpoint_rules converted="true" />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="JavaFxApplication" />
+    <favorites_list name="happy_time" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="156" column="53" lean-forward="false" selection-start-line="156" selection-start-column="53" selection-end-line="156" selection-end-column="53" />
+            <state relative-caret-position="1166">
+              <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Animal.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base/Animal.java">
+      <file leaf-file-name="ReadJson.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/base/jsonObject/ReadJson.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="159" column="31" lean-forward="false" selection-start-line="159" selection-start-column="31" selection-end-line="159" selection-end-column="31" />
+            <state relative-caret-position="418">
+              <caret line="20" column="67" lean-forward="false" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -90,49 +191,30 @@
       <file leaf-file-name="Chicken.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/base/Chicken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="27" column="53" lean-forward="false" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+            <state relative-caret-position="946">
+              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Animal.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/base/Animal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="173" column="19" lean-forward="false" selection-start-line="173" selection-start-column="19" selection-end-line="173" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base/Pig.java">
+      <file leaf-file-name="SpriteAnimation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/base/SpriteAnimation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="20" column="24" lean-forward="false" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base/Cow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="down.dds.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/res/pets/cow/down.dds.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base/jsonObject/user.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+            <state relative-caret-position="154">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -140,17 +222,12 @@
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="FindManager">
-    <FindUsagesManager>
-      <setting name="OPEN_NEW_TAB" value="false" />
-    </FindUsagesManager>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>primaryStage</find>
+      <find>getSo</find>
+      <find>soind</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -163,11 +240,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/base/Animal.java" />
         <option value="$PROJECT_DIR$/src/base/Chicken.java" />
-        <option value="$PROJECT_DIR$/src/base/Pig.java" />
-        <option value="$PROJECT_DIR$/src/base/Cow.java" />
         <option value="$PROJECT_DIR$/src/main/Game.java" />
+        <option value="$PROJECT_DIR$/src/base/Animal.java" />
       </list>
     </option>
   </component>
@@ -177,16 +252,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectReloadState">
-    <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -203,28 +273,27 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
+              <option name="myItemId" value="happy_time" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
+              <option name="myItemId" value="happy_time" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
+              <option name="myItemId" value="happy_time" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
+              <option name="myItemId" value="happy_time" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -238,11 +307,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
+              <option name="myItemId" value="happy_time" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
+              <option name="myItemId" value="happy_time" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -254,91 +323,17 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pig" />
+              <option name="myItemId" value="sounds2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
+              <option name="myItemId" value="happy_time" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cow" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
+              <option name="myItemId" value="happy_time" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -352,11 +347,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
+              <option name="myItemId" value="happy_time" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
+              <option name="myItemId" value="happy_time" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -365,68 +360,23 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="base" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="oop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="base" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jsonObject" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="OverrideImplement.combined" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dungoop" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="js.eslint.eslintPackage" value="" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.ăn cặc">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
       <method />
@@ -487,12 +437,11 @@
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
-      <module />
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <module />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -662,6 +611,7 @@
       <setting name="passParentEnv" value="true" />
       <setting name="launchBrowser" value="true" />
       <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -675,11 +625,11 @@
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
+        <value defaultName="singleModule" />
       </option>
       <envs />
       <patterns />
@@ -706,13 +656,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
-      <node-interpreter value="project" />
-      <working-dir value="" />
-      <envs />
-      <scope-kind value="ALL" />
-      <method />
-    </configuration>
     <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
       <config-file value="" />
       <node-interpreter value="project" />
@@ -731,7 +674,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="oop" />
+      <module name="happy_time" />
       <envs />
       <method />
     </configuration>
@@ -774,13 +717,13 @@
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <option name="OUTPUT_DIRECTORY" />
       <option name="ANNOTATION_TYPE" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
+        <value defaultName="singleModule" />
       </option>
       <option name="USE_DEFAULT_REPORTERS" value="false" />
       <option name="PROPERTIES_FILE" />
@@ -790,10 +733,16 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run" />
+      <command value="run-script" />
       <scripts />
       <node-interpreter value="project" />
       <envs />
@@ -805,13 +754,8 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <configuration default="false" name="Main" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="sample.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="false" name="ăn cặc" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="main.Game" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -821,77 +765,66 @@
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="oop" />
+      <module name="happy_time" />
       <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="0" class="java.lang.String" itemvalue="Application.ăn cặc" />
     </list>
-    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
-      <Host>localhost</Host>
-      <Port>5050</Port>
-    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
-      <created>1359379246138</created>
+      <changelist id="a5e52df2-2211-42bf-907d-12f190530bbf" name="Default" comment="" />
+      <created>1492479417837</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1359379246138</updated>
-      <workItem from="1359379250712" duration="1302000" />
-      <workItem from="1492167122388" duration="81000" />
-      <workItem from="1492167953334" duration="436000" />
-      <workItem from="1492406623146" duration="2419000" />
+      <updated>1492479417837</updated>
+      <workItem from="1492479423263" duration="4694000" />
+      <workItem from="1492554045767" duration="3216000" />
+      <workItem from="1492625171301" duration="793000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4238000" />
+    <option name="totallyTimeSpent" value="8703000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26096824" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -899,10 +832,6 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
-    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -913,109 +842,132 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml" />
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java" />
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml" />
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java" />
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java" />
-    <entry file="file://$PROJECT_DIR$/oop.iml">
+    <entry file="file://$PROJECT_DIR$/src/main/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/Settings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-101">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/res/data/user.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/jsonObject/JoPig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="1562">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/base/jsonObject/ReadJson.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-364">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/Animal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="159" column="31" lean-forward="false" selection-start-line="159" selection-start-column="31" selection-end-line="159" selection-end-column="31" />
+        <state relative-caret-position="440">
+          <caret line="20" column="67" lean-forward="false" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/base/Chicken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="27" column="53" lean-forward="false" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/res/pets/pig/down.dds.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/Pig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="20" column="24" lean-forward="false" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+        <state relative-caret-position="1210">
+          <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/jsonObject/user.json">
+    <entry file="file://$PROJECT_DIR$/src/base/Animal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/res/pets/cow/down.dds.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/Cow.java">
+    <entry file="file://$PROJECT_DIR$/src/base/SpriteAnimation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="154">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="156" column="53" lean-forward="false" selection-start-line="156" selection-start-column="53" selection-end-line="156" selection-end-column="53" />
+        <state relative-caret-position="3036">
+          <caret line="138" column="55" lean-forward="false" selection-start-line="138" selection-start-column="55" selection-end-line="138" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/jsonObject/ReadJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="67" lean-forward="true" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Chicken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Animal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1672">
+          <caret line="86" column="9" lean-forward="true" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/back.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/jsonObject/JoChicken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="19" column="49" lean-forward="true" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/SpriteAnimation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/jsonObject/ReadJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="20" column="67" lean-forward="false" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1166">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Chicken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="946">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Animal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="173" column="19" lean-forward="false" selection-start-line="173" selection-start-column="19" selection-end-line="173" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1023,69 +975,9 @@
   </component>
   <component name="masterDetails">
     <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
+      <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>oop</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>gson-2.6.2</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
