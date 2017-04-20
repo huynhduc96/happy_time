@@ -18,7 +18,7 @@ public class ReadJson {
 
         FileReader fileReader = null;
         try {
-            fileReader = new FileReader(System.getProperty("user.dir") + "\\src\\res\\data\\user.json");
+            fileReader = new FileReader(System.getProperty("user.dir") + "/src/res/data/user.json");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

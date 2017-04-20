@@ -1,17 +1,16 @@
-package base;
+package base.animalstype;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-import javafx.animation.Animation;
+import base.Settings;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
 
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 /**
  * Created by huynh on 06-Apr-17.
@@ -19,6 +18,11 @@ import java.util.Random;
 public abstract class Animal {
 
     ImageView imageView;
+    final int time = 200;
+
+    // check time for animal state
+    Timer _t;
+    int _count=time;
 
     Pane layer;
     double x;
@@ -467,4 +471,26 @@ public abstract class Animal {
     public void setCanMove(boolean canMove) {
         this.canMove = canMove;
     }
+
+    public boolean changeHungryStateOfAnimals() {
+        _t = new Timer();
+        _t.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (_count > 0) {
+                    _count--;
+                } else _t.cancel();
+            }
+        }, 1000, 1000);
+        if (_count == 0)
+            return true;
+        return false;
+    }
+
+    public void providedFoodWhenHungry() {
+        if (changeHungryStateOfAnimals()) {
+            _count += time;
+        }
+    }
+
 }
