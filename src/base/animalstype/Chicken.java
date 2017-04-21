@@ -1,14 +1,17 @@
-package base;
+package base.animalstype;
 
+import base.Settings;
+import base.SpriteAnimation;
 import javafx.animation.Animation;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 /**
- * Created by huynh on 17-Apr-17.
+ * Created by huynh on 09-Apr-17.
  */
-public class Cow extends Animal {
-    public Cow(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr, double health, double sick) {
+public class Chicken extends Animal {
+
+    public Chicken(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr, double health, double sick) {
         super(layer, type, x, y, r, dx, dy, dr, health, sick);
     }
 
@@ -16,9 +19,9 @@ public class Cow extends Animal {
     public void addToLayer() {
         Animation animation = new SpriteAnimation(imageView
                 , Duration.millis(1000.0),
-                16, 3,
+                12, 4,
                 0, 0,
-                150,150
+                64, 64
         );
 
         animation.setCycleCount(Animation.INDEFINITE);
@@ -28,6 +31,8 @@ public class Cow extends Animal {
 
     @Override
     public void checkRemovability() {
-
+        if( Double.compare( getY(), Settings.SCENE_HEIGHT) > 0) {
+            setRemovable(true);
+        }
     }
 }
