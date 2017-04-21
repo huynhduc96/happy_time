@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
+
 
 /**
  * Created by huynh on 06-Apr-17.
@@ -91,7 +93,29 @@ public abstract class Animal {
 
         addToLayer();
     }
+    private String getName(){
+        String typeAnimal = null;
+        if (type == Settings.CHIKEN) {
+            typeAnimal = "chicken";
+        } else if (type == Settings.COW) {
+            typeAnimal = "cow";
+        } else if (type == Settings.PIG) {
+            typeAnimal = "pig";
+        }
+        return typeAnimal;
+    }
+    public void getSound(String model){
+        if(!(model.equals("hungry") || model.equals("die")
+                || model.equals("flyout") || model.equals("voice"))) return;
+        String file_name = this.getName() + "_" + model + ".mp3";
+        String musicFile = "src/res/sounds2/" + file_name;     // For example
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(0.5); // volumn
+        mediaPlayer.setCycleCount(1); // times
+        mediaPlayer.play();
 
+    }
     void getNameImage(String s) {
 
 //        ANIMAL_UP = 0;
@@ -204,14 +228,6 @@ public abstract class Animal {
     //----------------------------------------------------------------------------
     // viet them ham xu ly vung khong gian di chuyen cua animal
     public void changeDirection() {
-        // ham se thay  doi lai gia tri cua bien direction
-        // khi đến vị trí cuối map thì di chuyển ra phía khác
-//        if ( (Double.compare( getY(), 450) > 0) || (Double.compare( getY(), 120) < 0) ||
-//                (Double.compare( getX(), 600) > 0) || (Double.compare( getX(), 100) < 0) )  {
-//            setRemovable(true);
-//            Random a = new Random();
-//            direction = a.nextInt(7);
-//        }
         if (Double.compare(getX(), 600) > 0) {
             while (direction != 2 && direction != 4 && direction != 5) {
                 Random a = new Random();
