@@ -16,7 +16,7 @@ public class Cow extends Animal {
     public void addToLayer() {
         Animation animation = new SpriteAnimation(imageView
                 , Duration.millis(1000.0),
-                17, 4,
+                16, 3,
                 0, 0,
                 150,150
         );
@@ -31,3 +31,4 @@ public class Cow extends Animal {
 
     }
 }
+

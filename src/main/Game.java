@@ -12,9 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -57,29 +54,24 @@ public class Game extends Application {
 
 
 // -------------------------------------------------------------
-        // add scene
+      // add scene
         root.getChildren().add(playLayer);
-        scene = new Scene(root, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);
+        scene = new Scene( root, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);
 
-        primaryStage.setScene(scene);
+        primaryStage.setScene( scene);
         primaryStage.show();
-
+        addChicken();
+        addCow();
+        addPig();
         AnimationTimer gameLoop = new AnimationTimer() {
 
             @Override
             public void handle(long now) {
-                addChicken();
-            addCow();
-//            addPig();
+
                 // movement
 
                 listChicken.forEach(sprite -> sprite.move());
-//                listChicken.forEach(sprite ->
-//                        sprite.getSound("hungry")
-//
-//                );
                 listCow.forEach(sprite -> sprite.move());
-                listCow.forEach(sprite -> sprite.getSound("hungry"));
                 listPig.forEach(sprite -> sprite.move());
 
                 // update sprites in scene
@@ -93,9 +85,9 @@ public class Game extends Application {
                 listPig.forEach(sprite -> sprite.checkRemovability());
                 listCow.forEach(sprite -> sprite.checkRemovability());
 
-                removeSprites(listChicken);
-                removeSprites(listPig);
-                removeSprites(listCow);
+                removeSprites( listChicken);
+                removeSprites( listPig);
+                removeSprites( listCow);
             }
 
         };
@@ -106,12 +98,12 @@ public class Game extends Application {
         launch(args);
     }
 
-    private void removeSprites(List<? extends Animal> spriteList) {
+    private void removeSprites(  List<? extends Animal> spriteList) {
         Iterator<? extends Animal> iter = spriteList.iterator();
-        while (iter.hasNext()) {
+        while( iter.hasNext()) {
             Animal sprite = iter.next();
 
-            if (sprite.isRemovable()) {
+            if( sprite.isRemovable()) {
 
                 // remove from layer
                 sprite.removeFromLayer();
@@ -122,48 +114,33 @@ public class Game extends Application {
         }
     }
 
-    void addChicken() {
-        Random rnd = new Random();
-        if (rnd.nextInt(100) != 0) {
-            return;
-        }
-
+    void addChicken(){
 
         // create a sprite
-        Chicken chicken = new Chicken(playLayer, Settings.CHIKEN, 100, 100, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
-
+        Chicken chicken = new Chicken( playLayer, Settings.CHIKEN, 200, 200, 0, 0, 0,
+                0, 1,1);
         // manage sprite
-        listChicken.add(chicken);
+        for(int i = 0; i < 10; i++)
+            chicken.getSound("voice");
+        listChicken.add( chicken);
     }
 
-    void addPig() {
-        Random rnd = new Random();
-        if (rnd.nextInt(100) != 0) {
-            return;
-        }
-        // image
-
-        // random speed
-
+    void addPig(){
 
         // create a sprite
-        Pig pig = new Pig(playLayer, Settings.PIG, 200, 100, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
-
+        Pig pig = new Pig( playLayer, Settings.PIG, 200, 300, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+        pig.getSound("voice");
         // manage sprite
-        listPig.add(pig);
+        listPig.add( pig);
     }
 
-    void addCow() {
-        Random rnd = new Random();
-        if (rnd.nextInt(100) != 0) {
-            return;
-        }
-
+    void addCow(){
 
         // create a sprite
-        Cow cow = new Cow(playLayer, Settings.COW, 300, 100, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
-
+        Cow cow = new Cow( playLayer, Settings.COW, 300, 200, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+        cow.getSound("voice");
         // manage sprite
         listCow.add(cow);
     }
 }
+

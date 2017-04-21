@@ -1,5 +1,6 @@
 package base;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import javafx.animation.Animation;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -38,42 +39,18 @@ public abstract class Animal {
     double sick;
 
     boolean removable = false;
+    boolean isScale = false;
 
     double w;
     double h;
 
-    int death =0;
+    int death = 0;
     int eat = 0;
 
     boolean canMove = true;
     ArrayList<String> nameImage = new ArrayList<>();
     ArrayList<Image> arrImage = new ArrayList<>();
     ClassLoader classLoader = this.getClass().getClassLoader();
-
-//    public Animal(Pane layer, Image image, double x, double y, double r, double dx, double dy, double dr,
-//                  double health, double sick) {
-//        this.layer = layer;
-//        this.image = image;
-//        this.x = x;
-//        this.y = y;
-//        this.r = r;
-//        this.dx = dx;
-//        this.dy = dy;
-//        this.dr = dr;
-//
-//        this.health = health;
-//        this.sick = sick;
-//
-//        this.imageView = new ImageView(image);
-//        this.imageView.setVisible(false);
-//        this.imageView.relocate(x, y);
-//
-//        this.imageView.setRotate(r);
-//        this.w = image.getWidth(); // imageView.getBoundsInParent().getWidth();
-//        this.h = image.getHeight(); // imageView.getBoundsInParent().getHeight();
-//
-//        addToLayer();
-//    }
 
     public Animal(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr,
                   double health, double sick) {
@@ -112,7 +89,29 @@ public abstract class Animal {
 
         addToLayer();
     }
-
+    private String getName(){
+        String typeAnimal = null;
+        if (type == Settings.CHIKEN) {
+            typeAnimal = "chicken";
+        } else if (type == Settings.COW) {
+            typeAnimal = "cow";
+        } else if (type == Settings.PIG) {
+            typeAnimal = "pig";
+        }
+        return typeAnimal;
+    }
+    public void getSound(String model){
+        if(!(model.equals("hungry") || model.equals("die")
+                || model.equals("flyout") || model.equals("voice"))) return;
+        String file_name = this.getName() + "_" + model + ".mp3";
+        String musicFile = "src/res/sounds2/" + file_name;     // For example
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(0.5); // volumn
+        mediaPlayer.setCycleCount(1); // times
+        mediaPlayer.play();
+        
+    }
     void getNameImage(String s) {
 
 //        ANIMAL_UP = 0;
@@ -134,7 +133,7 @@ public abstract class Animal {
         String tmg4 = "res/pets/" + s + "/up_left.dds.png";
         String tmg5 = "res/pets/" + s + "/down_left.dds.png";
         String tmg6 = "res/pets/" + s + "/up_left.dds.png";
-        String tmg7 = "res/pets/" + s + "/up_left.dds.png";
+        String tmg7 = "res/pets/" + s + "/down_left.dds.png";
         String tmg8 = "res/pets/" + s + "/eat.dds.png";
         String tmg9 = "res/pets/" + s + "/death.dds.png";
         nameImage.add(tmg0);
@@ -158,28 +157,7 @@ public abstract class Animal {
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg7))));
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg8))));
     }
-    private String getName(){
-        String typeAnimal = null;
-        if (type == Settings.CHIKEN) {
-            typeAnimal = "chicken";
-        } else if (type == Settings.COW) {
-            typeAnimal = "cow";
-        } else if (type == Settings.PIG) {
-            typeAnimal = "pig";
-        }
-        return typeAnimal;
-    }
-    public void getSound(String model){
-        if(!(model.equals("hungry") || model.equals("die")
-                || model.equals("flyout") || model.equals("voice"))) return;
-        String file_name = this.getName() + "_" + model + ".mp3";
-        String musicFile = "src/res/sounds2/" + file_name;     // For example
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(5); // volumn
-        mediaPlayer.setCycleCount(1); // times
-        mediaPlayer.play();
-    }
+
     public abstract void addToLayer();
 
     public void removeFromLayer() {
@@ -194,13 +172,53 @@ public abstract class Animal {
             return;
 
         if (direction == Settings.ANIMAL_DOWN) {
-            x += dx;
-            y += dy;
-            r += dr;
+            x += 0;
+            y += Settings.ANIMAL_SPEED;
+            r += 0;
         }
 
-        // ---> di chuyen trái,phải,chéo trái,chéo phải
+        if (direction == Settings.ANIMAL_UP) {
+            x += 0;
+            y -= Settings.ANIMAL_SPEED;
+            r += 0;
+        }
 
+        if (direction == Settings.ANIMAL_LEFT) {
+            x -= Settings.ANIMAL_SPEED;
+            y += 0;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_RIGHT) {
+            x += Settings.ANIMAL_SPEED;
+            y += 0;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_UP_LEFT) {
+            x -= Settings.ANIMAL_SPEED;
+            y -= Settings.ANIMAL_SPEED;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_UP_RIGHT) {
+            x += Settings.ANIMAL_SPEED;
+            y -= Settings.ANIMAL_SPEED;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_DOWN_LEFT) {
+            x -= Settings.ANIMAL_SPEED;
+            y += Settings.ANIMAL_SPEED;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_DOWN_RIGHT) {
+            x += Settings.ANIMAL_SPEED;
+            y += Settings.ANIMAL_SPEED;
+            r += 0;
+        }
+        changeDirection();
     }
 
     //----------------------------------------------------------------------------
@@ -208,6 +226,39 @@ public abstract class Animal {
     public void changeDirection() {
         // ham se thay  doi lai gia tri cua bien direction
         // khi đến vị trí cuối map thì di chuyển ra phía khác
+//        if ( (Double.compare( getY(), 450) > 0) || (Double.compare( getY(), 120) < 0) ||
+//                (Double.compare( getX(), 600) > 0) || (Double.compare( getX(), 100) < 0) )  {
+//            setRemovable(true);
+//            Random a = new Random();
+//            direction = a.nextInt(7);
+//        }
+        if (Double.compare(getX(), 600) > 0) {
+            while (direction != 2 && direction != 4 && direction != 5) {
+                Random a = new Random();
+                direction = a.nextInt(7);
+            }
+        }
+
+        if (Double.compare(getX(), 100) < 0) {
+            while (direction != 3 && direction != 6 && direction != 7) {
+                Random a = new Random();
+                direction = a.nextInt(7);
+            }
+        }
+
+        if (Double.compare(getY(), 400) > 0) {
+            while (direction != 0 && direction != 4 && direction != 6) {
+                Random a = new Random();
+                direction = a.nextInt(7);
+            }
+        }
+
+        if (Double.compare(getY(), 120) < 0) {
+            while (direction != 1 && direction != 5 && direction != 7) {
+                Random a = new Random();
+                direction = a.nextInt(7);
+            }
+        }
     }
 
 
@@ -233,55 +284,71 @@ public abstract class Animal {
         switch (direction) {
             case 0: // ANIMAL_UP = 0;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_UP));
+                if (isScale) {
+                    isScale = false;
+                    imageView.setScaleX(-1);
+                }
                 break;
             case 1: // ANIMAL_DOWN = 1;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN));
+                if (isScale) {
+                    isScale = false;
+                    imageView.setScaleX(1);
+                }
                 break;
             case 2: // ANIMAL_LEFT = 2;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_LEFT));
+                if (isScale) {
+                    isScale = false;
+                    imageView.setScaleX(1);
+                }
                 break;
             case 3: // ANIMAL_RIGHT = 3;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_RIGHT));
+                isScale = true;
                 imageView.setScaleX(-1);
                 break;
             case 4: //ANIMAL_UP_LEFT = 4;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_UP_LEFT));
+                if (isScale) {
+                    isScale = false;
+                    imageView.setScaleX(1);
+                }
                 break;
             case 5: // ANIMAL_DOWN_LEFT = 5;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN_LEFT));
+                if (isScale) {
+                    isScale = false;
+                    imageView.setScaleX(1);
+                }
                 break;
             case 6: // ANIMAL_UP_RIGHT = 6;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_UP_RIGHT));
                 imageView.setScaleX(-1);
+                isScale = true;
                 break;
             case 7: //  ANIMAL_DOWN_RIGHT = 7;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN_RIGHT));
                 imageView.setScaleX(-1);
+                isScale = true;
                 break;
-
-
         }
 
-        if(eat == 1){
+        if (eat == 1) {
             imageView.setImage(arrImage.get(Settings.ANIMAL_EAT));
-            eat =0;
-
+            eat = 0;
         }
 
-        if(death == 1){
+        if (death == 1) {
             imageView.setImage(arrImage.get(Settings.ANIMAL_DEATH));
-            death =0;
-
+            death = 0;
         }
 
         imageView.relocate(x, y);
 
         imageView.setRotate(r);
-
     }
 
-
-    
 
     public double getCenterX() {
         return x + w * 0.5;
@@ -425,3 +492,4 @@ public abstract class Animal {
         this.canMove = canMove;
     }
 }
+
