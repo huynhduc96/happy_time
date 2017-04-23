@@ -1,6 +1,10 @@
 package main;
 
 import base.*;
+import base.animalstype.Animal;
+import base.animalstype.Chicken;
+import base.animalstype.Cow;
+import base.animalstype.Pig;
 import base.jsonObject.JsonObject;
 import base.jsonObject.ReadJson;
 import javafx.animation.AnimationTimer;
@@ -15,7 +19,6 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by huynh on 07-Apr-17.
@@ -60,8 +63,8 @@ public class Game extends Application {
 
         primaryStage.setScene( scene);
         primaryStage.show();
-        addChicken();
-        addCow();
+//        addChicken();
+//        addCow();
         addPig();
         AnimationTimer gameLoop = new AnimationTimer() {
 
