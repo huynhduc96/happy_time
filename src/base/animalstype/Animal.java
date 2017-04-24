@@ -167,9 +167,6 @@ public abstract class Animal {
     public void removeFromLayer() {
         this.layer.getChildren().remove(this.imageView);
     }
-
-    //-----------------------------------------------------------------------------------------------------
-    // viet them code ham move
     public void move() {
 
         if (!canMove)
@@ -224,9 +221,6 @@ public abstract class Animal {
         }
         changeDirection();
     }
-
-    //----------------------------------------------------------------------------
-    // viet them ham xu ly vung khong gian di chuyen cua animal
     public void changeDirection() {
         if (Double.compare(getX(), 600) > 0) {
             while (direction != 2 && direction != 4 && direction != 5) {
@@ -256,16 +250,12 @@ public abstract class Animal {
             }
         }
     }
-
-
     public boolean isAlive() {
         return Double.compare(health, 0) > 0;
     }
-
     public ImageView getView() {
         return imageView;
     }
-
     public void updateUI() {
 //        ANIMAL_UP = 0;
 //        ANIMAL_DOWN = 1;

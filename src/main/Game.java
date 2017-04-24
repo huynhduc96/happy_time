@@ -31,6 +31,7 @@ public class Game extends Application {
     List<Cow> listCow = new ArrayList<>();
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
+    PlayerData playerData = new PlayerData();
 
     private ImageView backgroud = new ImageView();
 
@@ -66,12 +67,15 @@ public class Game extends Application {
 //        addChicken();
 //        addCow();
         addPig();
+        Store store = new Store(playLayer,300,10,0);
+
         AnimationTimer gameLoop = new AnimationTimer() {
 
             @Override
             public void handle(long now) {
 
                 // movement
+                store.setOnClick();
 
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
