@@ -30,7 +30,7 @@ public class Game extends Application {
     List<Cow> listCow = new ArrayList<>();
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
-    PlayerData playerData = new PlayerData();
+    Player playerData = new Player();
 
     private ImageView backgroud = new ImageView();
 

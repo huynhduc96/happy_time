@@ -47,7 +47,7 @@ public class Store {
 
     ClassLoader classLoader = this.getClass().getClassLoader();
 
-    public Store(Pane layer, DataPlayer dataPlayer, double x, double y, double r) {
+    public Store(Pane layer, double x, double y, double r) {
         this.layer = layer;
         initView();
         this.dataPlayer = dataPlayer;
