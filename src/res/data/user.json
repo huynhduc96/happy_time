@@ -1,6 +1,7 @@
 {
   "jo_user1": {
     "jo_user_name": "duc",
+    "jo_monney":100,
     "jo_warehouse": {
       "grass": "10",
       "egg": "20",

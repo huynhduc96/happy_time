@@ -29,6 +29,18 @@ public class JoUser1 {
     @Expose
     private JoPig joPig;
 
+    @SerializedName("jo_monney")
+    @Expose
+    private int joMonney;
+
+    public int getJoMonney() {
+        return joMonney;
+    }
+
+    public void setJoMonney(int joMonney) {
+        this.joMonney = joMonney;
+    }
+
     public String getJoUserName() {
         return joUserName;
     }

@@ -5,8 +5,7 @@ import base.animalstype.Animal;
 import base.animalstype.Chicken;
 import base.animalstype.Cow;
 import base.animalstype.Pig;
-import base.jsonObject.JsonObject;
-import base.jsonObject.ReadJson;
+import base.House.Store;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -47,17 +46,9 @@ public class Game extends Application {
         backgroud.setImage(image_back);
         playLayer.getChildren().add(backgroud);
 
-// -------------------------------------------------------------
-//        // demo get Json
+        //get data player from json
+        playerData.getdataPlayer();
 
-        ReadJson readJson = new ReadJson();
-        readJson.getJson();
-
-        JsonObject object = readJson.getObject();
-        System.out.println("user : " + object.getJoUser1().getJoUserName());
-
-
-// -------------------------------------------------------------
       // add scene
         root.getChildren().add(playLayer);
         scene = new Scene( root, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);

@@ -1,5 +1,6 @@
-package base;
+package base.House;
 
+import base.jsonObject.DataPlayer;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -17,6 +18,9 @@ import java.util.Timer;
  * Created by huynh on 21-Apr-17.
  */
 public class Store {
+    // --------------------------------------------------------------------------------
+    /* Class nay phai viet lai toan bo day nhe */
+    DataPlayer dataPlayer;
     ImageView imageView;
     Image imageStore;
     Pane layer;
@@ -43,10 +47,10 @@ public class Store {
 
     ClassLoader classLoader = this.getClass().getClassLoader();
 
-    public Store(Pane layer, double x, double y, double r) {
+    public Store(Pane layer, DataPlayer dataPlayer, double x, double y, double r) {
         this.layer = layer;
         initView();
-
+        this.dataPlayer = dataPlayer;
         this.x = x;
         this.y = y;
 
@@ -69,14 +73,17 @@ public class Store {
         this.imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                // bắt sự kiện click
                 System.out.println("Click");
-//                setShowViewStore(false);
-//                setShowItem(false);
+
                 Group root = new Group();
                 Stage stage = new Stage();
-                stage.setTitle("địt mẹ lên rồi");
-                stage.setScene(new Scene(root , 450, 450));
+                stage.setTitle("Đặt lại title cửa sổ mới");
+                //set kích thước
+                stage.setScene(new Scene(root, 450, 450));
                 stage.show();
+                // tại đây thêm hình y hệt như trong  Game.java
+                // tất cả các thay đôi về data sau khi mua,bán sẽ cập nhật vào DataUser
             }
         });
     }
