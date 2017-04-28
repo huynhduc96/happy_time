@@ -33,6 +33,18 @@ public class JoUser1 {
     @Expose
     private int joMonney;
 
+    @SerializedName("jo_space")
+    @Expose
+    private int jo_space;
+
+    public int getJo_space() {
+        return jo_space;
+    }
+
+    public void setJo_space(int jo_space) {
+        this.jo_space = jo_space;
+    }
+
     public int getJoMonney() {
         return joMonney;
     }
