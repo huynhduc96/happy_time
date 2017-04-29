@@ -5,6 +5,8 @@ import base.animalstype.Animal;
 import base.animalstype.Chicken;
 import base.animalstype.Cow;
 import base.animalstype.Pig;
+import base.grassstyle.Grass;
+import base.grassstyle.Can;
 import base.House.Store;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -28,6 +30,7 @@ public class Game extends Application {
     List<Chicken> listChicken = new ArrayList<>();
     List<Pig> listPig = new ArrayList<>();
     List<Cow> listCow = new ArrayList<>();
+    List<Can> listCan = new ArrayList<>();
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
@@ -58,6 +61,7 @@ public class Game extends Application {
 //        addChicken();
 //        addCow();
         addPig();
+        addCan();
         Store store = new Store(playLayer,300,10,0);
 
         AnimationTimer gameLoop = new AnimationTimer() {
@@ -137,5 +141,14 @@ public class Game extends Application {
 
         // manage sprite
         listCow.add(cow);
+    }
+
+    void addCan(){
+
+        // create a sprite
+        Can can = new Can( playLayer, Settings.CAN, 400, 300, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+
+        // manage sprite
+        listCan.add(can);
     }
 }
