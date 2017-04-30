@@ -8,6 +8,8 @@ import base.animalstype.Pig;
 import base.grassstyle.Grass;
 import base.grassstyle.Can;
 import base.House.Store;
+import base.jsonObject.DataPlayer;
+import com.google.gson.JsonObject;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -15,8 +17,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -34,8 +40,21 @@ public class Game extends Application {
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
+    JsonObject data;
 
     private ImageView backgroud = new ImageView();
+
+    private void playMusic(){
+        String file_name = "src/res/sounds2/music_game.mp3";
+        Media sound = new Media(new File(file_name).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                mediaPlayer.seek(javafx.util.Duration.INDEFINITE);
+            }
+        });
+        mediaPlayer.play();
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -51,6 +70,8 @@ public class Game extends Application {
 
         //get data player from json
         playerData.getdataPlayer();
+        data = playerData.getDataPlayer();
+
 
       // add scene
         root.getChildren().add(playLayer);
@@ -58,8 +79,9 @@ public class Game extends Application {
 
         primaryStage.setScene( scene);
         primaryStage.show();
-//        addChicken();
-//        addCow();
+        playMusic();
+        addChicken();
+        addCow();
         addPig();
         addCan();
         Store store = new Store(playLayer,300,10,0);
@@ -70,7 +92,8 @@ public class Game extends Application {
             public void handle(long now) {
 
                 // movement
-                store.setOnClick();
+                store.setOnclick(data);
+                store.updateDataPlayer(playerData);
 
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
