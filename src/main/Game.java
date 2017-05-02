@@ -6,6 +6,7 @@ import base.animalstype.Chicken;
 import base.animalstype.Cow;
 import base.animalstype.Pig;
 import base.House.Store;
+import base.jsonObject.DataPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -13,8 +14,14 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -26,18 +33,22 @@ public class Game extends Application {
     Pane playLayer;
     Scene scene;
     List<Chicken> listChicken = new ArrayList<>();
+    JLabel lbMoney;
     List<Pig> listPig = new ArrayList<>();
     List<Cow> listCow = new ArrayList<>();
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
-
+    ImageView money = new ImageView();
     private ImageView backgroud = new ImageView();
+    private DataPlayer dataPlayer;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         // make root scene
         Group root = new Group();
+
+
 
         // add Pane play for player
         playLayer = new Pane();
@@ -48,6 +59,7 @@ public class Game extends Application {
 
         //get data player from json
         playerData.getdataPlayer();
+        dataPlayer = playerData.getDataPlayer();
 
       // add scene
         root.getChildren().add(playLayer);
@@ -59,6 +71,20 @@ public class Game extends Application {
 //        addCow();
         addPig();
         Store store = new Store(playLayer,300,10,0);
+        Image images = new Image(String.valueOf(classLoader.getResource("res/money_box.png")));
+        money.setImage(images);
+        money.setFitHeight(70);
+        money.setFitWidth(100);
+        money.relocate(670,10);
+        money.setRotate(0);
+        playLayer.getChildren().add(money);
+        Text t = new Text(10, 50, "This is a test");
+        t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
+        t.setRotate(0);
+        t.relocate(650,40);
+        t.setX(50);
+        t.setY(50);
+        playLayer.getChildren().add(t);
 
         AnimationTimer gameLoop = new AnimationTimer() {
 
@@ -67,6 +93,7 @@ public class Game extends Application {
 
                 // movement
                 store.setOnClick();
+                t.setText(dataPlayer.getJoUser1().getJoMonney()+"");
 
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
