@@ -1,0 +1,63 @@
+{
+  "animal":[
+    {
+      "name": "chicken",
+      "price": 100,
+      "space" : 10
+    },
+    {
+      "name": "pig",
+      "price": 130,
+      "space" : 13
+    },
+    {
+      "name": "cow",
+      "price": 150,
+      "space": 15
+    },
+    {
+      "name": "grass",
+      "price": 10,
+      "space" : 1
+    },
+    {
+      "name": "ostric",
+      "price": 120,
+      "space" : 12
+    }
+  ],
+  "pet":[
+    {
+      "name": "cat",
+      "price": 120,
+      "space" : 10
+    },
+    {
+      "name": "dog",
+      "price": 130,
+      "space" : 10
+    }
+  ],
+  "skin":[
+    {
+      "name": "food_normal",
+      "price": 20,
+      "space" : 1
+    },
+    {
+      "name": "food_special",
+      "price": 40,
+      "space" : 1
+    },
+    {
+      "name": "medicine_normal",
+      "price": 30,
+      "space" : 2
+    },
+    {
+      "name": "medicine_special",
+      "price": 60,
+      "space" : 2
+    }
+  ]
+}
