@@ -18,6 +18,7 @@ public class Chicken extends Animal {
 
     @Override
     public void addToLayer() {
+
         Animation animation = new SpriteAnimation(imageView
                 , Duration.millis(1000.0),
                 12, 4,
