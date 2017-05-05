@@ -14,10 +14,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import javafx.scene.media.Media;
@@ -32,6 +36,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +53,6 @@ public class Game extends Application {
     Pane playLayer;
     Scene scene;
     List<Chicken> listChicken = new ArrayList<>();
-    JLabel lbMoney;
     List<Pig> listPig = new ArrayList<>();
     List<Cow> listCow = new ArrayList<>();
     List<Can> listCan = new ArrayList<>();
@@ -98,13 +102,67 @@ public class Game extends Application {
         // lay data player
         dataPlayer = playerData.getPlayer();
 
-
         // add scene
         root.getChildren().add(playLayer);
         scene = new Scene(root, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);
 
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.out.println("close");
+                event.consume();
+                 Group group_cf;
+                 Pane pane_cf;
+                 Stage stage_cf;
+                group_cf = new Group();
+                pane_cf = new Pane();
+                stage_cf = new Stage();
+                stage_cf.setTitle("");
+                group_cf.getChildren().add(pane_cf);
+
+                Text mes = new Text("Do you want to save data and close game?");
+                mes.relocate(50,50);
+                mes.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 15));
+                pane_cf.getChildren().add(mes);
+
+                javafx.scene.control.Button ok = new Button("Yes");
+                ok.setPrefWidth(100);
+                ok.relocate(80,95);
+                Button no = new Button("No");
+                no.setPrefWidth(100);
+                no.relocate(270,95);
+
+                pane_cf.getChildren().add(ok);
+                pane_cf.getChildren().add(no);
+
+                ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        playerData.saveJson(dataPlayer);
+                        stage_cf.close();
+                        primaryStage.close();
+                    }
+                });
+
+                no.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        stage_cf.close();
+                    }
+                });
+
+                stage_cf.setScene(new Scene(group_cf, 450 , 150));
+                stage_cf.show();
+                stage_cf.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        stage_cf.close();
+                    }
+                });
+            }
+        });
         playMusic();
         addChicken();
         addCow();
@@ -136,7 +194,7 @@ public class Game extends Application {
 
                 // movement
                 store.setOnclick(dataPlayer);
-                store.updateDataPlayer(playerData);
+         //       store.updateDataPlayer(playerData);
 
            
                 t.setText(dataPlayer.getJoUser1().getJoMonney()+"");
@@ -186,21 +244,6 @@ public class Game extends Application {
     }
 
     void addChicken() {
-
-        // create a sprite
-
-//        for(JsonElement chicken_tmp: data.getAsJsonObject(
-//                "jo_chicken").getAsJsonArray("list_chicken")) {
-//            int tmp_step = chicken_tmp.getAsJsonObject().get("step").getAsInt();
-//            double tmp_health = chicken_tmp.getAsJsonObject().get("life").getAsDouble() / 100;
-//            double tmp_sickness = chicken_tmp.getAsJsonObject().get("sickness").getAsDouble() / 100;
-//            Chicken chicken = new Chicken(playLayer,
-//                    Settings.CHIKEN, 200, 200, 0, 0, 0,
-//                    0, tmp_health, tmp_sickness, tmp_step);
-//            // manage sprite
-//            listChicken.add(chicken);
-//        }
-
         List<ListChicken> listChickens = dataPlayer.getJoUser1().getJoChicken().getListChicken();
         for (int i = 0; i < listChickens.size(); i++) {
             int step = Integer.parseInt(listChickens.get(i).getStep());
@@ -214,23 +257,6 @@ public class Game extends Application {
     }
 
     void addPig() {
-
-        // create a sprite
-//        for(JsonElement chicken_tmp: data.getAsJsonObject(
-//                "jo_pig").getAsJsonArray("list_pig")) {
-//            int tmp_step = chicken_tmp.getAsJsonObject().get("step").getAsInt();
-//            double tmp_health = chicken_tmp.getAsJsonObject().get("life").getAsDouble() / 100;
-//            double tmp_sickness = chicken_tmp.getAsJsonObject().get("sickness").getAsDouble() / 100;
-//
-//            Pig pig = new Pig(playLayer, Settings.PIG, 200, 300, 0, 0,
-//                    Settings.ANIMAL_SPEED, 0, tmp_health, tmp_sickness,
-//                    tmp_step);
-//
-//            // manage sprite
-//            listPig.add(pig);
-//        }
-
-
         List<ListPig> listPigs = dataPlayer.getJoUser1().getJoPig().getListPig();
         for (int i = 0; i < listPigs.size(); i++) {
             int step = Integer.parseInt(listPigs.get(i).getStep());
@@ -244,23 +270,6 @@ public class Game extends Application {
     }
 
     void addCow() {
-
-        // create a sprite
-
-//        for(JsonElement chicken_tmp: data.getAsJsonObject(
-//                "jo_cow").getAsJsonArray("list_cow")) {
-//            int tmp_step = chicken_tmp.getAsJsonObject().get("step").getAsInt();
-//            double tmp_health = chicken_tmp.getAsJsonObject().get("life").getAsDouble() / 100;
-//            double tmp_sickness = chicken_tmp.getAsJsonObject().get("sickness").getAsDouble() / 100;
-//
-//            Cow cow = new Cow(playLayer, Settings.COW, 300, 200, 0, 0,
-//                    Settings.ANIMAL_SPEED, 0, tmp_health, tmp_sickness,
-//                    tmp_step);
-//
-//            // manage sprite
-//            listCow.add(cow);
-//        }
-
         List<ListCow> listCows = dataPlayer.getJoUser1().getJoCow().getListCow();
         for (int i = 0; i < listCows.size(); i++) {
             int step = Integer.parseInt(listCows.get(i).getStep());
@@ -270,7 +279,6 @@ public class Game extends Application {
                     200,200,0,0,0,0,health,sick,step);
             listCow.add(cow);
         }
-
     }
 
     void addCan() {
@@ -295,17 +303,13 @@ public class Game extends Application {
             int y = 530;
             int x = (i + 3) * 50;
 
-            Can can = new Can(playLayer, Settings.CAN, x, y, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
-
-            // manage sprite
-            listCan.add(can);
-            dataPlayer.getJoUser1().getJoGrass().setTotalNumber(dataPlayer.getJoUser1().getJoGrass().getTotalNumber()+1);
-            ListGras listGras = new ListGras(i, "1");
-            dataPlayer.getJoUser1().getJoGrass().getListGrass().add(listGras);
+//            Can can = new Can(playLayer, Settings.CAN, x, y, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
+//
+//            // manage sprite
+//            listCan.add(can);
+//            dataPlayer.getJoUser1().getJoGrass().setTotalNumber(String.valueOf(Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber())+1));
+//            ListGras listGras = new ListGras(i, "1");
+//            dataPlayer.getJoUser1().getJoGrass().getListGrass().add(listGras);
         }
     }
-
-
-
-
 }

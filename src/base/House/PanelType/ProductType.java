@@ -152,8 +152,6 @@ public class ProductType {
     }
 
     private void showItemCurType() {
-//        this.productImgView.clear();
-//        this.productImage.clear();
         String prefix = "res/shop/type_icon/" + type_product[this.cur_type_index - 1] + "/";
 
         for (int i = 0; i < this.icon_product.get(this.cur_type_index - 1).size(); i++) {
@@ -280,14 +278,6 @@ public class ProductType {
                 player.getJoUser1().setJo_space(player.getJoUser1().getJo_space() - prodSpace);
                 //        player.addProperty("jo_money", player.get("jo_money").getAsInt() - prodMoney);
                 player.getJoUser1().setJoMonney(player.getJoUser1().getJoMonney() - prodMoney);
-
-//                player.getAsJsonObject("jo_warehouse").addProperty(
-//                        icon_product.get(cur_type_index - 1).get(cur_product),
-//                        player.getAsJsonObject("jo_warehouse").get(
-//                                icon_product.get(cur_type_index - 1).get(
-//                                        cur_product)).getAsInt() + 1
-//                );
-//                player.getJoUser1().getJoWarehouse()
                 String nameItem = icon_product.get(cur_type_index - 1).get(cur_product);
                 if (nameItem.equals("chicken")) {
                     player.getJoUser1().getJoWarehouse()
