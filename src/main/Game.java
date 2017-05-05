@@ -9,8 +9,11 @@ import base.grassstyle.Grass;
 import base.grassstyle.Can;
 import base.House.Store;
 import base.jsonObject.DataPlayer;
+import base.jsonObject.ListChicken;
+import base.jsonObject.ListCow;
+import base.jsonObject.ListPig;
+import com.google.gson.JsonElement;
 
-import base.jsonObject.ListGras;
 import com.google.gson.JsonObject;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -55,9 +58,6 @@ public class Game extends Application {
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
 
-    JsonObject data = null;
-
-
     ImageView money = new ImageView();
 
     private ImageView backgroud = new ImageView();
@@ -91,23 +91,10 @@ public class Game extends Application {
         //get data player from json
         playerData.getdataPlayer();
 
-        updateDataJson();
+    //    data = playerData.getDataPlayer();
 
-        List<ListGras> listGras = dataPlayer.getJoUser1().getJoGrass().getListGrass();
-        for (int i = 0; i < listGras.size(); i++) {
-            System.out.println(listGras.get(i).getPosition());
-            // duyệt danh sách list grass :)))
-        }
-        ListGras listGras1 = new ListGras();
-        listGras1.setPosition(8);
-        listGras1.setStep("2");
-        listGras.add(listGras1);
-
-
-        System.out.println("=============");
-
-        // save vao json
-        playerData.saveJson(dataPlayer);
+// lay data player
+        dataPlayer = playerData.getPlayer();
 
 
         // add scene
@@ -120,13 +107,11 @@ public class Game extends Application {
         addChicken();
         addCow();
         addPig();
-        addCan();
-        addCan();
-        addCan();
-        addCan();
-        addCan();
-        Store store = new Store(playLayer, 300, 10, 0);
-        Image images = new Image(String.valueOf(classLoader.getResource("res/money_box.png")));
+
+        Store store = new Store(playLayer,300,10,0);
+        Image images = new Image(String.valueOf(classLoader.getResource(
+                "res/money_box.png")));
+
         money.setImage(images);
         money.setFitHeight(70);
         money.setFitWidth(100);
@@ -147,13 +132,11 @@ public class Game extends Application {
             public void handle(long now) {
                 updateDataJson();
                 // movement
-                store.setOnclick(data);
+                store.setOnclick(dataPlayer);
                 store.updateDataPlayer(playerData);
 
-
-                t.setText(dataPlayer.getJoUser1().getJoMonney() + "");
-
-
+           
+                t.setText(dataPlayer.getJoUser1().getJoMonney()+"");
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
                 listPig.forEach(sprite -> sprite.move());
@@ -206,28 +189,89 @@ public class Game extends Application {
     void addChicken() {
 
         // create a sprite
-        Chicken chicken = new Chicken(playLayer, Settings.CHIKEN, 200, 200, 0, 0, 0,
-                0, 1, 1);
-        // manage sprite
-        listChicken.add(chicken);
+
+//        for(JsonElement chicken_tmp: data.getAsJsonObject(
+//                "jo_chicken").getAsJsonArray("list_chicken")) {
+//            int tmp_step = chicken_tmp.getAsJsonObject().get("step").getAsInt();
+//            double tmp_health = chicken_tmp.getAsJsonObject().get("life").getAsDouble() / 100;
+//            double tmp_sickness = chicken_tmp.getAsJsonObject().get("sickness").getAsDouble() / 100;
+//            Chicken chicken = new Chicken(playLayer,
+//                    Settings.CHIKEN, 200, 200, 0, 0, 0,
+//                    0, tmp_health, tmp_sickness, tmp_step);
+//            // manage sprite
+//            listChicken.add(chicken);
+//        }
+
+        List<ListChicken> listChickens = dataPlayer.getJoUser1().getJoChicken().getListChicken();
+        for (int i = 0; i < listChickens.size(); i++) {
+            int step = Integer.parseInt(listChickens.get(i).getStep());
+            double health = Double.parseDouble(listChickens.get(i).getLife());
+            double sick = Double.parseDouble(listChickens.get(i).getSickness());
+            Chicken chicken = new Chicken(playLayer,Settings.CHIKEN,
+                    200,200,0,0,0,0,health,sick,step);
+            listChicken.add(chicken);
+        }
+
     }
 
     void addPig() {
 
         // create a sprite
-        Pig pig = new Pig(playLayer, Settings.PIG, 200, 300, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
+//        for(JsonElement chicken_tmp: data.getAsJsonObject(
+//                "jo_pig").getAsJsonArray("list_pig")) {
+//            int tmp_step = chicken_tmp.getAsJsonObject().get("step").getAsInt();
+//            double tmp_health = chicken_tmp.getAsJsonObject().get("life").getAsDouble() / 100;
+//            double tmp_sickness = chicken_tmp.getAsJsonObject().get("sickness").getAsDouble() / 100;
+//
+//            Pig pig = new Pig(playLayer, Settings.PIG, 200, 300, 0, 0,
+//                    Settings.ANIMAL_SPEED, 0, tmp_health, tmp_sickness,
+//                    tmp_step);
+//
+//            // manage sprite
+//            listPig.add(pig);
+//        }
 
-        // manage sprite
-        listPig.add(pig);
+
+        List<ListPig> listPigs = dataPlayer.getJoUser1().getJoPig().getListPig();
+        for (int i = 0; i < listPigs.size(); i++) {
+            int step = Integer.parseInt(listPigs.get(i).getStep());
+            double health = Double.parseDouble(listPigs.get(i).getLife());
+            double sick = Double.parseDouble(listPigs.get(i).getSickness());
+            Pig pig = new Pig(playLayer,Settings.PIG,
+                    200,200,0,0,0,0,health,sick,step);
+            listPig.add(pig);
+        }
+
     }
 
     void addCow() {
 
         // create a sprite
-        Cow cow = new Cow(playLayer, Settings.COW, 300, 200, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
 
-        // manage sprite
-        listCow.add(cow);
+//        for(JsonElement chicken_tmp: data.getAsJsonObject(
+//                "jo_cow").getAsJsonArray("list_cow")) {
+//            int tmp_step = chicken_tmp.getAsJsonObject().get("step").getAsInt();
+//            double tmp_health = chicken_tmp.getAsJsonObject().get("life").getAsDouble() / 100;
+//            double tmp_sickness = chicken_tmp.getAsJsonObject().get("sickness").getAsDouble() / 100;
+//
+//            Cow cow = new Cow(playLayer, Settings.COW, 300, 200, 0, 0,
+//                    Settings.ANIMAL_SPEED, 0, tmp_health, tmp_sickness,
+//                    tmp_step);
+//
+//            // manage sprite
+//            listCow.add(cow);
+//        }
+
+        List<ListCow> listCows = dataPlayer.getJoUser1().getJoCow().getListCow();
+        for (int i = 0; i < listCows.size(); i++) {
+            int step = Integer.parseInt(listCows.get(i).getStep());
+            double health = Double.parseDouble(listCows.get(i).getLife());
+            double sick = Double.parseDouble(listCows.get(i).getSickness());
+            Cow cow = new Cow(playLayer,Settings.COW,
+                    200,200,0,0,0,0,health,sick,step);
+            listCow.add(cow);
+        }
+
     }
 
     void addCan() {

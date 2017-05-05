@@ -8,7 +8,7 @@ public class Settings {
     public static double SCENE_WIDTH = 800;
     public static double SCENE_HEIGHT = 600;
 
-  public static double ANIMAL_SPEED = 2;
+  public static double ANIMAL_SPEED = 0.5;
 
 
     public static int CHIKEN = 1;

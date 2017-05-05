@@ -56,18 +56,18 @@ public class ProductType {
     static private double item_x = 65, item_y = 80, item_distance_y = 120, item_distance_x = 150;
     static private Image product_enable_image = new Image(
             "res/shop/type_icon/product_enabled.png",
-        140, 125, false, false);
+            140, 125, false, false);
     static private ImageView prodduct_enable_image_view = new ImageView(
             product_enable_image);
     static private Image enable_image = new Image("res/shop/type_icon/enabled.png",
             135, 135, false, false);
     static private ImageView enable_image_view = new ImageView(enable_image);
     private int cur_product = -1;
-    private JsonObject player;
+    private DataPlayer player;
     private Text money, space;
     private Button buy;
 
-    private void loadDataStore(){
+    private void loadDataStore() {
         FileReader fileReader = null;
         try {
             fileReader = new FileReader("src/res/shop/product.json");
@@ -77,22 +77,23 @@ public class ProductType {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         Gson gson = new Gson();
         JsonObject data = gson.fromJson(bufferedReader, JsonObject.class);
-        for(int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             JsonArray a = data.get(type_product[i]).getAsJsonArray();
             List<String> tmp_name = new ArrayList<>();
             List<Integer> tmp_price = new ArrayList<>();
             List<Integer> tmp_space = new ArrayList<>();
-            for(JsonElement j: a){
-                 tmp_name.add(j.getAsJsonObject().get("name").getAsString());
-                 tmp_price.add(j.getAsJsonObject().get("price").getAsInt());
-                 tmp_space.add(j.getAsJsonObject().get("space").getAsInt());
+            for (JsonElement j : a) {
+                tmp_name.add(j.getAsJsonObject().get("name").getAsString());
+                tmp_price.add(j.getAsJsonObject().get("price").getAsInt());
+                tmp_space.add(j.getAsJsonObject().get("space").getAsInt());
             }
             icon_product.add(tmp_name);
             icon_price.add(tmp_price);
             icon_space.add(tmp_space);
         }
     }
-    public ProductType(Pane layer, int index, JsonObject player) {
+
+    public ProductType(Pane layer, int index, DataPlayer player) {
         loadDataStore();
         String imagePath = "res/shop/type_icon/" + type_product[index - 1] + ".png";
         this.layer = layer;
@@ -121,9 +122,11 @@ public class ProductType {
 
     }
 
-    void showDataPlayer(){
-        int currentMoney = player.get("jo_money").getAsInt();
-        int currentSpace = player.get("jo_space").getAsInt();
+    void showDataPlayer() {
+        int currentMoney = player.getJoUser1().getJoMonney();
+        System.out.println(currentMoney);
+        int currentSpace = player.getJoUser1().getJo_space();
+        System.out.println(currentSpace);
         money = new Text("" + currentMoney);
         space = new Text(("" + currentSpace));
         money.setFont(new Font(40));
@@ -135,7 +138,6 @@ public class ProductType {
         this.layer.getChildren().add(money);
         this.layer.getChildren().add(space);
     }
-
 
 
     private void showCurType() {
@@ -172,31 +174,31 @@ public class ProductType {
         for (Iterator<ImageView> it = type_image_view.iterator(); it.hasNext(); ) {
             ImageView tmp = it.next();
             tmp.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    String file_name = "src/res/sounds2/item_add.mp3";
-                    Media sound = new Media(new File(file_name).toURI().toString());
-                    MediaPlayer mediaPlayer = new MediaPlayer(sound);
-                    mediaPlayer.play();
-                    int size = layer.getChildren().size();
-                    cur_type_index = type_image_view.indexOf(tmp) + 1;
-                    layer.getChildren().remove(1, size);
-                    new ProductType(layer, cur_type_index, player);
-                }
-            }
+                                      @Override
+                                      public void handle(MouseEvent event) {
+                                          String file_name = "src/res/sounds2/item_add.mp3";
+                                          Media sound = new Media(new File(file_name).toURI().toString());
+                                          MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                                          mediaPlayer.play();
+                                          int size = layer.getChildren().size();
+                                          cur_type_index = type_image_view.indexOf(tmp) + 1;
+                                          layer.getChildren().remove(1, size);
+                                          new ProductType(layer, cur_type_index, player);
+                                      }
+                                  }
             );
             setOnClickProduct();
         }
     }
 
-    private void showCurProduct(){
-        if(cur_product == -1 ||
+    private void showCurProduct() {
+        if (cur_product == -1 ||
                 cur_product >= icon_product.get(this.cur_type_index - 1).size()) return;
         int postion = this.layer.getChildren().lastIndexOf(
                 productImgView.get(cur_product));
         int longtitude = cur_product % 4;
         int width = cur_product / 4;
-        prodduct_enable_image_view.relocate(item_x - 30 + (item_distance_x )* longtitude,
+        prodduct_enable_image_view.relocate(item_x - 30 + (item_distance_x) * longtitude,
                 item_y - 12 + item_distance_y * width);
         this.layer.getChildren().add(postion, prodduct_enable_image_view);
         showDataPlayer();
@@ -223,35 +225,36 @@ public class ProductType {
         setOnClickBuy();
     }
 
-    private void setOnClickProduct(){
+    private void setOnClickProduct() {
         for (Iterator<ImageView> it = productImgView.iterator(); it.hasNext(); ) {
             ImageView tmp = it.next();
             tmp.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    String file_name = "src/res/sounds2/product_add.mp3";
-                    Media sound = new Media(new File(file_name).toURI().toString());
-                    MediaPlayer mediaPlayer = new MediaPlayer(sound);
-                    mediaPlayer.play();
-                    int size = layer.getChildren().size();
-                    cur_product = productImgView.indexOf(tmp);
-                    layer.getChildren().remove(5, size);
-                    showItemCurType();
-                    setOnClickBuy();
-                    }
-                }
+                                      @Override
+                                      public void handle(MouseEvent event) {
+                                          String file_name = "src/res/sounds2/product_add.mp3";
+                                          Media sound = new Media(new File(file_name).toURI().toString());
+                                          MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                                          mediaPlayer.play();
+                                          int size = layer.getChildren().size();
+                                          cur_product = productImgView.indexOf(tmp);
+                                          layer.getChildren().remove(5, size);
+                                          showItemCurType();
+                                          setOnClickBuy();
+                                      }
+                                  }
             );
         }
     }
 
-    private void setOnClickBuy(){
-        if(cur_product == -1 || cur_product >= icon_product.get(cur_type_index - 1).size())
+    private void setOnClickBuy() {
+        if (cur_product == -1 || cur_product >= icon_product.get(cur_type_index - 1).size())
             return;
         buy.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
+            @Override
+            public void handle(MouseEvent e) {
                 int prodMoney = icon_price.get(cur_type_index - 1).get(cur_product);
                 int prodSpace = icon_space.get(cur_type_index - 1).get(cur_product);
-                if(prodMoney > player.get("jo_money").getAsInt()){
+                if (prodMoney > player.getJoUser1().getJoMonney()) {
                     ButtonType loginButtonType = new ButtonType("Hiểu", ButtonBar.ButtonData.OK_DONE);
                     Dialog<String> dialog = new Dialog<>();
                     dialog.setContentText("Bạn đéo đủ tiền hihi");
@@ -260,7 +263,7 @@ public class ProductType {
                     dialog.show();
                     return;
                 }
-                if(prodSpace > player.get("jo_space").getAsInt()){
+                if (prodSpace > player.getJoUser1().getJo_space()) {
                     ButtonType loginButtonType = new ButtonType("Hiểu", ButtonBar.ButtonData.OK_DONE);
                     Dialog<String> dialog = new Dialog<>();
                     dialog.setContentText("Kho của bạn đếch đủ chỗ hihi");
@@ -273,19 +276,68 @@ public class ProductType {
                 Media sound = new Media(new File(file_name).toURI().toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(sound);
                 mediaPlayer.play();
-                player.addProperty("jo_space", player.get("jo_space").getAsInt() - prodSpace);
-                player.addProperty("jo_money", player.get("jo_money").getAsInt() - prodMoney);
+                //       player.addProperty("jo_space", player.get("jo_space").getAsInt() - prodSpace);
+                player.getJoUser1().setJo_space(player.getJoUser1().getJo_space() - prodSpace);
+                //        player.addProperty("jo_money", player.get("jo_money").getAsInt() - prodMoney);
+                player.getJoUser1().setJoMonney(player.getJoUser1().getJoMonney() - prodMoney);
 
-                player.getAsJsonObject("jo_warehouse").addProperty(
-                        icon_product.get(cur_type_index - 1).get(cur_product),
-                        player.getAsJsonObject("jo_warehouse").get(
-                                icon_product.get(cur_type_index - 1).get(
-                                        cur_product)).getAsInt() + 1
-                );
+//                player.getAsJsonObject("jo_warehouse").addProperty(
+//                        icon_product.get(cur_type_index - 1).get(cur_product),
+//                        player.getAsJsonObject("jo_warehouse").get(
+//                                icon_product.get(cur_type_index - 1).get(
+//                                        cur_product)).getAsInt() + 1
+//                );
+//                player.getJoUser1().getJoWarehouse()
+                String nameItem = icon_product.get(cur_type_index - 1).get(cur_product);
+                if (nameItem.equals("chicken")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setChicken(player.getJoUser1().getJoWarehouse().getChicken() + 1);
+                }
+                if (nameItem.equals("pig")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setPig(player.getJoUser1().getJoWarehouse().getPig() + 1);
+                }
+                if (nameItem.equals("cow")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setCow(player.getJoUser1().getJoWarehouse().getCow() + 1);
+                }
+                if (nameItem.equals("grass")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setGrass(player.getJoUser1().getJoWarehouse().getGrass() + 1);
+                }
+                if (nameItem.equals("ostric")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setOstric(player.getJoUser1().getJoWarehouse().getOstric() + 1);
+                }
+                if (nameItem.equals("cat")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setCat(player.getJoUser1().getJoWarehouse().getCat() + 1);
+                }
+                if (nameItem.equals("dog")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setDog(player.getJoUser1().getJoWarehouse().getDog() + 1);
+                }
+                if (nameItem.equals("food_normal")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setFoodNormal(player.getJoUser1().getJoWarehouse().getFoodNormal() + 1);
+                }
+                if (nameItem.equals("food_special")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setFoodSpecial(player.getJoUser1().getJoWarehouse().getFoodSpecial() + 1);
+                }
+                if (nameItem.equals("medicine_normal")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setMedicineNormal(player.getJoUser1().getJoWarehouse().getMedicineNormal() + 1);
+                }
+                if (nameItem.equals("medicine_special")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setMedicineSpecial(player.getJoUser1().getJoWarehouse().getMedicineSpecial() + 1);
+                }
                 int size = layer.getChildren().size();
-                layer.getChildren().remove(5,size);
+                layer.getChildren().remove(5, size);
                 showItemCurType();
             }
         });
+
     }
 }

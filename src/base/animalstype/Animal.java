@@ -41,6 +41,7 @@ public abstract class Animal {
 
     double health;
     double sick;
+    int step;
 
     boolean removable = false;
     boolean isScale = false;
@@ -57,7 +58,7 @@ public abstract class Animal {
     ClassLoader classLoader = this.getClass().getClassLoader();
 
     public Animal(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr,
-                  double health, double sick) {
+                  double health, double sick, int step) {
         this.layer = layer;
         this.type = type;
         String typeAnimal = null;
@@ -78,7 +79,7 @@ public abstract class Animal {
 
         this.health = health;
         this.sick = sick;
-
+        this.step = step;
         // random phuong huong khi vao
         Random rand = new Random();
         int n = rand.nextInt(7);
