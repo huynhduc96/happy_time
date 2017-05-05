@@ -164,10 +164,6 @@ public class Store implements House {
         });
     }
 
-    @Override
-    public void updateDataPlayer(Player player) {
-        player.saveJson();
-    }
 }
 
 

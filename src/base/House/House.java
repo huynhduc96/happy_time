@@ -9,5 +9,4 @@ import main.Player;
  */
 public interface House {
     void setOnclick(DataPlayer data);
-    void updateDataPlayer(Player player);
 }
