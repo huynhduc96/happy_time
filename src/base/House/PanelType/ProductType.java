@@ -1,14 +1,11 @@
 package base.House.PanelType;
 
 import base.jsonObject.DataPlayer;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import javafx.animation.PauseTransition;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -30,7 +27,10 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import javax.management.Notification;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -44,29 +44,16 @@ public class ProductType {
     private List<Image> type_image = new ArrayList<>();
     private List<ImageView> type_image_view = new ArrayList<>();
     static private String[] type_product = {"animal", "pet", "skin"};
-    static private String[][] icon_product = {
-            {"chicken", "pig", "cow", "grass", "ostric"},
-            {"cat", "dog"},
-            {"food_normal", "food_special", "medicine_normal", "medicine_special"}
+    static private List<List<String>> icon_product = new ArrayList<>();
+    static private List<List<Integer>> icon_price = new ArrayList<>();
+    static private List<List<Integer>> icon_space = new ArrayList<>();
 
-    };
-    static private int[][] icon_price = {
-            {100, 120, 150, 10, 200},
-            {100, 100},
-            {10, 10, 20, 30}
-    };
-    static private int[][] icon_space = {
-            {1,2,3,1,2},
-            {2,2},
-            {1,1,1,1}
-    };
+
     private int cur_type_index;
     private List<ImageView> productImgView = new ArrayList<ImageView>();
     private List<Image> productImage = new ArrayList<>();
     static private double type_x = 660, type_y = 80, type_distance = 120;
     static private double item_x = 65, item_y = 80, item_distance_y = 120, item_distance_x = 150;
-//    private String product_prefix = "res/shop/type_icon/" +
-//            icon_product[cur_type_index - 1] + "/";
     static private Image product_enable_image = new Image(
             "res/shop/type_icon/product_enabled.png",
         140, 125, false, false);
@@ -80,7 +67,33 @@ public class ProductType {
     private Text money, space;
     private Button buy;
 
+    private void loadDataStore(){
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader("src/res/shop/product.json");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        Gson gson = new Gson();
+        JsonObject data = gson.fromJson(bufferedReader, JsonObject.class);
+        for(int i = 0; i < 3; i++){
+            JsonArray a = data.get(type_product[i]).getAsJsonArray();
+            List<String> tmp_name = new ArrayList<>();
+            List<Integer> tmp_price = new ArrayList<>();
+            List<Integer> tmp_space = new ArrayList<>();
+            for(JsonElement j: a){
+                 tmp_name.add(j.getAsJsonObject().get("name").getAsString());
+                 tmp_price.add(j.getAsJsonObject().get("price").getAsInt());
+                 tmp_space.add(j.getAsJsonObject().get("space").getAsInt());
+            }
+            icon_product.add(tmp_name);
+            icon_price.add(tmp_price);
+            icon_space.add(tmp_space);
+        }
+    }
     public ProductType(Pane layer, int index, JsonObject player) {
+        loadDataStore();
         String imagePath = "res/shop/type_icon/" + type_product[index - 1] + ".png";
         this.layer = layer;
         this.cur_type_index = index;
@@ -141,11 +154,11 @@ public class ProductType {
 //        this.productImage.clear();
         String prefix = "res/shop/type_icon/" + type_product[this.cur_type_index - 1] + "/";
 
-        for (int i = 0; i < this.icon_product[this.cur_type_index - 1].length; i++) {
+        for (int i = 0; i < this.icon_product.get(this.cur_type_index - 1).size(); i++) {
             int longtitude = i % 4;
             int width = i / 4;
             productImage.add(new Image(prefix +
-                    icon_product[this.cur_type_index - 1][i] + ".png",
+                    icon_product.get(this.cur_type_index - 1).get(i) + ".png",
                     85, 85, false, false));
             productImgView.add(new ImageView(productImage.get(i)));
             productImgView.get(i).relocate(item_x + item_distance_x * longtitude,
@@ -169,8 +182,6 @@ public class ProductType {
                     cur_type_index = type_image_view.indexOf(tmp) + 1;
                     layer.getChildren().remove(1, size);
                     new ProductType(layer, cur_type_index, player);
-//                    initView();
-//                    showCurType();
                 }
             }
             );
@@ -180,7 +191,7 @@ public class ProductType {
 
     private void showCurProduct(){
         if(cur_product == -1 ||
-                cur_product >= icon_product[cur_type_index - 1].length) return;
+                cur_product >= icon_product.get(this.cur_type_index - 1).size()) return;
         int postion = this.layer.getChildren().lastIndexOf(
                 productImgView.get(cur_product));
         int longtitude = cur_product % 4;
@@ -189,8 +200,8 @@ public class ProductType {
                 item_y - 12 + item_distance_y * width);
         this.layer.getChildren().add(postion, prodduct_enable_image_view);
         showDataPlayer();
-        int curMoney = icon_price[cur_type_index - 1][cur_product];
-        int curSpace = icon_space[cur_type_index - 1][cur_product];
+        int curMoney = icon_price.get(this.cur_type_index - 1).get(cur_product);
+        int curSpace = icon_space.get(this.cur_type_index - 1).get(cur_product);
         money = new Text("" + curMoney);
         space = new Text(("" + curSpace));
         money.setFont(new Font(40));
@@ -227,8 +238,6 @@ public class ProductType {
                     layer.getChildren().remove(5, size);
                     showItemCurType();
                     setOnClickBuy();
-//                    initView();
-//                    showCurType();
                     }
                 }
             );
@@ -236,12 +245,12 @@ public class ProductType {
     }
 
     private void setOnClickBuy(){
-        if(cur_product == -1 || cur_product >= icon_product[cur_type_index - 1].length)
+        if(cur_product == -1 || cur_product >= icon_product.get(cur_type_index - 1).size())
             return;
         buy.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override public void handle(MouseEvent e) {
-                int prodMoney = icon_price[cur_type_index - 1][cur_product];
-                int prodSpace = icon_space[cur_type_index - 1][cur_product];
+                int prodMoney = icon_price.get(cur_type_index - 1).get(cur_product);
+                int prodSpace = icon_space.get(cur_type_index - 1).get(cur_product);
                 if(prodMoney > player.get("jo_money").getAsInt()){
                     ButtonType loginButtonType = new ButtonType("Hiểu", ButtonBar.ButtonData.OK_DONE);
                     Dialog<String> dialog = new Dialog<>();
@@ -266,48 +275,12 @@ public class ProductType {
                 mediaPlayer.play();
                 player.addProperty("jo_space", player.get("jo_space").getAsInt() - prodSpace);
                 player.addProperty("jo_money", player.get("jo_money").getAsInt() - prodMoney);
-//                switch (icon_product[cur_type_index - 1][cur_product]){
-//                    case "chicken":
-//
-//                        break;
-//                    case "pig":
-//                        break;
-//                    case "cow":
-//                        break;
-//                    case "grass":
-//                        break;
-//                    case "ostric":
-//                        break;
-//
-//                    case "cat":
-//                        break;
-//                    case "dog":
-//                        break;
-//                    case "food_normal":
-//                        player.getJoUser1().getJoWarehouse().setFoodNormal(
-//                                player.getJoUser1().getJoWarehouse().getFoodNormal() + 1
-//                        );
-//                        break;
-//                    case "food_special":
-//                        player.getJoUser1().getJoWarehouse().setFoodSpecial(
-//                                player.getJoUser1().getJoWarehouse().getFoodSpecial() + 1
-//                        );
-//                        break;
-//                    case "medicine_normal":
-//                        player.getJoUser1().getJoWarehouse().setMedicineNormal(
-//                                player.getJoUser1().getJoWarehouse().getMedicineNormal() + 1
-//                        );
-//                        break;
-//                    case "medicine_special":
-//                        player.getJoUser1().getJoWarehouse().setMedicineSpecial(
-//                                player.getJoUser1().getJoWarehouse().getMedicineSpecial() + 1
-//                        );
-//                        break;
-//                }
+
                 player.getAsJsonObject("jo_warehouse").addProperty(
-                        icon_product[cur_type_index - 1][cur_product],
+                        icon_product.get(cur_type_index - 1).get(cur_product),
                         player.getAsJsonObject("jo_warehouse").get(
-                                icon_product[cur_type_index - 1][cur_product]).getAsInt() + 1
+                                icon_product.get(cur_type_index - 1).get(
+                                        cur_product)).getAsInt() + 1
                 );
                 int size = layer.getChildren().size();
                 layer.getChildren().remove(5,size);
