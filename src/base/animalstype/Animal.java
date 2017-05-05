@@ -522,6 +522,7 @@ public abstract class Animal {
         this.imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                getSound("voice");
                 info = "không đói:" + health + "\n" + "ốm:" + sick +
                         "\nvòng đời:" + step;
                 t.setText(info);
