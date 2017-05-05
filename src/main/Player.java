@@ -76,7 +76,23 @@ public class Player {
         String json ;
         json= gson.toJson(obj);
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "/src/res/data/user.json", false))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(
+                System.getProperty("user.dir") + "/src/res/data/user.json", false))) {
+            bw.write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+    }
+    public void saveJson(DataPlayer obj) {
+        Gson gson = new Gson();
+
+        String json ;
+        json= gson.toJson(obj);
+        System.out.println(json.toString());
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(
+                System.getProperty("user.dir") + "/src/res/data/user.json", false))) {
             bw.write(json);
         } catch (IOException e) {
             e.printStackTrace();
