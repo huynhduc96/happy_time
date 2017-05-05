@@ -1,6 +1,7 @@
 package main;
 
 import base.*;
+import base.House.WareHouse;
 import base.animalstype.Animal;
 import base.animalstype.Chicken;
 import base.animalstype.Cow;
@@ -66,24 +67,16 @@ public class Game extends Application {
     Integer[] location = new Integer[10];
 
     private ImageView backgroud = new ImageView();
+    private ImageView backgroud_l = new ImageView();
+    private ImageView backgroud_r = new ImageView();
+    private ImageView img_help = new ImageView();
     private DataPlayer dataPlayer = null;
 
-    private void playMusic() {
-        String file_name = "src/res/sounds2/music_game.mp3";
-        Media sound = new Media(new File(file_name).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setOnEndOfMedia(new Runnable() {
-            public void run() {
-                mediaPlayer.seek(javafx.util.Duration.INDEFINITE);
-            }
-        });
-        mediaPlayer.play();
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        for (int i=0;i<10;i++){
-            location[i]=0;
+        for (int i = 0; i < 10; i++) {
+            location[i] = 0;
         }
         // make root scene
         Group root = new Group();
@@ -92,9 +85,7 @@ public class Game extends Application {
         // add Pane play for player
         playLayer = new Pane();
         //add background
-        Image image_back = new Image(String.valueOf(classLoader.getResource("res/back.png")));
-        backgroud.setImage(image_back);
-        playLayer.getChildren().add(backgroud);
+        addBack();
 
         //get data player from json
         playerData.getdataPlayer();
@@ -115,9 +106,9 @@ public class Game extends Application {
             public void handle(WindowEvent event) {
                 System.out.println("close");
                 event.consume();
-                 Group group_cf;
-                 Pane pane_cf;
-                 Stage stage_cf;
+                Group group_cf;
+                Pane pane_cf;
+                Stage stage_cf;
                 group_cf = new Group();
                 pane_cf = new Pane();
                 stage_cf = new Stage();
@@ -125,16 +116,16 @@ public class Game extends Application {
                 group_cf.getChildren().add(pane_cf);
 
                 Text mes = new Text("Do you want to save data and close game?");
-                mes.relocate(50,50);
+                mes.relocate(50, 50);
                 mes.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 15));
                 pane_cf.getChildren().add(mes);
 
                 javafx.scene.control.Button ok = new Button("Yes");
                 ok.setPrefWidth(100);
-                ok.relocate(80,95);
+                ok.relocate(80, 95);
                 Button no = new Button("No");
                 no.setPrefWidth(100);
-                no.relocate(270,95);
+                no.relocate(270, 95);
 
                 pane_cf.getChildren().add(ok);
                 pane_cf.getChildren().add(no);
@@ -155,7 +146,7 @@ public class Game extends Application {
                     }
                 });
 
-                stage_cf.setScene(new Scene(group_cf, 450 , 150));
+                stage_cf.setScene(new Scene(group_cf, 450, 150));
                 stage_cf.show();
                 stage_cf.setOnCloseRequest(new EventHandler<WindowEvent>() {
                     @Override
@@ -171,9 +162,60 @@ public class Game extends Application {
         addPig();
         addCan();
 
-        Store store = new Store(playLayer,300,10,0);
+        Store store = new Store(playLayer, 300, 10, 0);
+        WareHouse wareHouse = new WareHouse(playLayer,620,305,0);
         Image images = new Image(String.valueOf(classLoader.getResource(
                 "res/money_box.png")));
+        img_help.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("help");
+                event.consume();
+                Group group_cf;
+                Pane pane_cf;
+                Stage stage_cf;
+                group_cf = new Group();
+                pane_cf = new Pane();
+                stage_cf = new Stage();
+                stage_cf.setTitle("Help");
+                group_cf.getChildren().add(pane_cf);
+
+
+                javafx.scene.control.Button ok = new Button("Trước");
+                ok.setPrefWidth(100);
+                ok.relocate(80, 95);
+                Button no = new Button("Sau");
+                no.setPrefWidth(100);
+                no.relocate(270, 95);
+
+                pane_cf.getChildren().add(ok);
+                pane_cf.getChildren().add(no);
+
+                ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        stage_cf.close();
+
+                    }
+                });
+
+                no.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        stage_cf.close();
+                    }
+                });
+
+                stage_cf.setScene(new Scene(group_cf, 450, 150));
+                stage_cf.show();
+                stage_cf.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        stage_cf.close();
+                    }
+                });
+            }
+        });
 
         money.setImage(images);
         money.setFitHeight(60);
@@ -197,15 +239,16 @@ public class Game extends Application {
 
                 // movement
                 store.setOnclick(dataPlayer);
-         //       store.updateDataPlayer(playerData);
+                wareHouse.setOnclick(dataPlayer);
+                //       store.updateDataPlayer(playerData);
 
-           
-                t.setText(dataPlayer.getJoUser1().getJoMonney()+" $");
+
+                t.setText(dataPlayer.getJoUser1().getJoMonney() + " $");
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
                 listPig.forEach(sprite -> sprite.move());
-
-                // update sprites in scene
+//                listChicken.forEach(sprite -> sprite.delayTimeForHealth());
+                // update sprites in scene4
 
                 listChicken.forEach(sprite -> sprite.updateUI());
                 listPig.forEach(sprite -> sprite.updateUI());
@@ -215,6 +258,7 @@ public class Game extends Application {
                 listChicken.forEach(sprite -> sprite.checkRemovability());
                 listPig.forEach(sprite -> sprite.checkRemovability());
                 listCow.forEach(sprite -> sprite.checkRemovability());
+
 
                 removeSprites(listChicken);
                 removeSprites(listPig);
@@ -228,6 +272,31 @@ public class Game extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    void addBack() {
+        Image image_back = new Image(String.valueOf(classLoader.getResource("res/back.png")));
+        Image image_back_left = new Image(String.valueOf(classLoader.getResource("res/back_left.png")));
+        Image image_back_right = new Image(String.valueOf(classLoader.getResource("res/back_right.png")));
+        Image image_help = new Image(String.valueOf(classLoader.getResource("res/help.png")));
+        Text txt_help = new Text("Help");
+        txt_help.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
+        txt_help.relocate(77,394);
+        txt_help.setFill(Color.YELLOW);
+        backgroud.setImage(image_back);
+        img_help.setImage(image_help);
+        img_help.relocate(50,320);
+        img_help.setFitHeight(140);
+        img_help.setFitWidth(100);
+        backgroud_l.setImage(image_back_left);
+        backgroud_l.relocate(0, 335);
+        backgroud_r.setImage(image_back_right);
+        backgroud_r.relocate(560, 335);
+        playLayer.getChildren().add(backgroud);
+        playLayer.getChildren().add(backgroud_l);
+        playLayer.getChildren().add(backgroud_r);
+        playLayer.getChildren().add(img_help);
+        playLayer.getChildren().add(txt_help);
     }
 
     private void removeSprites(List<? extends Animal> spriteList) {
@@ -252,8 +321,8 @@ public class Game extends Application {
             int step = Integer.parseInt(listChickens.get(i).getStep());
             double health = Double.parseDouble(listChickens.get(i).getLife());
             double sick = Double.parseDouble(listChickens.get(i).getSickness());
-            Chicken chicken = new Chicken(playLayer,Settings.CHIKEN,
-                    200,200,0,0,0,0,health,sick,step);
+            Chicken chicken = new Chicken(playLayer, Settings.CHIKEN,
+                    200, 200, 0, 0, 0, 0, health, sick, step);
             chicken.setOnDrag();
             listChicken.add(chicken);
         }
@@ -266,8 +335,8 @@ public class Game extends Application {
             int step = Integer.parseInt(listPigs.get(i).getStep());
             double health = Double.parseDouble(listPigs.get(i).getLife());
             double sick = Double.parseDouble(listPigs.get(i).getSickness());
-            Pig pig = new Pig(playLayer,Settings.PIG,
-                    200,200,0,0,0,0,health,sick,step);
+            Pig pig = new Pig(playLayer, Settings.PIG,
+                    200, 200, 0, 0, 0, 0, health, sick, step);
             pig.setOnDrag();
             listPig.add(pig);
         }
@@ -280,8 +349,8 @@ public class Game extends Application {
             int step = Integer.parseInt(listCows.get(i).getStep());
             double health = Double.parseDouble(listCows.get(i).getLife());
             double sick = Double.parseDouble(listCows.get(i).getSickness());
-            Cow cow = new Cow(playLayer,Settings.COW,
-                    200,200,0,0,0,0,health,sick,step);
+            Cow cow = new Cow(playLayer, Settings.COW,
+                    200, 200, 0, 0, 0, 0, health, sick, step);
             cow.setOnDrag();
             listCow.add(cow);
         }
@@ -291,7 +360,7 @@ public class Game extends Application {
         int j;
         int tmp = Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber());
         // create a sprite
-        for (j = 0; j < tmp; j ++) {
+        for (j = 0; j < tmp; j++) {
             int tmp1;
             tmp1 = dataPlayer.getJoUser1().getJoGrass().getListGrass().get(j).getPosition();
             location[tmp1] = 1;
@@ -317,5 +386,17 @@ public class Game extends Application {
 //            ListGras listGras = new ListGras(i, "1");
 //            dataPlayer.getJoUser1().getJoGrass().getListGrass().add(listGras);
         }
+    }
+
+    private void playMusic() {
+        String file_name = "src/res/sounds2/music_game.mp3";
+        Media sound = new Media(new File(file_name).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                mediaPlayer.seek(javafx.util.Duration.INDEFINITE);
+            }
+        });
+        mediaPlayer.play();
     }
 }
