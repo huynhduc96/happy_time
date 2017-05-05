@@ -130,7 +130,7 @@ public class Game extends Application {
 
             @Override
             public void handle(long now) {
-                updateDataJson();
+
                 // movement
                 store.setOnclick(dataPlayer);
                 store.updateDataPlayer(playerData);
@@ -161,10 +161,6 @@ public class Game extends Application {
         gameLoop.start();
     }
 
-    void updateDataJson() {
-        this.setData(playerData.getDataPlayer());
-        this.setDataPlayer(playerData.getPlayer());
-    }
 
     public static void main(String[] args) {
         launch(args);
@@ -285,21 +281,7 @@ public class Game extends Application {
         listCan.add(can);
     }
 
-    public JsonObject getData() {
-        return data;
-    }
 
-    public void setData(JsonObject data) {
-        this.data = data;
-    }
-
-    public DataPlayer getDataPlayer() {
-        return dataPlayer;
-    }
-
-    public void setDataPlayer(DataPlayer dataPlayer) {
-        this.dataPlayer = dataPlayer;
-    }
 
 
 }
