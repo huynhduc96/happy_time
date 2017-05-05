@@ -26,6 +26,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by huynh on 07-Apr-17.
@@ -83,6 +84,10 @@ public class Game extends Application {
         addChicken();
         addCow();
         addPig();
+        addCan();
+        addCan();
+        addCan();
+        addCan();
         addCan();
         Store store = new Store(playLayer,300,10,0);
 
@@ -169,7 +174,9 @@ public class Game extends Application {
     void addCan(){
 
         // create a sprite
-        Can can = new Can( playLayer, Settings.CAN, 400, 300, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+        int x = ThreadLocalRandom.current().nextInt(150, 600 + 1);
+        int y = ThreadLocalRandom.current().nextInt(150, 450 + 1);
+        Can can = new Can( playLayer, Settings.CAN, x, y, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
 
         // manage sprite
         listCan.add(can);

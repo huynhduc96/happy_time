@@ -23,7 +23,7 @@ public class Can extends Grass {
         );
 
         animation.play();
-        this.layer.getChildren().add(this.imageView);
+        this.layer.getChildren().add(1, this.imageView);
     }
 
     @Override
