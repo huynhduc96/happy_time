@@ -32,6 +32,15 @@ public class JoWarehouse {
     private String foodNormal;
     @SerializedName("food_special")
     @Expose
+    private String food_sp;
+    @SerializedName("cat")
+    @Expose
+    private String dog;
+    @SerializedName("dog")
+    @Expose
+    private String chicken;
+    @SerializedName("food_special")
+    @Expose
     private String foodSpecial;
 
     public String getGrass() {

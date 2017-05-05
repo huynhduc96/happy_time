@@ -10,6 +10,10 @@ tmp/
 *.bak
 *.swp
 *~.nib
+*.classpath
+*.iml
+*.class
+*.jar
 local.properties
 .settings/
 .loadpath

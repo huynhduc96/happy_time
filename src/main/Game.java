@@ -5,8 +5,12 @@ import base.animalstype.Animal;
 import base.animalstype.Chicken;
 import base.animalstype.Cow;
 import base.animalstype.Pig;
+import base.grassstyle.Grass;
+import base.grassstyle.Can;
 import base.House.Store;
 import base.jsonObject.DataPlayer;
+
+import com.google.gson.JsonObject;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -14,6 +18,14 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.time.Duration;
+
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -25,6 +37,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by huynh on 07-Apr-17.
@@ -36,12 +49,29 @@ public class Game extends Application {
     JLabel lbMoney;
     List<Pig> listPig = new ArrayList<>();
     List<Cow> listCow = new ArrayList<>();
+    List<Can> listCan = new ArrayList<>();
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
+
+    JsonObject data;
+
     ImageView money = new ImageView();
+
     private ImageView backgroud = new ImageView();
     private DataPlayer dataPlayer;
+
+    private void playMusic(){
+        String file_name = "src/res/sounds2/music_game.mp3";
+        Media sound = new Media(new File(file_name).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                mediaPlayer.seek(javafx.util.Duration.INDEFINITE);
+            }
+        });
+        mediaPlayer.play();
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -59,7 +89,12 @@ public class Game extends Application {
 
         //get data player from json
         playerData.getdataPlayer();
+
+        data = playerData.getDataPlayer();
+
+
         dataPlayer = playerData.getDataPlayer();
+
 
       // add scene
         root.getChildren().add(playLayer);
@@ -67,9 +102,15 @@ public class Game extends Application {
 
         primaryStage.setScene( scene);
         primaryStage.show();
-//        addChicken();
-//        addCow();
+        playMusic();
+        addChicken();
+        addCow();
         addPig();
+        addCan();
+        addCan();
+        addCan();
+        addCan();
+        addCan();
         Store store = new Store(playLayer,300,10,0);
         Image images = new Image(String.valueOf(classLoader.getResource("res/money_box.png")));
         money.setImage(images);
@@ -92,8 +133,12 @@ public class Game extends Application {
             public void handle(long now) {
 
                 // movement
-                store.setOnClick();
+                store.setOnclick(data);
+                store.updateDataPlayer(playerData);
+
+           
                 t.setText(dataPlayer.getJoUser1().getJoMonney()+"");
+
 
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
@@ -164,5 +209,16 @@ public class Game extends Application {
 
         // manage sprite
         listCow.add(cow);
+    }
+
+    void addCan(){
+
+        // create a sprite
+        int x = ThreadLocalRandom.current().nextInt(150, 600 + 1);
+        int y = ThreadLocalRandom.current().nextInt(150, 450 + 1);
+        Can can = new Can( playLayer, Settings.CAN, x, y, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+
+        // manage sprite
+        listCan.add(can);
     }
 }

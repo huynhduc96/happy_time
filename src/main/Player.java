@@ -2,6 +2,7 @@ package main;
 
 import base.jsonObject.DataPlayer;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import java.io.*;
 
@@ -9,22 +10,22 @@ import java.io.*;
  * Created by huynh on 24-Apr-17.
  */
 public class Player {
-   private DataPlayer dataPlayer = new DataPlayer();
-
-    public DataPlayer getDataPlayer() {
+   private JsonObject dataPlayer = new JsonObject();
+    private JsonObject data = new JsonObject();
+    public JsonObject getDataPlayer() {
         return dataPlayer;
     }
+    private String jsonString;
 
-    public void setDataPlayer(DataPlayer dataPlayer) {
+    public void setDataPlayer(JsonObject dataPlayer) {
         this.dataPlayer = dataPlayer;
     }
-
     void getdataPlayer(){
 
         Gson gson = new Gson();
 
 
-        String jsonString = new String();
+        jsonString = new String();
 
         FileReader fileReader = null;
         try {
@@ -51,11 +52,12 @@ public class Player {
 
         System.out.println(jsonString);
 
-        DataPlayer jsonObject= gson.fromJson(jsonString,DataPlayer.class);
-        dataPlayer = jsonObject;
+        data = gson.fromJson(jsonString, JsonObject.class);
+        dataPlayer = data.getAsJsonObject("jo_user1");
     }
 
-    public void saveJson(DataPlayer obj) {
+    public void saveJson() {
+        JsonObject obj = data;
         Gson gson = new Gson();
 
         String json ;
@@ -70,5 +72,9 @@ public class Player {
 
     }
 
+    public int getDataWarehouse(String key){
+        JsonObject wareHouse = dataPlayer.get("jo_warehouse").getAsJsonObject();
+        return wareHouse.get(key).getAsInt();
+    }
 
 }
