@@ -251,6 +251,7 @@ public class Game extends Application {
             double sick = Double.parseDouble(listChickens.get(i).getSickness());
             Chicken chicken = new Chicken(playLayer,Settings.CHIKEN,
                     200,200,0,0,0,0,health,sick,step);
+            chicken.setOnDrag();
             listChicken.add(chicken);
         }
 
@@ -264,6 +265,7 @@ public class Game extends Application {
             double sick = Double.parseDouble(listPigs.get(i).getSickness());
             Pig pig = new Pig(playLayer,Settings.PIG,
                     200,200,0,0,0,0,health,sick,step);
+            pig.setOnDrag();
             listPig.add(pig);
         }
 
@@ -277,6 +279,7 @@ public class Game extends Application {
             double sick = Double.parseDouble(listCows.get(i).getSickness());
             Cow cow = new Cow(playLayer,Settings.COW,
                     200,200,0,0,0,0,health,sick,step);
+            cow.setOnDrag();
             listCow.add(cow);
         }
     }

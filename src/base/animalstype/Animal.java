@@ -1,8 +1,13 @@
 package base.animalstype;
 
 import base.Settings;
+import javafx.event.EventHandler;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
@@ -11,6 +16,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+
 import java.io.File;
 
 
@@ -18,7 +29,7 @@ import java.io.File;
  * Created by huynh on 06-Apr-17.
  */
 public abstract class Animal {
-
+    private String info;
     ImageView imageView;
     final int time = 200;
 
@@ -32,6 +43,7 @@ public abstract class Animal {
     double r;
     int type;
     int direction;
+    Text t;
     //CHICKEN =1
     //COW =2
     //PIG =3
@@ -93,6 +105,11 @@ public abstract class Animal {
         this.h = arrImage.get(n).getHeight(); // imageView.getBoundsInParent().getHeight();
 
         addToLayer();
+        t = new Text("dmm");
+        t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        t.setFill(Color.ORANGE);
+        layer.getChildren().add(t);
+        t.setVisible(false);
     }
     private String getName(){
         String typeAnimal = null;
@@ -332,7 +349,7 @@ public abstract class Animal {
         }
 
         imageView.relocate(x, y);
-
+        t.relocate(x, y - 30);
         imageView.setRotate(r);
     }
 
@@ -498,6 +515,26 @@ public abstract class Animal {
         if (changeHungryStateOfAnimals()) {
             _count += time;
         }
+    }
+
+    public void setOnDrag(){
+
+        this.imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                info = "không đói:" + health + "\n" + "ốm:" + sick +
+                        "\nvòng đời:" + step;
+                t.setText(info);
+                t.setVisible(true);
+
+            }
+        });
+        this.imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                t.setVisible(false);
+            }
+        });
     }
 
 }
