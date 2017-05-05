@@ -282,9 +282,6 @@ public class ProductType {
                                 icon_product.get(cur_type_index - 1).get(
                                         cur_product)).getAsInt() + 1
                 );
-                int size = layer.getChildren().size();
-                layer.getChildren().remove(5,size);
-                showItemCurType();
             }
         });
     }

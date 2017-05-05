@@ -12,6 +12,17 @@ import java.io.*;
 public class Player {
    private JsonObject dataPlayer = new JsonObject();
     private JsonObject data = new JsonObject();
+
+    private DataPlayer player = new DataPlayer();
+
+    public DataPlayer getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(DataPlayer player) {
+        this.player = player;
+    }
+
     public JsonObject getDataPlayer() {
         return dataPlayer;
     }
@@ -54,6 +65,8 @@ public class Player {
 
         data = gson.fromJson(jsonString, JsonObject.class);
         dataPlayer = data.getAsJsonObject("jo_user1");
+
+        player= gson.fromJson(jsonString,DataPlayer.class);
     }
 
     public void saveJson() {
@@ -72,9 +85,5 @@ public class Player {
 
     }
 
-    public int getDataWarehouse(String key){
-        JsonObject wareHouse = dataPlayer.get("jo_warehouse").getAsJsonObject();
-        return wareHouse.get(key).getAsInt();
-    }
 
 }

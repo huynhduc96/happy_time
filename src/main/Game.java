@@ -93,7 +93,7 @@ public class Game extends Application {
         data = playerData.getDataPlayer();
 
 
-        dataPlayer = playerData.getDataPlayer();
+        dataPlayer = playerData.getPlayer();
 
 
       // add scene
