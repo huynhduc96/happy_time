@@ -9,8 +9,9 @@ import javafx.util.Duration;
  * Created by huynh on 17-Apr-17.
  */
 public class Pig extends Animal {
-    public Pig(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr, double health, double sick) {
-        super(layer, type, x, y, r, dx, dy, dr, health, sick);
+    public Pig(Pane layer, int type, double x, double y, double r, double dx,
+               double dy, double dr, double health, double sick, int step) {
+        super(layer, type, x, y, r, dx, dy, dr, health, sick, step);
     }
 
     @Override
