@@ -8,10 +8,7 @@ import base.animalstype.Pig;
 import base.grassstyle.Grass;
 import base.grassstyle.Can;
 import base.House.Store;
-import base.jsonObject.DataPlayer;
-import base.jsonObject.ListChicken;
-import base.jsonObject.ListCow;
-import base.jsonObject.ListPig;
+import base.jsonObject.*;
 import com.google.gson.JsonElement;
 
 import com.google.gson.JsonObject;
@@ -41,6 +38,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -59,6 +57,7 @@ public class Game extends Application {
     Player playerData = new Player();
 
     ImageView money = new ImageView();
+    Integer[] location = new Integer[10];
 
     private ImageView backgroud = new ImageView();
     private DataPlayer dataPlayer = null;
@@ -77,6 +76,9 @@ public class Game extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        for (int i=0;i<10;i++){
+            location[i]=0;
+        }
         // make root scene
         Group root = new Group();
 
@@ -91,9 +93,9 @@ public class Game extends Application {
         //get data player from json
         playerData.getdataPlayer();
 
-    //    data = playerData.getDataPlayer();
+        //    data = playerData.getDataPlayer();
 
-// lay data player
+        // lay data player
         dataPlayer = playerData.getPlayer();
 
 
@@ -107,6 +109,7 @@ public class Game extends Application {
         addChicken();
         addCow();
         addPig();
+        addCan();
 
         Store store = new Store(playLayer,300,10,0);
         Image images = new Image(String.valueOf(classLoader.getResource(
@@ -271,14 +274,35 @@ public class Game extends Application {
     }
 
     void addCan() {
-
+        int j;
+        int tmp = Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber());
         // create a sprite
-        int x = ThreadLocalRandom.current().nextInt(150, 600 + 1);
-        int y = ThreadLocalRandom.current().nextInt(150, 450 + 1);
-        Can can = new Can(playLayer, Settings.CAN, x, y, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
+        for (j = 0; j < tmp; j ++) {
+            int tmp1;
+            tmp1 = dataPlayer.getJoUser1().getJoGrass().getListGrass().get(j).getPosition();
+            location[tmp1] = 1;
+        }
 
-        // manage sprite
-        listCan.add(can);
+        if (tmp < 10) {
+            int i;
+            Random rd = new Random();
+            do {
+                i = rd.nextInt(10);
+            }
+            while (location[i] == 1);
+
+            location[i] = 1;
+            int y = 530;
+            int x = (i + 3) * 50;
+
+            Can can = new Can(playLayer, Settings.CAN, x, y, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
+
+            // manage sprite
+            listCan.add(can);
+            dataPlayer.getJoUser1().getJoGrass().setTotalNumber(dataPlayer.getJoUser1().getJoGrass().getTotalNumber()+1);
+            ListGras listGras = new ListGras(i, "1");
+            dataPlayer.getJoUser1().getJoGrass().getListGrass().add(listGras);
+        }
     }
 
 

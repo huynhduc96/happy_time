@@ -31,6 +31,10 @@ public class ListGras {
         this.step = step;
     }
 
+    public ListGras(Integer position, String step) {
+        this.position = position;
+        this.step = step;
+    }
 }
 
 
