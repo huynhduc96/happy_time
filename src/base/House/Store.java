@@ -56,7 +56,7 @@ public class Store implements House {
     private Pane pane_store;
     private Stage stage_store;
     private Scene scene_store;
-    private JsonObject data;
+    private DataPlayer data;
     public Store(Pane layer, double x, double y, double r) {
         this.layer = layer;
         initView();
@@ -131,7 +131,7 @@ public class Store implements House {
 
 
     @Override
-    public void setOnclick(JsonObject data) {
+    public void setOnclick(DataPlayer data) {
         this.data = data;
         this.imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

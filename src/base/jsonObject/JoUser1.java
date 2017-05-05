@@ -29,7 +29,7 @@ public class JoUser1 {
     @Expose
     private JoPig joPig;
 
-    @SerializedName("jo_monney")
+    @SerializedName("jo_money")
     @Expose
     private int joMonney;
 
