@@ -9,6 +9,7 @@ import base.grassstyle.Grass;
 import base.grassstyle.Can;
 import base.House.Store;
 import base.jsonObject.DataPlayer;
+
 import com.google.gson.JsonObject;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -17,12 +18,22 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.time.Duration;
+
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,15 +46,20 @@ public class Game extends Application {
     Pane playLayer;
     Scene scene;
     List<Chicken> listChicken = new ArrayList<>();
+    JLabel lbMoney;
     List<Pig> listPig = new ArrayList<>();
     List<Cow> listCow = new ArrayList<>();
     List<Can> listCan = new ArrayList<>();
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
+
     JsonObject data;
 
+    ImageView money = new ImageView();
+
     private ImageView backgroud = new ImageView();
+    private DataPlayer dataPlayer;
 
     private void playMusic(){
         String file_name = "src/res/sounds2/music_game.mp3";
@@ -62,6 +78,8 @@ public class Game extends Application {
         // make root scene
         Group root = new Group();
 
+
+
         // add Pane play for player
         playLayer = new Pane();
         //add background
@@ -71,7 +89,11 @@ public class Game extends Application {
 
         //get data player from json
         playerData.getdataPlayer();
+
         data = playerData.getDataPlayer();
+
+
+        dataPlayer = playerData.getDataPlayer();
 
 
       // add scene
@@ -90,6 +112,20 @@ public class Game extends Application {
         addCan();
         addCan();
         Store store = new Store(playLayer,300,10,0);
+        Image images = new Image(String.valueOf(classLoader.getResource("res/money_box.png")));
+        money.setImage(images);
+        money.setFitHeight(70);
+        money.setFitWidth(100);
+        money.relocate(670,10);
+        money.setRotate(0);
+        playLayer.getChildren().add(money);
+        Text t = new Text(10, 50, "This is a test");
+        t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
+        t.setRotate(0);
+        t.relocate(650,40);
+        t.setX(50);
+        t.setY(50);
+        playLayer.getChildren().add(t);
 
         AnimationTimer gameLoop = new AnimationTimer() {
 
@@ -99,6 +135,10 @@ public class Game extends Application {
                 // movement
                 store.setOnclick(data);
                 store.updateDataPlayer(playerData);
+
+           
+                t.setText(dataPlayer.getJoUser1().getJoMonney()+"");
+
 
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
