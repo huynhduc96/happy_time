@@ -10,6 +10,7 @@ import base.grassstyle.Can;
 import base.House.Store;
 import base.jsonObject.DataPlayer;
 
+import base.jsonObject.ListGras;
 import com.google.gson.JsonObject;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -54,14 +55,15 @@ public class Game extends Application {
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
 
-    JsonObject data;
+    JsonObject data = null;
+
 
     ImageView money = new ImageView();
 
     private ImageView backgroud = new ImageView();
-    private DataPlayer dataPlayer;
+    private DataPlayer dataPlayer = null;
 
-    private void playMusic(){
+    private void playMusic() {
         String file_name = "src/res/sounds2/music_game.mp3";
         Media sound = new Media(new File(file_name).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
@@ -79,7 +81,6 @@ public class Game extends Application {
         Group root = new Group();
 
 
-
         // add Pane play for player
         playLayer = new Pane();
         //add background
@@ -90,17 +91,30 @@ public class Game extends Application {
         //get data player from json
         playerData.getdataPlayer();
 
-        data = playerData.getDataPlayer();
+        updateDataJson();
+
+        List<ListGras> listGras = dataPlayer.getJoUser1().getJoGrass().getListGrass();
+        for (int i = 0; i < listGras.size(); i++) {
+            System.out.println(listGras.get(i).getPosition());
+            // duyệt danh sách list grass :)))
+        }
+        ListGras listGras1 = new ListGras();
+        listGras1.setPosition(8);
+        listGras1.setStep("2");
+        listGras.add(listGras1);
 
 
-        dataPlayer = playerData.getPlayer();
+        System.out.println("=============");
+
+        // save vao json
+        playerData.saveJson(dataPlayer);
 
 
-      // add scene
+        // add scene
         root.getChildren().add(playLayer);
-        scene = new Scene( root, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);
+        scene = new Scene(root, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);
 
-        primaryStage.setScene( scene);
+        primaryStage.setScene(scene);
         primaryStage.show();
         playMusic();
         addChicken();
@@ -111,18 +125,18 @@ public class Game extends Application {
         addCan();
         addCan();
         addCan();
-        Store store = new Store(playLayer,300,10,0);
+        Store store = new Store(playLayer, 300, 10, 0);
         Image images = new Image(String.valueOf(classLoader.getResource("res/money_box.png")));
         money.setImage(images);
         money.setFitHeight(70);
         money.setFitWidth(100);
-        money.relocate(670,10);
+        money.relocate(670, 10);
         money.setRotate(0);
         playLayer.getChildren().add(money);
         Text t = new Text(10, 50, "This is a test");
         t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
         t.setRotate(0);
-        t.relocate(650,40);
+        t.relocate(650, 40);
         t.setX(50);
         t.setY(50);
         playLayer.getChildren().add(t);
@@ -131,13 +145,13 @@ public class Game extends Application {
 
             @Override
             public void handle(long now) {
-
+                updateDataJson();
                 // movement
                 store.setOnclick(data);
                 store.updateDataPlayer(playerData);
 
-           
-                t.setText(dataPlayer.getJoUser1().getJoMonney()+"");
+
+                t.setText(dataPlayer.getJoUser1().getJoMonney() + "");
 
 
                 listChicken.forEach(sprite -> sprite.move());
@@ -155,25 +169,30 @@ public class Game extends Application {
                 listPig.forEach(sprite -> sprite.checkRemovability());
                 listCow.forEach(sprite -> sprite.checkRemovability());
 
-                removeSprites( listChicken);
-                removeSprites( listPig);
-                removeSprites( listCow);
+                removeSprites(listChicken);
+                removeSprites(listPig);
+                removeSprites(listCow);
             }
 
         };
         gameLoop.start();
     }
 
+    void updateDataJson() {
+        this.setData(playerData.getDataPlayer());
+        this.setDataPlayer(playerData.getPlayer());
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
 
-    private void removeSprites(  List<? extends Animal> spriteList) {
+    private void removeSprites(List<? extends Animal> spriteList) {
         Iterator<? extends Animal> iter = spriteList.iterator();
-        while( iter.hasNext()) {
+        while (iter.hasNext()) {
             Animal sprite = iter.next();
 
-            if( sprite.isRemovable()) {
+            if (sprite.isRemovable()) {
 
                 // remove from layer
                 sprite.removeFromLayer();
@@ -184,41 +203,59 @@ public class Game extends Application {
         }
     }
 
-    void addChicken(){
+    void addChicken() {
 
         // create a sprite
-        Chicken chicken = new Chicken( playLayer, Settings.CHIKEN, 200, 200, 0, 0, 0,
-                0, 1,1);
+        Chicken chicken = new Chicken(playLayer, Settings.CHIKEN, 200, 200, 0, 0, 0,
+                0, 1, 1);
         // manage sprite
-        listChicken.add( chicken);
+        listChicken.add(chicken);
     }
 
-    void addPig(){
+    void addPig() {
 
         // create a sprite
-        Pig pig = new Pig( playLayer, Settings.PIG, 200, 300, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+        Pig pig = new Pig(playLayer, Settings.PIG, 200, 300, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
 
         // manage sprite
-        listPig.add( pig);
+        listPig.add(pig);
     }
 
-    void addCow(){
+    void addCow() {
 
         // create a sprite
-        Cow cow = new Cow( playLayer, Settings.COW, 300, 200, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+        Cow cow = new Cow(playLayer, Settings.COW, 300, 200, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
 
         // manage sprite
         listCow.add(cow);
     }
 
-    void addCan(){
+    void addCan() {
 
         // create a sprite
         int x = ThreadLocalRandom.current().nextInt(150, 600 + 1);
         int y = ThreadLocalRandom.current().nextInt(150, 450 + 1);
-        Can can = new Can( playLayer, Settings.CAN, x, y, 0, 0, Settings.ANIMAL_SPEED, 0, 1,1);
+        Can can = new Can(playLayer, Settings.CAN, x, y, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
 
         // manage sprite
         listCan.add(can);
     }
+
+    public JsonObject getData() {
+        return data;
+    }
+
+    public void setData(JsonObject data) {
+        this.data = data;
+    }
+
+    public DataPlayer getDataPlayer() {
+        return dataPlayer;
+    }
+
+    public void setDataPlayer(DataPlayer dataPlayer) {
+        this.dataPlayer = dataPlayer;
+    }
+
+
 }
