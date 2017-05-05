@@ -26,6 +26,8 @@ import javafx.scene.layout.Pane;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -174,9 +176,9 @@ public class Game extends Application {
                 "res/money_box.png")));
 
         money.setImage(images);
-        money.setFitHeight(70);
-        money.setFitWidth(100);
-        money.relocate(670, 10);
+        money.setFitHeight(60);
+        money.setFitWidth(120);
+        money.relocate(665, 20);
         money.setRotate(0);
         playLayer.getChildren().add(money);
         Text t = new Text(10, 50, "This is a test");
@@ -185,6 +187,7 @@ public class Game extends Application {
         t.relocate(650, 40);
         t.setX(50);
         t.setY(50);
+        t.setFill(Color.YELLOW);
         playLayer.getChildren().add(t);
 
         AnimationTimer gameLoop = new AnimationTimer() {
@@ -197,7 +200,7 @@ public class Game extends Application {
          //       store.updateDataPlayer(playerData);
 
            
-                t.setText(dataPlayer.getJoUser1().getJoMonney()+"");
+                t.setText(dataPlayer.getJoUser1().getJoMonney()+" $");
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
                 listPig.forEach(sprite -> sprite.move());

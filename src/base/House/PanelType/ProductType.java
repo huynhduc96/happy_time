@@ -213,10 +213,10 @@ public class ProductType {
         this.layer.getChildren().add(money);
         this.layer.getChildren().add(space);
         Image Coin = new Image("res/shop/coin.png",
-                50, 50, false, false);
+                80, 80, false, false);
         buy = new Button();
         buy.setGraphic(new ImageView(Coin));
-        buy.relocate(370, 450);
+        buy.relocate(355, 435);
 
 
         this.layer.getChildren().add(buy);
