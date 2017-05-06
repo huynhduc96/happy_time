@@ -57,6 +57,7 @@ public class Game extends Application {
     List<Cow> listCow = new ArrayList<>();
     List<Ostrich> listOstrich = new ArrayList<>();
     List<Can> listCan = new ArrayList<>();
+    ImageView[] imgHelp = new ImageView[3];
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
@@ -69,7 +70,7 @@ public class Game extends Application {
     private ImageView backgroud_r = new ImageView();
     private ImageView img_help = new ImageView();
     private DataPlayer dataPlayer = null;
-
+    int page=0;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -159,8 +160,19 @@ public class Game extends Application {
         addCow();
         addPig();
         addCan();
+
         addOstrich();
         buyCan();
+        for(int i=0;i<3;i++){
+            String temp = "res/help/" + (i+1) + ".png";
+            Image image = new Image(String.valueOf(classLoader.getResource(
+                    temp)));
+            imgHelp[i] = new ImageView();
+            imgHelp[i].setImage(image);
+            imgHelp[i].setFitHeight(480);
+            imgHelp[i].setFitWidth(640);
+            imgHelp[i].relocate(0,0);
+        }
         Store store = new Store(playLayer, 300, 10, 0);
         WareHouse wareHouse = new WareHouse(playLayer,620,305,0);
         Image images = new Image(String.valueOf(classLoader.getResource(
@@ -181,31 +193,47 @@ public class Game extends Application {
 
 
                 javafx.scene.control.Button ok = new Button("Trước");
-                ok.setPrefWidth(100);
-                ok.relocate(80, 95);
+                ok.setPrefWidth(70);
+                ok.relocate(220, 496);
                 Button no = new Button("Sau");
-                no.setPrefWidth(100);
-                no.relocate(270, 95);
+                no.setPrefWidth(70);
+                no.relocate(700-220-70, 496);
 
+                pane_cf.getChildren().add(imgHelp[page]);
                 pane_cf.getChildren().add(ok);
                 pane_cf.getChildren().add(no);
 
                 ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        stage_cf.close();
-
+                        if(page>0){
+                            pane_cf.getChildren().add(imgHelp[page-1]);
+                            pane_cf.getChildren().remove(imgHelp[page]);
+                            page--;
+                        } else {
+                            page = 2;
+                            pane_cf.getChildren().add(imgHelp[page]);
+                            pane_cf.getChildren().remove(imgHelp[0]);
+                        }
                     }
                 });
 
                 no.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        stage_cf.close();
+                        if(page<2){
+                            pane_cf.getChildren().add(imgHelp[page+1]);
+                            pane_cf.getChildren().remove(imgHelp[page]);
+                            page++;
+                        } else {
+                            page = 0;
+                            pane_cf.getChildren().add(imgHelp[page]);
+                            pane_cf.getChildren().remove(imgHelp[2]);
+                        }
                     }
                 });
 
-                stage_cf.setScene(new Scene(group_cf, 450, 150));
+                stage_cf.setScene(new Scene(group_cf, 640, 540));
                 stage_cf.show();
                 stage_cf.setOnCloseRequest(new EventHandler<WindowEvent>() {
                     @Override
