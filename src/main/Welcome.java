@@ -17,8 +17,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.awt.*;
 import java.awt.Button;
@@ -65,11 +68,19 @@ public class Welcome extends Application {
         blank.relocate(317, 420);
         playLayer.getChildren().add(blank);
 
+        Image info_img = new Image(getClass().getResourceAsStream("../res/welcome/info.png"),
+                166, 35, false, false);
+        ImageView info = new ImageView();
+        info.setImage(info_img);
+        info.relocate(317, 470+50);
+        playLayer.getChildren().add(info);
+
         Text text = new Text();
         text.setText(name);
         text.relocate(330,430);
-        text.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
+        text.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 16));
         text.maxHeight(166);
+        text.setFill(Color.ORANGE);
         playLayer.getChildren().add(text);
 
         Image new_game_img = new Image(getClass().getResourceAsStream("../res/welcome/new.png"),
@@ -109,6 +120,39 @@ public class Welcome extends Application {
                 });
 
 
+            }
+        });
+
+        info.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("lc");
+                event.consume();
+                Group group_info;
+                Pane pane_info;
+                Stage stage_info;
+                group_info = new Group();
+                pane_info = new Pane();
+                stage_info = new Stage();
+                stage_info.setTitle("Info");
+                group_info.getChildren().add(pane_info);
+
+                Image info_bg = new Image(getClass().getResourceAsStream("../res/info.jpg"),
+                        800, 600, false, false);
+                ImageView bg = new ImageView();
+                bg.setImage(info_bg);
+                bg.relocate(0, 0);
+                group_info.getChildren().add(bg);
+
+
+                stage_info.setScene(new Scene(group_info, 800, 600));
+                stage_info.show();
+                stage_info.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        stage_info.close();
+                    }
+                });
             }
         });
 
