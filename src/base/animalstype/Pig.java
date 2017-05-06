@@ -29,6 +29,11 @@ public class Pig extends Animal {
     }
 
     @Override
+    public void stopAnimationWhenDied() {
+
+    }
+
+    @Override
     public void checkRemovability() {
 
     }
