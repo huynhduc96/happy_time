@@ -40,7 +40,7 @@ import java.util.Random;
 /**
  * Created by huynh on 07-Apr-17.
  */
-public class Game extends Application {
+public class Game extends Application implements Buff {
     Pane playLayer;
     Scene scene;
     List<Chicken> listChicken = new ArrayList<>();
@@ -56,28 +56,31 @@ public class Game extends Application {
 
     Integer[] location = new Integer[10];
     private ImageView money = new ImageView();
-    private ImageView backgroud = new ImageView();
+    private ImageView backgroud = new ImageView();   //typeSent = 0;
     private ImageView backgroud_l = new ImageView();
     private ImageView backgroud_r = new ImageView();
     private ImageView img_help = new ImageView();
     private ImageView img_select = new ImageView();
-    private ImageView img_food_nol = new ImageView();
-    private ImageView img_food_sep = new ImageView();
-    private ImageView img_medi_nol = new ImageView();
-    private ImageView img_medi_sep = new ImageView();
+    private ImageView img_food_nol = new ImageView(); //typeSent =1;
+    private ImageView img_food_sep = new ImageView(); //typeSent =2;
+    private ImageView img_medi_nol = new ImageView(); //typeSent =3;
+    private ImageView img_medi_sep = new ImageView(); //typeSent =4;
     private DataPlayer dataPlayer = null;
-    Image image_med_sep;
-    Image image_food_nol;
-    Image image_food_sep;
-    Image image_med_nol;
-    Text txt_money;
-    Text txt_food_nol;
-    Text txt_food_sep;
-    Text txt_medi_nol;
-    Text txt_medi_sep;
+    private Image image_med_sep;
+    private Image image_food_nol;
+    private Image image_food_sep;
+    private Image image_med_nol;
+    private Text txt_money;
+    private Text txt_food_nol;
+    private Text txt_food_sep;
+    private Text txt_medi_nol;
+    private Text txt_medi_sep;
+    private int isokGame;
+    private int typeSent = 0;
+    private int page = 0;
 
     static Stage classStage = new Stage();
-    int page = 0;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -123,6 +126,7 @@ public class Game extends Application {
 
         setOnclickItem();
 
+
         AnimationTimer gameLoop = new AnimationTimer() {
 
             @Override
@@ -134,6 +138,7 @@ public class Game extends Application {
 
                 updateData();
                 updateText();
+                updateBuff();
 
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
@@ -168,7 +173,8 @@ public class Game extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    void setClickStage(Stage primaryStage){
+
+    void setClickStage(Stage primaryStage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
@@ -230,31 +236,47 @@ public class Game extends Application {
         img_food_nol.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                scene.setCursor(new ImageCursor(image_food_nol));
+                if (dataPlayer.getJoUser1().getJoWarehouse().getFoodNormal() > 0) {
+                    scene.setCursor(new ImageCursor(image_food_nol));
+                    typeSent = 1;
+                }
             }
         });
         img_food_sep.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                scene.setCursor(new ImageCursor(image_food_sep));
+                if (dataPlayer.getJoUser1().getJoWarehouse().getFoodSpecial() > 0) {
+                    scene.setCursor(new ImageCursor(image_food_sep));
+                    typeSent = 2;
+                }
+
             }
         });
         img_medi_nol.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                scene.setCursor(new ImageCursor(image_med_nol));
+                if (dataPlayer.getJoUser1().getJoWarehouse().getMedicineNormal() > 0) {
+                    scene.setCursor(new ImageCursor(image_med_nol));
+                    typeSent = 3;
+                }
+
             }
         });
         img_medi_sep.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                scene.setCursor(new ImageCursor(image_med_sep));
+                if (dataPlayer.getJoUser1().getJoWarehouse().getMedicineSpecial() > 0) {
+                    scene.setCursor(new ImageCursor(image_med_sep));
+                    typeSent = 4;
+                }
+
             }
         });
         backgroud.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 scene.setCursor(Cursor.DEFAULT);
+                typeSent = 0;
             }
         });
     }
@@ -314,6 +336,52 @@ public class Game extends Application {
         updateListCow();
         updateListOstrich();
         updateListPig();
+    }
+
+    void updateBuff() {
+        if (typeSent > 0) {
+            if (isokGame > 0) {
+                switch (typeSent) {
+                    case 1:
+                        System.out.println("--- 1");
+                        if (dataPlayer.getJoUser1().getJoWarehouse().getFoodNormal() > 0) {
+                            dataPlayer.getJoUser1().getJoWarehouse().setFoodNormal(
+                                    dataPlayer.getJoUser1().getJoWarehouse().getFoodNormal() - 1
+                            );
+                        }
+                        isokGame = 0;
+                        break;
+                    case 2:
+                        System.out.println("----2");
+                        if (dataPlayer.getJoUser1().getJoWarehouse().getFoodSpecial() > 0) {
+                            dataPlayer.getJoUser1().getJoWarehouse().setFoodSpecial(
+                                    dataPlayer.getJoUser1().getJoWarehouse().getFoodSpecial() - 1
+                            );
+                        }
+                        isokGame = 0;
+                        break;
+                    case 3:
+                        System.out.println("----3");
+                        if (dataPlayer.getJoUser1().getJoWarehouse().getMedicineNormal() > 0) {
+                            dataPlayer.getJoUser1().getJoWarehouse().setMedicineNormal(
+                                    dataPlayer.getJoUser1().getJoWarehouse().getMedicineNormal() - 1
+                            );
+                        }
+                        isokGame = 0;
+                        break;
+                    case 4:
+                        System.out.println("----4");
+                        if (dataPlayer.getJoUser1().getJoWarehouse().getMedicineSpecial() > 0) {
+                            dataPlayer.getJoUser1().getJoWarehouse().setMedicineSpecial(
+                                    dataPlayer.getJoUser1().getJoWarehouse().getMedicineSpecial() - 1
+                            );
+                        }
+                        isokGame = 0;
+                        break;
+                }
+            }
+
+        }
     }
 
     void addFirst() {
@@ -413,6 +481,7 @@ public class Game extends Application {
             Chicken chicken = new Chicken(playLayer, Settings.CHIKEN,
                     200, 200, 0, 0, 0, 0, health, sick, step);
             chicken.setOnDrag();
+            chicken.addBuffListener(this);
             listChicken.add(chicken);
         }
 
@@ -427,7 +496,7 @@ public class Game extends Application {
             Chicken chicken = new Chicken(playLayer, Settings.CHIKEN,
                     200, 200, 0, 0, 0, 0, 100, 0, 1);
             chicken.setOnDrag();
-
+            chicken.addBuffListener(this);
             listChicken.add(chicken);
         }
         dataPlayer.getJoUser1().getJoChicken().setTotalNumber(dataPlayer.getJoUser1().getJoChicken().getListChicken().size());
@@ -442,7 +511,7 @@ public class Game extends Application {
             Pig animal = new Pig(playLayer, Settings.PIG,
                     200, 200, 0, 0, 0, 0, 100, 0, 1);
             animal.setOnDrag();
-
+            animal.addBuffListener(this);
             listPig.add(animal);
         }
         dataPlayer.getJoUser1().getJoPig().setTotalNumber(dataPlayer.getJoUser1().getJoPig().getListPig().size());
@@ -457,7 +526,7 @@ public class Game extends Application {
             Cow animal = new Cow(playLayer, Settings.COW,
                     200, 200, 0, 0, 0, 0, 100, 0, 1);
             animal.setOnDrag();
-
+            animal.addBuffListener(this);
             listCow.add(animal);
         }
         dataPlayer.getJoUser1().getJoCow().setTotalNumber(dataPlayer.getJoUser1().getJoCow().getListCow().size());
@@ -472,7 +541,7 @@ public class Game extends Application {
             Ostrich animal = new Ostrich(playLayer, Settings.OSTRICH,
                     200, 200, 0, 0, 0, 0, 100, 0, 1);
             animal.setOnDrag();
-
+            animal.addBuffListener(this);
             listOstrich.add(animal);
         }
         dataPlayer.getJoUser1().getJoOstrich().setTotalNumber(dataPlayer.getJoUser1().getJoOstrich().getListOstrich().size());
@@ -495,6 +564,7 @@ public class Game extends Application {
             Pig pig = new Pig(playLayer, Settings.PIG,
                     200, 200, 0, 0, 0, 0, health, sick, step);
             pig.setOnDrag();
+            pig.addBuffListener(this);
             listPig.add(pig);
         }
 
@@ -510,6 +580,7 @@ public class Game extends Application {
             Cow cow = new Cow(playLayer, Settings.COW,
                     200, 200, 0, 0, 0, 0, health, sick, step);
             cow.setOnDrag();
+            cow.addBuffListener(this);
             listCow.add(cow);
         }
     }
@@ -523,6 +594,7 @@ public class Game extends Application {
             Ostrich ostrich = new Ostrich(playLayer, Settings.OSTRICH,
                     200, 200, 0, 0, 0, 0, health, sick, step);
             ostrich.setOnDrag();
+            ostrich.addBuffListener(this);
             listOstrich.add(ostrich);
         }
     }
@@ -570,7 +642,7 @@ public class Game extends Application {
             location[tmp] = 1;
             int y = 530;
             int x = (tmp + 3) * 50;
-            ListGras gras = new ListGras(tmp,1);
+            ListGras gras = new ListGras(tmp, 1);
             listGrass.add(gras);
 
             Can can = new Can(playLayer, Settings.CAN,
@@ -625,4 +697,10 @@ public class Game extends Application {
         }
     }
 
+    @Override
+    public int buffOk(int isOK) {
+        System.out.println("lay ket qua da nhan duoc hay chua tu Animal :  " + isOK);
+        isokGame = isOK;
+        return typeSent;
+    }
 }

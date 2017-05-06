@@ -21,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import main.Buff;
 
 import java.io.File;
 
@@ -63,8 +64,10 @@ public abstract class Animal {
 
     int death = 0;
     int eat = 0;
+    int typeSent;
 
     boolean canMove = true;
+    public Buff buff;
     ArrayList<String> nameImage = new ArrayList<>();
     ArrayList<Image> arrImage = new ArrayList<>();
     ClassLoader classLoader = this.getClass().getClassLoader();
@@ -109,7 +112,7 @@ public abstract class Animal {
         addToLayer();
         t = new Text("dmm");
         t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
-        t.setFill(Color.ORANGE);
+        t.setFill(Color.WHITE);
         layer.getChildren().add(t);
         t.setVisible(false);
     }
@@ -125,6 +128,9 @@ public abstract class Animal {
             typeAnimal = "ostrich";
         }
         return typeAnimal;
+    }
+    public void addBuffListener(Buff buff){
+        this.buff = buff;
     }
     public void getSound(String model){
         if(!(model.equals("hungry") || model.equals("die")
@@ -521,6 +527,7 @@ public abstract class Animal {
         }
     }
 
+
     public void setOnDrag(){
 
         this.imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -537,6 +544,41 @@ public abstract class Animal {
             @Override
             public void handle(MouseEvent event) {
                 t.setVisible(false);
+            }
+        });
+        this.imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                typeSent=buff.buffOk(1);
+                System.out.println("=====> type sent - tu Game "+typeSent);
+                if(typeSent>0){
+                    switch (typeSent){
+                        case 1:
+                            health = health+10;
+                            if(health>100){
+                                health =100;
+                            }
+                            break;
+                        case 2:
+                            health = health+20;
+                            if(health>100){
+                                health =100;
+                            }
+                            break;
+                        case 3:
+                            sick = sick-10;
+                            if(sick<0){
+                                sick =0;
+                            }
+                            break;
+                        case 4:
+                            sick= sick-20;
+                            if(sick<0){
+                                sick =0;
+                            }
+                            break;
+                    }
+                }
             }
         });
     }
