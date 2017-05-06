@@ -1,0 +1,72 @@
+{
+  "jo_user1": {
+    "jo_user_name": "",
+    "jo_warehouse": {
+      "grass": 0,
+      "egg": 0,
+      "meat": 0,
+      "milk": 0,
+      "medicine_normal": 0,
+      "medicine_special": 0,
+      "food_normal": 0,
+      "food_special": 0,
+      "dog": 0,
+      "cat": 0,
+      "chicken": 0,
+      "cow": 0,
+      "ostric": 0,
+      "pig": 0
+    },
+    "jo_dog": {
+      "total_number": 0,
+      "list_dog": [
+      ]
+    },
+    "jo_cat": {
+      "total_number": 0,
+      "list_cat": [
+      ]
+    },
+    "jo_grass": {
+      "total_number": 2,
+      "list_grass": [
+        {
+          "position": 0,
+          "step": 1
+        },
+        {
+          "position": 1,
+          "step": 2
+        }
+      ]
+    },
+    "jo_chicken": {
+      "total_number": 1,
+      "list_chicken": [
+        {
+          "life": 100,
+          "sickness": 0,
+          "step": 1
+        }
+      ]
+    },
+    "jo_cow": {
+      "total_number": 0,
+      "list_cow": [
+      ]
+    },
+    "jo_pig": {
+      "total_number": 0,
+      "list_pig": [
+      ]
+    },
+    "jo_ostrich": {
+      "total_number": 0,
+      "list_ostrich": [
+      ]
+    },
+    "jo_money": 200,
+    "jo_space": 55,
+    "space_out": 20
+  }
+}

@@ -70,9 +70,11 @@ public class Game extends Application {
     private ImageView img_help = new ImageView();
     private DataPlayer dataPlayer = null;
 
+    static Stage classStage = new Stage();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        classStage = primaryStage;
         for (int i = 0; i < 10; i++) {
             location[i] = 0;
         }
