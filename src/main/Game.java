@@ -686,7 +686,7 @@ public class Game extends Application implements Buff {
         }
     }
 
-    private void checkDieChiken() {
+    private void    checkDieChiken() {
         for (int i = 0; i < listChicken.size(); i++) {
             if (listChicken.get(i).getSick() < listChicken.get(i).timeDie) {
                 listChicken.get(i).setSick( listChicken.get(i).getSick()+1);
