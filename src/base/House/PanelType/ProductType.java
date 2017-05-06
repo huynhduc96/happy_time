@@ -123,9 +123,9 @@ public class ProductType {
     }
 
     void showDataPlayer() {
-        int currentMoney = player.getJoUser1().getJoMonney();
+        int currentMoney = player.getJoUser1().getJoMoney();
         System.out.println(currentMoney);
-        int currentSpace = player.getJoUser1().getJo_space();
+        int currentSpace = player.getJoUser1().getJoSpace();
         System.out.println(currentSpace);
         money = new Text("" + currentMoney);
         space = new Text(("" + currentSpace));
@@ -252,7 +252,7 @@ public class ProductType {
             public void handle(MouseEvent e) {
                 int prodMoney = icon_price.get(cur_type_index - 1).get(cur_product);
                 int prodSpace = icon_space.get(cur_type_index - 1).get(cur_product);
-                if (prodMoney > player.getJoUser1().getJoMonney()) {
+                if (prodMoney > player.getJoUser1().getJoMoney()) {
                     ButtonType loginButtonType = new ButtonType("Hiểu", ButtonBar.ButtonData.OK_DONE);
                     Dialog<String> dialog = new Dialog<>();
                     dialog.setContentText("Bạn đéo đủ tiền hihi");
@@ -261,7 +261,7 @@ public class ProductType {
                     dialog.show();
                     return;
                 }
-                if (prodSpace > player.getJoUser1().getJo_space()) {
+                if (prodSpace > player.getJoUser1().getJoSpace()) {
                     ButtonType loginButtonType = new ButtonType("Hiểu", ButtonBar.ButtonData.OK_DONE);
                     Dialog<String> dialog = new Dialog<>();
                     dialog.setContentText("Kho của bạn đếch đủ chỗ hihi");
@@ -275,9 +275,9 @@ public class ProductType {
                 MediaPlayer mediaPlayer = new MediaPlayer(sound);
                 mediaPlayer.play();
                 //       player.addProperty("jo_space", player.get("jo_space").getAsInt() - prodSpace);
-                player.getJoUser1().setJo_space(player.getJoUser1().getJo_space() - prodSpace);
+                player.getJoUser1().setJoSpace(player.getJoUser1().getJoSpace() - prodSpace);
                 //        player.addProperty("jo_money", player.get("jo_money").getAsInt() - prodMoney);
-                player.getJoUser1().setJoMonney(player.getJoUser1().getJoMonney() - prodMoney);
+                player.getJoUser1().setJoMoney(player.getJoUser1().getJoMoney() - prodMoney);
                 String nameItem = icon_product.get(cur_type_index - 1).get(cur_product);
                 if (nameItem.equals("chicken")) {
                     player.getJoUser1().getJoWarehouse()

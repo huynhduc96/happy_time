@@ -14,16 +14,16 @@ public class JoPig {
 
     @SerializedName("total_number")
     @Expose
-    private String totalNumber;
+    private Integer totalNumber;
     @SerializedName("list_pig")
     @Expose
     private List<ListPig> listPig = null;
 
-    public String getTotalNumber() {
+    public Integer getTotalNumber() {
         return totalNumber;
     }
 
-    public void setTotalNumber(String totalNumber) {
+    public void setTotalNumber(Integer totalNumber) {
         this.totalNumber = totalNumber;
     }
 
