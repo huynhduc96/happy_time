@@ -552,6 +552,8 @@ public class Game extends Application {
             location[tmp] = 1;
             int y = 530;
             int x = (tmp + 3) * 50;
+            ListGras gras = new ListGras(tmp,1);
+            listGrass.add(gras);
 
             Can can = new Can(playLayer, Settings.CAN,
                     x, y, 0, 0, 0, 0, 1, 1);

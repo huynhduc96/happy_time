@@ -68,5 +68,15 @@
     "name": "egg",
     "price": 30,
     "space": 1
+  },
+  {
+    "name": "grass_product",
+    "price": 30,
+    "space": 1
+  },
+  {
+    "name": "feather",
+    "price": 30,
+    "space": 1
   }
 ]}

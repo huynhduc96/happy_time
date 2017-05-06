@@ -15,6 +15,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
 
@@ -33,6 +35,7 @@ public class Welcome extends Application {
     Player playerData = new Player();
     private DataPlayer player = new DataPlayer();
     private ImageView backgroud = new ImageView();
+    private MediaPlayer mediaPlayer;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -44,22 +47,13 @@ public class Welcome extends Application {
         playLayer = new Pane();
         //add background
         initUI();
-
-        //get data player from json
-
-
-        //    data = playerData.getDataPlayer();
-
-        // lay data player
-        //   dataPlayer = playerData.getPlayer();
-
-        // add scene
         root.getChildren().add(playLayer);
         scene = new Scene(root, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);
 
 
         primaryStage.setScene(scene);
         primaryStage.show();
+        getSoundOpening();
         playerData.getdataPlayer();
         player = playerData.getPlayer();
         String name = player.getJoUser1().getJoUserName();
@@ -108,6 +102,7 @@ public class Welcome extends Application {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+                            mediaPlayer.stop();
                             primaryStage.close();
                         }
                     }
@@ -133,6 +128,7 @@ public class Welcome extends Application {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                mediaPlayer.stop();
                 primaryStage.close();
             }
         });
@@ -159,6 +155,14 @@ public class Welcome extends Application {
         backgroud.setFitWidth(Settings.SCENE_WIDTH);
         backgroud.setFitHeight(Settings.SCENE_HEIGHT);
         playLayer.getChildren().add(backgroud);
+    }
+
+    void getSoundOpening(){
+        // so epic
+        String file_name = "src/res/sounds2/music_mainmenu.mp3";
+        Media sound = new Media(new File(file_name).toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
     }
 
     void getNewPlayer() {

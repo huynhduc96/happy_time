@@ -2,6 +2,8 @@
   "jo_user1": {
     "jo_user_name": "",
     "jo_warehouse": {
+      "grass_product": 10,
+      "feather": 10,
       "grass": 0,
       "egg": 0,
       "meat": 0,

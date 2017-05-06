@@ -51,6 +51,28 @@ public class JoWarehouse {
     @SerializedName("pig")
     @Expose
     private Integer pig;
+    @SerializedName("grass_product")
+    @Expose
+    private Integer grass_product;
+    @SerializedName("feather")
+    @Expose
+    private Integer feather;
+
+    public Integer getFeather() {
+        return feather;
+    }
+
+    public void setFeather(Integer feather) {
+        this.feather = feather;
+    }
+
+    public Integer getGrass_product() {
+        return grass_product;
+    }
+
+    public void setGrass_product(Integer grass_product) {
+        this.grass_product = grass_product;
+    }
 
     public Integer getGrass() {
         return grass;

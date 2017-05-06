@@ -141,7 +141,7 @@ public class WareHouse implements House {
         cur_space.relocate(620, 490);
         cur_money.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 25));
         cur_money.setFill(Color.YELLOW);
-        cur_money.relocate(620, 450);
+        cur_money.relocate(620, 420);
         pane_warehouse.getChildren().add(cur_money);
         pane_warehouse.getChildren().add(cur_space);
         addImageView("cow",
@@ -185,6 +185,12 @@ public class WareHouse implements House {
                 null);
         addImageView("milk",
                 data.getJoUser1().getJoWarehouse().getMilk(),
+                null);
+        addImageView("grass_product",
+                data.getJoUser1().getJoWarehouse().getGrass_product(),
+                null);
+        addImageView("feather",
+                data.getJoUser1().getJoWarehouse().getFeather(),
                 null);
     }
 
@@ -315,11 +321,21 @@ public class WareHouse implements House {
             result = data.getJoUser1().getJoWarehouse().getOstric();
         }
         if (name.equals("grass")) {
+            if(data.getJoUser1().getJoGrass().getTotalNumber()  >= 10){
+                ButtonType loginButtonType = new ButtonType("Hiểu", ButtonBar.ButtonData.OK_DONE);
+                Dialog<String> dialog = new Dialog<>();
+                dialog.setContentText("Trồng nhiều cần là phạm pháp hihi");
+                dialog.getDialogPane().getButtonTypes().add(loginButtonType);
+                dialog.getDialogPane().lookupButton(loginButtonType);
+                dialog.show();
+                return -1;
+            }
             data.getJoUser1().getJoWarehouse()
                     .setGrass(data.getJoUser1().getJoWarehouse().getGrass() - 1);
             data.getJoUser1().getJoGrass().setTotalNumber(data.getJoUser1()
                     .getJoGrass().getTotalNumber()+1);
             result = data.getJoUser1().getJoWarehouse().getGrass();
+            return result;
         }
         if (name.equals("dog")) {
             data.getJoUser1().getJoWarehouse()
@@ -417,6 +433,17 @@ public class WareHouse implements House {
             data.getJoUser1().getJoWarehouse()
                     .setMilk(data.getJoUser1().getJoWarehouse().getMilk() - 1);
             result = data.getJoUser1().getJoWarehouse().getMilk();
+
+        }
+        if (name.equals("feather")) {
+            data.getJoUser1().getJoWarehouse()
+                    .setFeather(data.getJoUser1().getJoWarehouse().getFeather() - 1);
+            result = data.getJoUser1().getJoWarehouse().getFeather();
+        }
+        if (name.equals("grass_product")) {
+            data.getJoUser1().getJoWarehouse()
+                    .setGrass_product(data.getJoUser1().getJoWarehouse().getGrass_product() - 1);
+            result = data.getJoUser1().getJoWarehouse().getGrass_product();
         }
         data.getJoUser1().setJoSpace(
                 data.getJoUser1().getJoSpace() + item_space.get(name)
