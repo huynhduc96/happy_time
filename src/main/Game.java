@@ -157,7 +157,10 @@ public class Game extends Application {
                 removeSprites(listPig);
                 removeSprites(listCow);
                 removeSprites(listOstrich);
-                //checkDieChiken();
+                checkDieChiken();
+                //checkCowDie();
+                //checkOstrichDie();
+                // checkPigDie();
             }
 
         };
@@ -612,17 +615,62 @@ public class Game extends Application {
 
     private void checkDieChiken() {
         for (int i = 0; i < listChicken.size(); i++) {
-            if (listChicken.get(i).timeDie > 0) {
-                listChicken.get(i).timeDie--;
+            if (listChicken.get(i).getSick() < listChicken.get(i).timeDie) {
+                listChicken.get(i).setSick( listChicken.get(i).getSick()+1);
+                System.out.println(listChicken.get(i).getSick());
             } else {
-                dataPlayer.getJoUser1().getJoChicken().getListChicken().remove(i);
-                listChicken.get(i).remove();
-                dataPlayer.getJoUser1().getJoChicken().setTotalNumber(dataPlayer.getJoUser1().getJoChicken().getTotalNumber() - 1);
+                listChicken.get(i).setDeath(1);
+                listChicken.get(i).setHealth(0);
+                // dataPlayer.getJoUser1().getJoChicken().getListChicken().remove(i);
+                // listChicken.get(i).remove();
+                // dataPlayer.getJoUser1().getJoChicken().setTotalNumber(dataPlayer.getJoUser1().getJoChicken().getTotalNumber() - 1);
+
+//                listChicken.get(i).canMove = false;
                 break;
 
                 //   addChicken();
             }
         }
     }
+
+    private void checkCowDie() {
+        for (int i = 0; i < listCow.size(); i++) {
+            if (listCow.get(i).getSick() < listCow.get(i).timeDie) {
+                listCow.get(i).setSick(listCow.get(i).getSick() + 1);
+
+            }
+            else {
+                listCow.get(i).setHealth(0);
+                listCow.get(i).setDeath(1);
+            }
+        }
+    }
+
+    private void checkPigDie() {
+        for (int i = 0; i < listPig.size(); i++) {
+            if (listPig.get(i).getSick() < listPig.get(i).timeDie) {
+                listPig.get(i).setSick(listPig.get(i).getSick() + 1);
+
+            }
+            else {
+                listPig.get(i).setHealth(0);
+                listPig.get(i).setDeath(1);
+            }
+        }
+    }
+
+    private void checkOstrichDie() {
+        for (int i = 0; i < listOstrich.size(); i++) {
+            if (listOstrich.get(i).getSick() < listOstrich.get(i).timeDie) {
+                listOstrich.get(i).setSick(listOstrich.get(i).getSick() + 1);
+
+            }
+            else {
+                listOstrich.get(i).setHealth(0);
+                listOstrich.get(i).setDeath(1);
+            }
+        }
+    }
+
 
 }
