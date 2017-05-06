@@ -20,6 +20,12 @@ public class ListCow {
     @Expose
     private Integer step;
 
+    public ListCow(Integer life, Integer sickness, Integer step) {
+        this.life = life;
+        this.sickness = sickness;
+        this.step = step;
+    }
+
     public Integer getLife() {
         return life;
     }

@@ -10,6 +10,7 @@ import javafx.util.Duration;
  * Created by huynh on 09-Apr-17.
  */
 public class Chicken extends Animal {
+    public int timeDie =500;
 
     public Chicken(Pane layer, int type, double x, double y, double r, double dx, double dy,
                    double dr, double health, double sick, int step) {

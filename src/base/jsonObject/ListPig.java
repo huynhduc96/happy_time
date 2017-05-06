@@ -20,6 +20,12 @@ public class ListPig {
     @Expose
     private int step;
 
+    public ListPig(int life, int sickness, int step) {
+        this.life = life;
+        this.sickness = sickness;
+        this.step = step;
+    }
+
     public int getLife() {
         return life;
     }
