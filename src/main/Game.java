@@ -258,7 +258,7 @@ public class Game extends Application {
         t.setY(50);
         t.setFill(Color.YELLOW);
         playLayer.getChildren().add(t);
-
+        add1Pig();
         AnimationTimer gameLoop = new AnimationTimer() {
 
             @Override
@@ -294,6 +294,7 @@ public class Game extends Application {
                 removeSprites(listPig);
                 removeSprites(listCow);
                 removeSprites(listOstrich);
+                //checkDieChiken();
             }
 
         };
@@ -373,6 +374,18 @@ public class Game extends Application {
         }
 
     }
+    void add1Pig() {
+        List<ListPig> listPigs = dataPlayer.getJoUser1().getJoPig().getListPig();
+        ListPig lonthem = new ListPig();
+        lonthem.setLife(112);
+        lonthem.setStep(100);
+        lonthem.setSickness(1000);
+        listPigs.add(lonthem);
+
+
+
+    }
+
 
     void addCow() {
         List<ListCow> listCows = dataPlayer.getJoUser1().getJoCow().getListCow();
@@ -467,4 +480,21 @@ public class Game extends Application {
         });
         mediaPlayer.play();
     }
+
+    private void checkDieChiken(){
+        for(int i=0;i<listChicken.size();i++){
+            if (listChicken.get(i).timeDie>0){
+                listChicken.get(i).timeDie--;
+            } else {
+                dataPlayer.getJoUser1().getJoChicken().getListChicken().remove(i);
+                listChicken.get(i).remove();
+                dataPlayer.getJoUser1().getJoChicken().setTotalNumber(dataPlayer.getJoUser1().getJoChicken().getTotalNumber()-1);
+                add1Pig();
+                break;
+
+             //   addChicken();
+            }
+        }
+    }
+
 }
