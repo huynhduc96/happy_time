@@ -80,6 +80,8 @@ public abstract class Animal {
             typeAnimal = "cow";
         } else if (type == Settings.PIG) {
             typeAnimal = "pig";
+        } else if (type == Settings.OSTRICH) {
+            typeAnimal = "ostrich";
         }
         getNameImage(typeAnimal);
         this.x = x;
@@ -119,6 +121,8 @@ public abstract class Animal {
             typeAnimal = "cow";
         } else if (type == Settings.PIG) {
             typeAnimal = "pig";
+        } else  if (type == Settings.OSTRICH) {
+            typeAnimal = "ostrich";
         }
         return typeAnimal;
     }

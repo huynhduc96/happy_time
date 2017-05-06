@@ -28,7 +28,9 @@ public class JoUser1 {
     @SerializedName("jo_pig")
     @Expose
     private JoPig joPig;
-
+    @SerializedName("jo_ostrich")
+    @Expose
+    private JoOstrich joOstrich;
     @SerializedName("jo_money")
     @Expose
     private int joMonney;
@@ -101,4 +103,7 @@ public class JoUser1 {
         this.joPig = joPig;
     }
 
+    public JoOstrich getJoOstrich() { return joOstrich; }
+
+    public void setJoOstrich(JoOstrich joOstrich) { this.joOstrich = joOstrich; }
 }
