@@ -7,13 +7,19 @@ import com.google.gson.JsonObject;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import main.Player;
 
 import java.io.File;
@@ -24,12 +30,13 @@ import java.io.File;
 public class Store implements House {
     // --------------------------------------------------------------------------------
     /* Class nay phai viet lai toan bo day nhe */
-    private ImageView background_store = new ImageView();
+    private ImageView backgroud_store = new ImageView();
     DataPlayer dataPlayer;
     ImageView imageView;
     Image imageStore;
     Pane layer;
     boolean showStore = true;
+    boolean tmp = true;
     double x;
     double y;
     int type;
@@ -57,6 +64,7 @@ public class Store implements House {
     private Stage stage_store;
     private Scene scene_store;
     private DataPlayer data;
+
     public Store(Pane layer, double x, double y, double r) {
         this.layer = layer;
         initView();
@@ -102,7 +110,6 @@ public class Store implements House {
         imgViewSyringe_2.setFitWidth(50);
         imgViewSyringe_2.relocate(340, 100);
         imgViewSyringe_2.setVisible(false);
-
     }
 
     void setShowViewStore(boolean isVisible) {
@@ -118,10 +125,10 @@ public class Store implements House {
     }
 
     void setShowItem(boolean isVisible) {
-        if(isVisible){
+        if (isVisible) {
             this.imgViewSyringe_1.setVisible(false);
             this.imgViewSyringe_2.setVisible(false);
-        }else {
+        } else {
             this.imgViewSyringe_1.setVisible(true);
             this.imgViewSyringe_2.setVisible(true);
 
@@ -137,33 +144,44 @@ public class Store implements House {
             @Override
             public void handle(MouseEvent event) {
                 // bắt sự kiện click
-                String file_name = "src/res/sounds2/house_click.mp3";
-                Media sound = new Media(new File(file_name).toURI().toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(sound);
-                mediaPlayer.play();
-                root_store = new Group();
-                pane_store = new Pane();
-                stage_store = new Stage();
-                stage_store.setTitle("Cửa hàng");
+                if (tmp == true) {
+                    String file_name = "src/res/sounds2/house_click.mp3";
+                    Media sound = new Media(new File(file_name).toURI().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                    mediaPlayer.play();
+                    root_store = new Group();
+                    pane_store = new Pane();
+                    stage_store = new Stage();
+                    stage_store.setTitle("Cửa hàng");
 
 
+                    Image store_font = new Image(String.valueOf(
+                            classLoader.getResource("res/shop/frontof.png")));
+                    backgroud_store.setImage(store_font);
+                    pane_store.getChildren().add(0, backgroud_store);
+                    //                ProductType p = new ProductType(pane_store,1,"animal");
 
-                Image store_font = new Image(String.valueOf(
-                        classLoader.getResource("res/shop/frontof.png")));
-                background_store.setImage(store_font);
-                pane_store.getChildren().add(0,background_store);
-//                ProductType p = new ProductType(pane_store,1,"animal");
+                    root_store.getChildren().add(pane_store);
 
-                root_store.getChildren().add(pane_store);
-
-                stage_store.setScene(new Scene(root_store, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT));
-                stage_store.show();
-                ProductType t =new ProductType(pane_store, 1, data);
-
+                    stage_store.setScene(new Scene(root_store, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT));
+                    stage_store.show();
+                    ProductType t = new ProductType(pane_store, 1, data);
+                    setCloseStage(stage_store);
+                }
+                tmp = false;
             }
+
         });
     }
 
+
+    void setCloseStage(Stage stage_store) {
+        stage_store.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                tmp = true;
+                System.out.println("Dafuq" + tmp);
+            }
+        });
+    }
 }
-
-
