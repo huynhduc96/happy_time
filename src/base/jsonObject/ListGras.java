@@ -13,7 +13,7 @@ public class ListGras {
     private Integer position;
     @SerializedName("step")
     @Expose
-    private String step;
+    private Integer step;
 
     public Integer getPosition() {
         return position;
@@ -23,18 +23,13 @@ public class ListGras {
         this.position = position;
     }
 
-    public String getStep() {
+    public Integer getStep() {
         return step;
     }
 
-    public void setStep(String step) {
+    public void setStep(Integer step) {
         this.step = step;
     }
 
-    public ListGras(Integer position, String step) {
-        this.position = position;
-        this.step = step;
-    }
 }
-
 

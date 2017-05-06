@@ -7,7 +7,7 @@ package base.jsonObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class JoWarehouse{
+public class JoWarehouse {
 
     @SerializedName("grass")
     @Expose

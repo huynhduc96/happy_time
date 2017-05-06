@@ -12,35 +12,35 @@ public class ListCow {
 
     @SerializedName("life")
     @Expose
-    private String life;
+    private Integer life;
     @SerializedName("sickness")
     @Expose
-    private String sickness;
+    private Integer sickness;
     @SerializedName("step")
     @Expose
-    private String step;
+    private Integer step;
 
-    public String getLife() {
+    public Integer getLife() {
         return life;
     }
 
-    public void setLife(String life) {
+    public void setLife(Integer life) {
         this.life = life;
     }
 
-    public String getSickness() {
+    public Integer getSickness() {
         return sickness;
     }
 
-    public void setSickness(String sickness) {
+    public void setSickness(Integer sickness) {
         this.sickness = sickness;
     }
 
-    public String getStep() {
+    public Integer getStep() {
         return step;
     }
 
-    public void setStep(String step) {
+    public void setStep(Integer step) {
         this.step = step;
     }
 

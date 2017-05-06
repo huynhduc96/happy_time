@@ -242,7 +242,7 @@ public class Game extends Application {
                 //       store.updateDataPlayer(playerData);
 
 
-                t.setText(dataPlayer.getJoUser1().getJoMonney() + " $");
+                t.setText(dataPlayer.getJoUser1().getJoMoney() + " $");
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
                 listPig.forEach(sprite -> sprite.move());
@@ -321,9 +321,9 @@ public class Game extends Application {
     void addChicken() {
         List<ListChicken> listChickens = dataPlayer.getJoUser1().getJoChicken().getListChicken();
         for (int i = 0; i < listChickens.size(); i++) {
-            int step = Integer.parseInt(listChickens.get(i).getStep());
-            double health = Double.parseDouble(listChickens.get(i).getLife());
-            double sick = Double.parseDouble(listChickens.get(i).getSickness());
+            int step = listChickens.get(i).getStep();
+            int health = listChickens.get(i).getLife();
+            int sick = listChickens.get(i).getSickness();
             Chicken chicken = new Chicken(playLayer, Settings.CHIKEN,
                     200, 200, 0, 0, 0, 0, health, sick, step);
             chicken.setOnDrag();
@@ -335,9 +335,9 @@ public class Game extends Application {
     void addPig() {
         List<ListPig> listPigs = dataPlayer.getJoUser1().getJoPig().getListPig();
         for (int i = 0; i < listPigs.size(); i++) {
-            int step = Integer.parseInt(listPigs.get(i).getStep());
-            double health = Double.parseDouble(listPigs.get(i).getLife());
-            double sick = Double.parseDouble(listPigs.get(i).getSickness());
+            int step = listPigs.get(i).getStep();
+            double health =listPigs.get(i).getLife();
+            double sick = listPigs.get(i).getSickness();
             Pig pig = new Pig(playLayer, Settings.PIG,
                     200, 200, 0, 0, 0, 0, health, sick, step);
             pig.setOnDrag();
@@ -349,9 +349,9 @@ public class Game extends Application {
     void addCow() {
         List<ListCow> listCows = dataPlayer.getJoUser1().getJoCow().getListCow();
         for (int i = 0; i < listCows.size(); i++) {
-            int step = Integer.parseInt(listCows.get(i).getStep());
-            double health = Double.parseDouble(listCows.get(i).getLife());
-            double sick = Double.parseDouble(listCows.get(i).getSickness());
+            int step = listCows.get(i).getStep();
+            double health = listCows.get(i).getLife();
+            double sick = listCows.get(i).getSickness();
             Cow cow = new Cow(playLayer, Settings.COW,
                     200, 200, 0, 0, 0, 0, health, sick, step);
             cow.setOnDrag();
@@ -362,9 +362,9 @@ public class Game extends Application {
     void addOstrich() {
         List<ListOstrich> listOstrichs = dataPlayer.getJoUser1().getJoOstrich().getListOstrich();
         for (int i = 0; i < listOstrichs.size(); i++) {
-            int step = Integer.parseInt(listOstrichs.get(i).getStep());
-            double health = Double.parseDouble(listOstrichs.get(i).getLife());
-            double sick = Double.parseDouble(listOstrichs.get(i).getSickness());
+            int step = listOstrichs.get(i).getStep();
+            double health = listOstrichs.get(i).getLife();
+            double sick = listOstrichs.get(i).getSickness();
             Ostrich ostrich = new Ostrich(playLayer, Settings.OSTRICH,
                     200, 200, 0, 0, 0, 0, health, sick, step);
             ostrich.setOnDrag();
