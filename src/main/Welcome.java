@@ -4,10 +4,14 @@ import base.Settings;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.awt.*;
+import java.awt.Button;
 
 /**
  * Created by huynh on 06-May-17.
@@ -44,6 +48,27 @@ public class Welcome extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+        Image new_game_img = new Image(getClass().getResourceAsStream("../res/welcome/new.png"),
+                130,35,false,false);
+        ImageView ng = new ImageView();
+        ng.setImage(new_game_img);
+        ng.relocate(502,470);
+        playLayer.getChildren().add(ng);
+
+        Image cont_game_img = new Image(getClass().getResourceAsStream("../res/welcome/cont.png"),
+                166,35,false,false);
+        ImageView cg = new ImageView();
+        cg.setImage(cont_game_img);
+        cg.relocate(317,470);
+        playLayer.getChildren().add(cg);
+
+        Image help_game_img = new Image(getClass().getResourceAsStream("../res/welcome/help.png"),
+                130,35,false,false);
+        ImageView hg = new ImageView();
+        hg.setImage(help_game_img);
+        hg.relocate(167,470);
+        playLayer.getChildren().add(hg);
+
     }
 
     void initUI() {
