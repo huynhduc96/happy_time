@@ -32,6 +32,11 @@ public class Ostrich extends Animal {
     }
 
     @Override
+    public void stopAnimationWhenDied() {
+
+    }
+
+    @Override
     public void checkRemovability() {
         if( Double.compare( getY(), Settings.SCENE_HEIGHT) > 0) {
             setRemovable(true);

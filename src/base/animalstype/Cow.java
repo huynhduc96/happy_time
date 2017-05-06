@@ -27,6 +27,10 @@ public class Cow extends Animal {
         animation.play();
         this.layer.getChildren().add(this.imageView);
     }
+    @Override
+    public void stopAnimationWhenDied() {
+
+    }
 
     @Override
     public void checkRemovability() {

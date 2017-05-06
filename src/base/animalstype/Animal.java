@@ -1,6 +1,11 @@
 package base.animalstype;
 
 import base.Settings;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.concurrent.ScheduledService;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -21,8 +26,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
+import javax.xml.ws.handler.MessageContext;
 import java.io.File;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 
 /**
@@ -31,11 +43,7 @@ import java.io.File;
 public abstract class Animal {
     private String info;
     ImageView imageView;
-    final int time = 200;
 
-    // check time for animal state
-    Timer _t;
-    int _count=time;
 
     Pane layer;
     double x;
@@ -52,6 +60,20 @@ public abstract class Animal {
     double dr;
 
     double health;
+
+    public int getLife_cycle() {
+        return life_cycle;
+    }
+
+    public void setLife_cycle(int life_cycle) {
+        this.life_cycle = life_cycle;
+    }
+
+    // time of life cycle
+    int life_cycle;
+
+    // state
+
     double sick;
     int step;
 
@@ -61,7 +83,15 @@ public abstract class Animal {
     double w;
     double h;
 
-    int death = 0;
+    public int getDeath() {
+        return death;
+    }
+
+    public void setDeath(int death) {
+        this.death = death;
+    }
+
+    private int death = 0;
     int eat = 0;
 
     boolean canMove = true;
@@ -96,7 +126,7 @@ public abstract class Animal {
         this.step = step;
         // random phuong huong khi vao
         Random rand = new Random();
-        int n = rand.nextInt(7);
+        int n = rand.nextInt(9);
         this.direction = n;
         this.imageView = new ImageView(arrImage.get(n));
         this.imageView.setVisible(false);
@@ -107,6 +137,7 @@ public abstract class Animal {
         this.h = arrImage.get(n).getHeight(); // imageView.getBoundsInParent().getHeight();
 
         addToLayer();
+//        stopAnimationWhenDied();
         t = new Text("dmm");
         t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
         t.setFill(Color.ORANGE);
@@ -182,9 +213,11 @@ public abstract class Animal {
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg6))));
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg7))));
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg8))));
+        arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg9))));
     }
 
     public abstract void addToLayer();
+    public abstract void stopAnimationWhenDied();
 
     public void removeFromLayer() {
         this.layer.getChildren().remove(this.imageView);
@@ -241,11 +274,17 @@ public abstract class Animal {
             y += Settings.ANIMAL_SPEED;
             r += 0;
         }
+
+
+
         changeDirection();
+
+
     }
+
     public void changeDirection() {
         if (Double.compare(getX(), 600) > 0) {
-            while (direction != 2 && direction != 4 && direction != 5) {
+            while (direction != 2 && direction != 4 && direction != 5 ) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
@@ -337,6 +376,16 @@ public abstract class Animal {
                 break;
             case 7: //  ANIMAL_DOWN_RIGHT = 7;
                 imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN_RIGHT));
+                imageView.setScaleX(-1);
+                isScale = true;
+                break;
+            case 8:
+                imageView.setImage(arrImage.get(Settings.ANIMAL_EAT));
+                imageView.setScaleX(-1);
+                isScale = true;
+                break;
+            case 9:
+                imageView.setImage(arrImage.get(Settings.ANIMAL_DEATH));
                 imageView.setScaleX(-1);
                 isScale = true;
                 break;
@@ -500,27 +549,12 @@ public abstract class Animal {
         this.canMove = canMove;
     }
 
-    public boolean changeHungryStateOfAnimals() {
-        _t = new Timer();
-        _t.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (_count > 0) {
-                    _count--;
-                } else _t.cancel();
-            }
-        }, 1000, 1000);
-        if (_count == 0)
-            return true;
-        return false;
-    }
-
-    public void providedFoodWhenHungry() {
-        if (changeHungryStateOfAnimals()) {
-            _count += time;
-        }
-    }
-
+    public void delayForDecreasingHealth(int _height) {
+        _height--;
+       System.out.println("Health Remaining " + _height);
+   }
+    
+    
     public void setOnDrag(){
 
         this.imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {

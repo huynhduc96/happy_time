@@ -24,7 +24,7 @@ import java.io.File;
 public class Store implements House {
     // --------------------------------------------------------------------------------
     /* Class nay phai viet lai toan bo day nhe */
-    private ImageView backgroud_store = new ImageView();
+    private ImageView background_store = new ImageView();
     DataPlayer dataPlayer;
     ImageView imageView;
     Image imageStore;
@@ -57,7 +57,6 @@ public class Store implements House {
     private Stage stage_store;
     private Scene scene_store;
     private DataPlayer data;
-
     public Store(Pane layer, double x, double y, double r) {
         this.layer = layer;
         initView();
@@ -119,10 +118,10 @@ public class Store implements House {
     }
 
     void setShowItem(boolean isVisible) {
-        if (isVisible) {
+        if(isVisible){
             this.imgViewSyringe_1.setVisible(false);
             this.imgViewSyringe_2.setVisible(false);
-        } else {
+        }else {
             this.imgViewSyringe_1.setVisible(true);
             this.imgViewSyringe_2.setVisible(true);
 
@@ -148,17 +147,18 @@ public class Store implements House {
                 stage_store.setTitle("Cửa hàng");
 
 
+
                 Image store_font = new Image(String.valueOf(
                         classLoader.getResource("res/shop/frontof.png")));
-                backgroud_store.setImage(store_font);
-                pane_store.getChildren().add(0, backgroud_store);
+                background_store.setImage(store_font);
+                pane_store.getChildren().add(0,background_store);
 //                ProductType p = new ProductType(pane_store,1,"animal");
 
                 root_store.getChildren().add(pane_store);
 
                 stage_store.setScene(new Scene(root_store, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT));
                 stage_store.show();
-                ProductType t = new ProductType(pane_store, 1, data);
+                ProductType t =new ProductType(pane_store, 1, data);
 
             }
         });
