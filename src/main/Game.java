@@ -62,9 +62,9 @@ public class Game extends Application {
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
 
-    ImageView money = new ImageView();
-    Integer[] location = new Integer[10];
 
+    Integer[] location = new Integer[10];
+    private ImageView money = new ImageView();
     private ImageView backgroud = new ImageView();
     private ImageView backgroud_l = new ImageView();
     private ImageView backgroud_r = new ImageView();
@@ -75,6 +75,7 @@ public class Game extends Application {
     private ImageView img_medi_nol = new ImageView();
     private ImageView img_medi_sep = new ImageView();
     private DataPlayer dataPlayer = null;
+    Text t;
 
     static Stage classStage = new Stage();
     int page = 0;
@@ -82,21 +83,20 @@ public class Game extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         classStage = primaryStage;
-        for (int i = 0; i < 10; i++) {
-            location[i] = 0;
-        }
+
         // make root scene
         Group root = new Group();
 
 
         // add Pane play for player
         playLayer = new Pane();
-        //add background
-        addBack();
+
 
         //get data player from json
         playerData.getdataPlayer();
-
+        for (int i = 0; i < 10; i++) {
+            location[i] = 0;
+        }
         //    data = playerData.getDataPlayer();
 
         // lay data player
@@ -105,7 +105,8 @@ public class Game extends Application {
         // add scene
         root.getChildren().add(playLayer);
         scene = new Scene(root, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);
-
+//add background
+        addBack();
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -163,27 +164,18 @@ public class Game extends Application {
                 });
             }
         });
-        playMusic();
-        addChicken();
-        addCow();
-        addPig();
-        addCan();
-
-        addOstrich();
-        for (int i = 0; i < 3; i++) {
-            String temp = "res/help/" + (i + 1) + ".png";
-            Image image = new Image(String.valueOf(classLoader.getResource(
-                    temp)));
-            imgHelp[i] = new ImageView();
-            imgHelp[i].setImage(image);
-            imgHelp[i].setFitHeight(480);
-            imgHelp[i].setFitWidth(640);
-            imgHelp[i].relocate(0, 0);
-        }
+        addFirst();
         Store store = new Store(playLayer, 300, 10, 0);
         WareHouse wareHouse = new WareHouse(playLayer, 620, 305, 0);
-        Image images = new Image(String.valueOf(classLoader.getResource(
-                "res/money_box.png")));
+
+        t = new Text(10, 50, "");
+        t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
+        t.setRotate(0);
+        t.relocate(650, 40);
+        t.setX(50);
+        t.setY(50);
+        t.setFill(Color.YELLOW);
+        playLayer.getChildren().add(t);
         img_help.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -251,20 +243,7 @@ public class Game extends Application {
             }
         });
 
-        money.setImage(images);
-        money.setFitHeight(60);
-        money.setFitWidth(120);
-        money.relocate(665, 20);
-        money.setRotate(0);
-        playLayer.getChildren().add(money);
-        Text t = new Text(10, 50, "This is a test");
-        t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
-        t.setRotate(0);
-        t.relocate(650, 40);
-        t.setX(50);
-        t.setY(50);
-        t.setFill(Color.YELLOW);
-        playLayer.getChildren().add(t);
+
         AnimationTimer gameLoop = new AnimationTimer() {
 
             @Override
@@ -273,12 +252,8 @@ public class Game extends Application {
                 // movement
                 store.setOnclick(dataPlayer);
                 wareHouse.setOnclick(dataPlayer);
-                //       store.updateDataPlayer(playerData);
-                updateListCan();
-                updateListChicken();
-                updateListCow();
-                updateListOstrich();
-                updateListPig();
+
+                updateData();
 
                 t.setText(dataPlayer.getJoUser1().getJoMoney() + " $");
                 listChicken.forEach(sprite -> sprite.move());
@@ -286,7 +261,6 @@ public class Game extends Application {
                 listPig.forEach(sprite -> sprite.move());
                 listOstrich.forEach(sprite -> sprite.move());
 //                listChicken.forEach(sprite -> sprite.delayTimeForHealth());
-                // update sprites in scene4
 
                 listChicken.forEach(sprite -> sprite.updateUI());
                 listPig.forEach(sprite -> sprite.updateUI());
@@ -316,6 +290,24 @@ public class Game extends Application {
         launch(args);
     }
 
+    void updateData() {
+        updateListCan();
+        updateListChicken();
+        updateListCow();
+        updateListOstrich();
+        updateListPig();
+    }
+
+    void addFirst() {
+        playMusic();
+        addChicken();
+        addCow();
+        addPig();
+        addCan();
+        addOstrich();
+        addHelpImage();
+    }
+
     void addBack() {
         Image image_back = new Image(String.valueOf(classLoader.getResource("res/back.png")));
         Image image_back_left = new Image(String.valueOf(classLoader.getResource("res/back_left.png")));
@@ -325,11 +317,17 @@ public class Game extends Application {
         Image image_food_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_normal.png")));
         Image image_food_sep = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_special.png")));
         Image image_med_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/medicine_normal.png")));
+        Image txt_monney = new Image(String.valueOf(classLoader.getResource("res/money_box.png")));
         Image image_med_sep = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/medicine_special.png")));
         Text txt_help = new Text("Help");
         txt_help.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
         txt_help.relocate(77, 394);
         txt_help.setFill(Color.YELLOW);
+        money.setImage(txt_monney);
+        money.setFitHeight(60);
+        money.setFitWidth(120);
+        money.relocate(665, 20);
+        money.setRotate(0);
         img_food_nol.setImage(image_food_nol);
         img_food_nol.setFitWidth(25);
         img_food_nol.setFitHeight(25);
@@ -369,6 +367,7 @@ public class Game extends Application {
         playLayer.getChildren().add(img_food_sep);
         playLayer.getChildren().add(img_medi_nol);
         playLayer.getChildren().add(img_medi_sep);
+        playLayer.getChildren().add(money);
     }
 
     private void removeSprites(List<? extends Animal> spriteList) {
@@ -461,10 +460,10 @@ public class Game extends Application {
         dataPlayer.getJoUser1().getJoOstrich().setTotalNumber(dataPlayer.getJoUser1().getJoOstrich().getListOstrich().size());
     }
 
-    void updateListCan(){
+    void updateListCan() {
         List<ListGras> list = dataPlayer.getJoUser1().getJoGrass().getListGrass();
         for (int i = list.size(); i < dataPlayer.getJoUser1().getJoGrass().getTotalNumber(); i++) {
-           buyCan();
+            buyCan();
         }
         dataPlayer.getJoUser1().getJoGrass().setTotalNumber(dataPlayer.getJoUser1().getJoGrass().getListGrass().size());
     }
@@ -576,6 +575,19 @@ public class Game extends Application {
             }
         });
         mediaPlayer.play();
+    }
+
+    void addHelpImage() {
+        for (int i = 0; i < 3; i++) {
+            String temp = "res/help/" + (i + 1) + ".png";
+            Image image = new Image(String.valueOf(classLoader.getResource(
+                    temp)));
+            imgHelp[i] = new ImageView();
+            imgHelp[i].setImage(image);
+            imgHelp[i].setFitHeight(480);
+            imgHelp[i].setFitWidth(640);
+            imgHelp[i].relocate(0, 0);
+        }
     }
 
     private void checkDieChiken() {
