@@ -3,19 +3,15 @@ package main;
 import base.*;
 import base.House.WareHouse;
 import base.animalstype.*;
-import base.grassstyle.Grass;
 import base.grassstyle.Can;
 import base.House.Store;
 import base.jsonObject.*;
-import com.google.gson.JsonElement;
 
-import com.google.gson.JsonObject;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,27 +20,22 @@ import javafx.scene.layout.Pane;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.time.Duration;
 
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 /**
  * Created by huynh on 07-Apr-17.
@@ -75,7 +66,15 @@ public class Game extends Application {
     private ImageView img_medi_nol = new ImageView();
     private ImageView img_medi_sep = new ImageView();
     private DataPlayer dataPlayer = null;
-    Text t;
+    Image image_med_sep;
+    Image image_food_nol;
+    Image image_food_sep;
+    Image image_med_nol;
+    Text txt_money;
+    Text txt_food_nol;
+    Text txt_food_sep;
+    Text txt_medi_nol;
+    Text txt_medi_sep;
 
     static Stage classStage = new Stage();
     int page = 0;
@@ -97,18 +96,79 @@ public class Game extends Application {
         for (int i = 0; i < 10; i++) {
             location[i] = 0;
         }
-        //    data = playerData.getDataPlayer();
 
         // lay data player
         dataPlayer = playerData.getPlayer();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                playMusic();
+            }
+        });
 
         // add scene
         root.getChildren().add(playLayer);
         scene = new Scene(root, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT);
-//add background
+
         addBack();
         primaryStage.setScene(scene);
         primaryStage.show();
+        setClickStage(primaryStage);
+
+        addFirst();
+        Store store = new Store(playLayer, 300, 10, 0);
+        WareHouse wareHouse = new WareHouse(playLayer, 620, 305, 0);
+
+        addText();
+
+        setOnclickItem();
+
+        AnimationTimer gameLoop = new AnimationTimer() {
+
+            @Override
+            public void handle(long now) {
+
+                // movement
+                store.setOnclick(dataPlayer);
+                wareHouse.setOnclick(dataPlayer);
+
+                updateData();
+                updateText();
+
+                listChicken.forEach(sprite -> sprite.move());
+                listCow.forEach(sprite -> sprite.move());
+                listPig.forEach(sprite -> sprite.move());
+                listOstrich.forEach(sprite -> sprite.move());
+//                listChicken.forEach(sprite -> sprite.delayTimeForHealth());
+
+                listChicken.forEach(sprite -> sprite.updateUI());
+                listPig.forEach(sprite -> sprite.updateUI());
+                listCow.forEach(sprite -> sprite.updateUI());
+                listOstrich.forEach(sprite -> sprite.updateUI());
+
+                // check if sprite can be removed
+                listChicken.forEach(sprite -> sprite.checkRemovability());
+                listPig.forEach(sprite -> sprite.checkRemovability());
+                listCow.forEach(sprite -> sprite.checkRemovability());
+                listOstrich.forEach(sprite -> sprite.checkRemovability());
+
+
+                removeSprites(listChicken);
+                removeSprites(listPig);
+                removeSprites(listCow);
+                removeSprites(listOstrich);
+                //checkDieChiken();
+            }
+
+        };
+        gameLoop.start();
+    }
+
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+    void setClickStage(Stage primaryStage){
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
@@ -164,130 +224,88 @@ public class Game extends Application {
                 });
             }
         });
-        addFirst();
-        Store store = new Store(playLayer, 300, 10, 0);
-        WareHouse wareHouse = new WareHouse(playLayer, 620, 305, 0);
-
-        t = new Text(10, 50, "");
-        t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
-        t.setRotate(0);
-        t.relocate(650, 40);
-        t.setX(50);
-        t.setY(50);
-        t.setFill(Color.YELLOW);
-        playLayer.getChildren().add(t);
-        img_help.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("help");
-                event.consume();
-                Group group_cf;
-                Pane pane_cf;
-                Stage stage_cf;
-                group_cf = new Group();
-                pane_cf = new Pane();
-                stage_cf = new Stage();
-                stage_cf.setTitle("Help");
-                group_cf.getChildren().add(pane_cf);
-
-
-                javafx.scene.control.Button ok = new Button("Trước");
-                ok.setPrefWidth(70);
-                ok.relocate(220, 496);
-                Button no = new Button("Sau");
-                no.setPrefWidth(70);
-                no.relocate(700 - 220 - 70, 496);
-
-                pane_cf.getChildren().add(imgHelp[page]);
-                pane_cf.getChildren().add(ok);
-                pane_cf.getChildren().add(no);
-
-                ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        if (page > 0) {
-                            pane_cf.getChildren().add(imgHelp[page - 1]);
-                            pane_cf.getChildren().remove(imgHelp[page]);
-                            page--;
-                        } else {
-                            page = 2;
-                            pane_cf.getChildren().add(imgHelp[page]);
-                            pane_cf.getChildren().remove(imgHelp[0]);
-                        }
-                    }
-                });
-
-                no.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        if (page < 2) {
-                            pane_cf.getChildren().add(imgHelp[page + 1]);
-                            pane_cf.getChildren().remove(imgHelp[page]);
-                            page++;
-                        } else {
-                            page = 0;
-                            pane_cf.getChildren().add(imgHelp[page]);
-                            pane_cf.getChildren().remove(imgHelp[2]);
-                        }
-                    }
-                });
-
-                stage_cf.setScene(new Scene(group_cf, 640, 540));
-                stage_cf.show();
-                stage_cf.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                    @Override
-                    public void handle(WindowEvent event) {
-                        stage_cf.close();
-                    }
-                });
-            }
-        });
-
-
-        AnimationTimer gameLoop = new AnimationTimer() {
-
-            @Override
-            public void handle(long now) {
-
-                // movement
-                store.setOnclick(dataPlayer);
-                wareHouse.setOnclick(dataPlayer);
-
-                updateData();
-
-                t.setText(dataPlayer.getJoUser1().getJoMoney() + " $");
-                listChicken.forEach(sprite -> sprite.move());
-                listCow.forEach(sprite -> sprite.move());
-                listPig.forEach(sprite -> sprite.move());
-                listOstrich.forEach(sprite -> sprite.move());
-//                listChicken.forEach(sprite -> sprite.delayTimeForHealth());
-
-                listChicken.forEach(sprite -> sprite.updateUI());
-                listPig.forEach(sprite -> sprite.updateUI());
-                listCow.forEach(sprite -> sprite.updateUI());
-                listOstrich.forEach(sprite -> sprite.updateUI());
-
-                // check if sprite can be removed
-                listChicken.forEach(sprite -> sprite.checkRemovability());
-                listPig.forEach(sprite -> sprite.checkRemovability());
-                listCow.forEach(sprite -> sprite.checkRemovability());
-                listOstrich.forEach(sprite -> sprite.checkRemovability());
-
-
-                removeSprites(listChicken);
-                removeSprites(listPig);
-                removeSprites(listCow);
-                removeSprites(listOstrich);
-                //checkDieChiken();
-            }
-
-        };
-        gameLoop.start();
     }
 
+    void setOnclickItem() {
+        img_food_nol.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                scene.setCursor(new ImageCursor(image_food_nol));
+            }
+        });
+        img_food_sep.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                scene.setCursor(new ImageCursor(image_food_sep));
+            }
+        });
+        img_medi_nol.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                scene.setCursor(new ImageCursor(image_med_nol));
+            }
+        });
+        img_medi_sep.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                scene.setCursor(new ImageCursor(image_med_sep));
+            }
+        });
+        backgroud.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                scene.setCursor(Cursor.DEFAULT);
+            }
+        });
+    }
 
-    public static void main(String[] args) {
-        launch(args);
+    void addText() {
+        txt_money = new Text(10, 50, "");
+        txt_money.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
+        txt_money.relocate(650, 40);
+        txt_money.setX(50);
+        txt_money.setY(50);
+        txt_money.setFill(Color.YELLOW);
+        playLayer.getChildren().add(txt_money);
+        txt_food_nol = new Text(10, 50, "");
+        txt_food_nol.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        txt_food_nol.relocate(3, 66);
+        txt_food_nol.setX(50);
+        txt_food_nol.setY(50);
+        txt_food_nol.setFill(Color.BLACK);
+        playLayer.getChildren().add(txt_food_nol);
+
+        txt_food_sep = new Text(10, 50, "");
+        txt_food_sep.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        txt_food_sep.relocate(3, 110);
+        txt_food_sep.setX(50);
+        txt_food_sep.setY(50);
+        txt_food_sep.setFill(Color.BLACK);
+        playLayer.getChildren().add(txt_food_sep);
+
+        txt_medi_nol = new Text(10, 50, "");
+        txt_medi_nol.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        txt_medi_nol.relocate(3, 153);
+        txt_medi_nol.setX(50);
+        txt_medi_nol.setY(50);
+        txt_medi_nol.setFill(Color.BLACK);
+        playLayer.getChildren().add(txt_medi_nol);
+
+        txt_medi_sep = new Text(10, 50, "");
+        txt_medi_sep.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        txt_medi_sep.relocate(3, 196);
+        txt_medi_sep.setX(50);
+        txt_medi_sep.setY(50);
+        txt_medi_sep.setFill(Color.BLACK);
+        playLayer.getChildren().add(txt_medi_sep);
+    }
+
+    void updateText() {
+        txt_money.setText(dataPlayer.getJoUser1().getJoMoney() + " $");
+        txt_food_nol.setText("x " + dataPlayer.getJoUser1().getJoWarehouse().getFoodNormal() + "");
+        txt_food_sep.setText("x " + dataPlayer.getJoUser1().getJoWarehouse().getFoodSpecial() + "");
+        txt_medi_nol.setText("x " + dataPlayer.getJoUser1().getJoWarehouse().getMedicineNormal() + "");
+        txt_medi_sep.setText("x " + dataPlayer.getJoUser1().getJoWarehouse().getMedicineSpecial() + "");
     }
 
     void updateData() {
@@ -299,7 +317,7 @@ public class Game extends Application {
     }
 
     void addFirst() {
-        playMusic();
+        //   playMusic();
         addChicken();
         addCow();
         addPig();
@@ -314,11 +332,11 @@ public class Game extends Application {
         Image image_back_right = new Image(String.valueOf(classLoader.getResource("res/back_right.png")));
         Image image_help = new Image(String.valueOf(classLoader.getResource("res/help.png")));
         Image image_sel = new Image(String.valueOf(classLoader.getResource("res/select.png")));
-        Image image_food_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_normal.png")));
-        Image image_food_sep = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_special.png")));
-        Image image_med_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/medicine_normal.png")));
+        image_food_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_normal.png")));
+        image_food_sep = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_special.png")));
+        image_med_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/medicine_normal.png")));
         Image txt_monney = new Image(String.valueOf(classLoader.getResource("res/money_box.png")));
-        Image image_med_sep = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/medicine_special.png")));
+        image_med_sep = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/medicine_special.png")));
         Text txt_help = new Text("Help");
         txt_help.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
         txt_help.relocate(77, 394);

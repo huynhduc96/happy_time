@@ -531,7 +531,6 @@ public abstract class Animal {
                         "\nvòng đời:" + step;
                 t.setText(info);
                 t.setVisible(true);
-
             }
         });
         this.imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
