@@ -2,10 +2,7 @@ package main;
 
 import base.*;
 import base.House.WareHouse;
-import base.animalstype.Animal;
-import base.animalstype.Chicken;
-import base.animalstype.Cow;
-import base.animalstype.Pig;
+import base.animalstype.*;
 import base.grassstyle.Grass;
 import base.grassstyle.Can;
 import base.House.Store;
@@ -58,6 +55,7 @@ public class Game extends Application {
     List<Chicken> listChicken = new ArrayList<>();
     List<Pig> listPig = new ArrayList<>();
     List<Cow> listCow = new ArrayList<>();
+    List<Ostrich> listOstrich = new ArrayList<>();
     List<Can> listCan = new ArrayList<>();
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
@@ -161,6 +159,7 @@ public class Game extends Application {
         addCow();
         addPig();
         addCan();
+        addOstrich();
         buyCan();
         Store store = new Store(playLayer, 300, 10, 0);
         WareHouse wareHouse = new WareHouse(playLayer,620,305,0);
@@ -247,22 +246,26 @@ public class Game extends Application {
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
                 listPig.forEach(sprite -> sprite.move());
+                listOstrich.forEach(sprite -> sprite.move());
 //                listChicken.forEach(sprite -> sprite.delayTimeForHealth());
                 // update sprites in scene4
 
                 listChicken.forEach(sprite -> sprite.updateUI());
                 listPig.forEach(sprite -> sprite.updateUI());
                 listCow.forEach(sprite -> sprite.updateUI());
+                listOstrich.forEach(sprite -> sprite.updateUI());
 
                 // check if sprite can be removed
                 listChicken.forEach(sprite -> sprite.checkRemovability());
                 listPig.forEach(sprite -> sprite.checkRemovability());
                 listCow.forEach(sprite -> sprite.checkRemovability());
+                listOstrich.forEach(sprite -> sprite.checkRemovability());
 
 
                 removeSprites(listChicken);
                 removeSprites(listPig);
                 removeSprites(listCow);
+                removeSprites(listOstrich);
             }
 
         };
@@ -353,6 +356,19 @@ public class Game extends Application {
                     200, 200, 0, 0, 0, 0, health, sick, step);
             cow.setOnDrag();
             listCow.add(cow);
+        }
+    }
+
+    void addOstrich() {
+        List<ListOstrich> listOstrichs = dataPlayer.getJoUser1().getJoOstrich().getListOstrich();
+        for (int i = 0; i < listOstrichs.size(); i++) {
+            int step = Integer.parseInt(listOstrichs.get(i).getStep());
+            double health = Double.parseDouble(listOstrichs.get(i).getLife());
+            double sick = Double.parseDouble(listOstrichs.get(i).getSickness());
+            Ostrich ostrich = new Ostrich(playLayer, Settings.OSTRICH,
+                    200, 200, 0, 0, 0, 0, health, sick, step);
+            ostrich.setOnDrag();
+            listOstrich.add(ostrich);
         }
     }
 
