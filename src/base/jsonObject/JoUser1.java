@@ -16,6 +16,12 @@ public class JoUser1 {
     @SerializedName("jo_warehouse")
     @Expose
     private JoWarehouse joWarehouse;
+    @SerializedName("jo_dog")
+    @Expose
+    private JoDog joDog;
+    @SerializedName("jo_cat")
+    @Expose
+    private JoCat joCat;
     @SerializedName("jo_grass")
     @Expose
     private JoGrass joGrass;
@@ -33,27 +39,13 @@ public class JoUser1 {
     private JoOstrich joOstrich;
     @SerializedName("jo_money")
     @Expose
-    private int joMonney;
-
+    private Integer joMoney;
     @SerializedName("jo_space")
     @Expose
-    private int jo_space;
-
-    public int getJo_space() {
-        return jo_space;
-    }
-
-    public void setJo_space(int jo_space) {
-        this.jo_space = jo_space;
-    }
-
-    public int getJoMonney() {
-        return joMonney;
-    }
-
-    public void setJoMonney(int joMonney) {
-        this.joMonney = joMonney;
-    }
+    private Integer joSpace;
+    @SerializedName("space_out")
+    @Expose
+    private Integer spaceOut;
 
     public String getJoUserName() {
         return joUserName;
@@ -69,6 +61,22 @@ public class JoUser1 {
 
     public void setJoWarehouse(JoWarehouse joWarehouse) {
         this.joWarehouse = joWarehouse;
+    }
+
+    public JoDog getJoDog() {
+        return joDog;
+    }
+
+    public void setJoDog(JoDog joDog) {
+        this.joDog = joDog;
+    }
+
+    public JoCat getJoCat() {
+        return joCat;
+    }
+
+    public void setJoCat(JoCat joCat) {
+        this.joCat = joCat;
     }
 
     public JoGrass getJoGrass() {
@@ -103,7 +111,36 @@ public class JoUser1 {
         this.joPig = joPig;
     }
 
-    public JoOstrich getJoOstrich() { return joOstrich; }
+    public JoOstrich getJoOstrich() {
+        return joOstrich;
+    }
 
-    public void setJoOstrich(JoOstrich joOstrich) { this.joOstrich = joOstrich; }
+    public void setJoOstrich(JoOstrich joOstrich) {
+        this.joOstrich = joOstrich;
+    }
+
+    public Integer getJoMoney() {
+        return joMoney;
+    }
+
+    public void setJoMoney(Integer joMoney) {
+        this.joMoney = joMoney;
+    }
+
+    public Integer getJoSpace() {
+        return joSpace;
+    }
+
+    public void setJoSpace(Integer joSpace) {
+        this.joSpace = joSpace;
+    }
+
+    public Integer getSpaceOut() {
+        return spaceOut;
+    }
+
+    public void setSpaceOut(Integer spaceOut) {
+        this.spaceOut = spaceOut;
+    }
+
 }

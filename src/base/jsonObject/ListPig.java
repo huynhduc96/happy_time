@@ -12,36 +12,35 @@ public class ListPig {
 
     @SerializedName("life")
     @Expose
-    private String life;
+    private int life;
     @SerializedName("sickness")
     @Expose
-    private String sickness;
+    private int sickness;
     @SerializedName("step")
     @Expose
-    private String step;
+    private int step;
 
-    public String getLife() {
+    public int getLife() {
         return life;
     }
 
-    public void setLife(String life) {
+    public void setLife(int life) {
         this.life = life;
     }
 
-    public String getSickness() {
+    public int getSickness() {
         return sickness;
     }
 
-    public void setSickness(String sickness) {
+    public void setSickness(int sickness) {
         this.sickness = sickness;
     }
 
-    public String getStep() {
+    public int getStep() {
         return step;
     }
 
-    public void setStep(String step) {
+    public void setStep(int step) {
         this.step = step;
     }
-
 }
