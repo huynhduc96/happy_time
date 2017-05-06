@@ -542,6 +542,7 @@ public class Game extends Application implements Buff {
                     200, 200, 0, 0, 0, 0, 100, 0, 1);
             animal.setOnDrag();
             animal.addBuffListener(this);
+
             listOstrich.add(animal);
         }
         dataPlayer.getJoUser1().getJoOstrich().setTotalNumber(dataPlayer.getJoUser1().getJoOstrich().getListOstrich().size());
