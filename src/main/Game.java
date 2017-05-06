@@ -161,7 +161,7 @@ public class Game extends Application {
         addCow();
         addPig();
         addCan();
-
+        buyCan();
         Store store = new Store(playLayer, 300, 10, 0);
         WareHouse wareHouse = new WareHouse(playLayer,620,305,0);
         Image images = new Image(String.valueOf(classLoader.getResource(
@@ -357,34 +357,58 @@ public class Game extends Application {
     }
 
     void addCan() {
-        int j;
-        int tmp = Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber());
+        List<ListGras> listGrass = dataPlayer.getJoUser1().getJoGrass().getListGrass();
         // create a sprite
-        for (j = 0; j < tmp; j++) {
+        for (int i = 0; i < listGrass.size(); i++) {
+            int postion;
+            postion = dataPlayer.getJoUser1().getJoGrass().getListGrass().get(i).getPosition();
+            location[postion] = 1;
+
+            int y = 530;
+            int x = (postion + 3) * 50;
+
+            Can can = new Can(playLayer, Settings.CAN,
+                    x, y, 0, 0, 0, 0, 1, 1);
+            //
+            //            // manage sprite
+            listCan.add(can);
+            //            dataPlayer.getJoUser1().getJoGrass().setTotalNumber(String.valueOf(Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber())+1));
+            //            ListGras listGras = new ListGras(i, "1");
+            //            dataPlayer.getJoUser1().getJoGrass().getListGrass().add(listGras);
+
+        }
+    }
+
+    void buyCan() {
+        List<ListGras> listGrass = dataPlayer.getJoUser1().getJoGrass().getListGrass();
+        // create a sprite
+        for (int i = 0; i < listGrass.size(); i++) {
             int tmp1;
-            tmp1 = dataPlayer.getJoUser1().getJoGrass().getListGrass().get(j).getPosition();
+            tmp1 = dataPlayer.getJoUser1().getJoGrass().getListGrass().get(i).getPosition();
             location[tmp1] = 1;
         }
 
-        if (tmp < 10) {
-            int i;
+        if (listGrass.size() < 10) {
+            int tmp;
             Random rd = new Random();
             do {
-                i = rd.nextInt(10);
+                tmp = rd.nextInt(10);
             }
-            while (location[i] == 1);
+            while (location[tmp] == 1);
 
-            location[i] = 1;
+            location[tmp] = 1;
             int y = 530;
-            int x = (i + 3) * 50;
+            int x = (tmp + 3) * 50;
 
-//            Can can = new Can(playLayer, Settings.CAN, x, y, 0, 0, Settings.ANIMAL_SPEED, 0, 1, 1);
-//
-//            // manage sprite
-//            listCan.add(can);
-//            dataPlayer.getJoUser1().getJoGrass().setTotalNumber(String.valueOf(Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber())+1));
-//            ListGras listGras = new ListGras(i, "1");
-//            dataPlayer.getJoUser1().getJoGrass().getListGrass().add(listGras);
+            Can can = new Can(playLayer, Settings.CAN,
+                    x, y, 0, 0, 0, 0, 1, 1);
+            //
+            //            // manage sprite
+            listCan.add(can);
+            //            dataPlayer.getJoUser1().getJoGrass().setTotalNumber(String.valueOf(Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber())+1));
+            //            ListGras listGras = new ListGras(i, "1");
+            //            dataPlayer.getJoUser1().getJoGrass().getListGrass().add(listGras);
+
         }
     }
 
