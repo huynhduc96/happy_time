@@ -15,6 +15,11 @@ public class ListGras {
     @Expose
     private Integer step;
 
+    public ListGras(Integer position, Integer step) {
+        this.position = position;
+        this.step = step;
+    }
+
     public Integer getPosition() {
         return position;
     }
