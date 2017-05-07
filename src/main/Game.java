@@ -53,6 +53,9 @@ public class Game extends Application implements Buff {
     List<Cow> listCow = new ArrayList<>();
     List<Ostrich> listOstrich = new ArrayList<>();
     List<Can> listCan = new ArrayList<>();
+    List<Panda> listPan = new ArrayList<>();
+    List<Dog> listDog = new ArrayList<>();
+    List<Cat> listCat = new ArrayList<>();
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
@@ -89,7 +92,6 @@ public class Game extends Application implements Buff {
     @Override
     public void start(Stage primaryStage) throws Exception {
         classStage = primaryStage;
-
 
 
         // make root scene
@@ -134,9 +136,6 @@ public class Game extends Application implements Buff {
         addText();
 
         setOnclickItem();
-        Panda cac = new Panda(playLayer, Settings.PANDA, 200, 200, 0, 0, 0, 0,3, dataPlayer);
-        Dog cac1 = new Dog(playLayer, Settings.DOG, 200, 200, 0, 0, 0, 0,3, dataPlayer);
-//        Cat cac2 = new Cat(playLayer, Settings.CAT, 200, 200, 0, 0, 0, 0,3, dataPlayer);
 
         AnimationTimer gameLoop = new AnimationTimer() {
 
@@ -155,6 +154,9 @@ public class Game extends Application implements Buff {
                 listCow.forEach(sprite -> sprite.move());
                 listPig.forEach(sprite -> sprite.move());
                 listOstrich.forEach(sprite -> sprite.move());
+                listPan.forEach(sprite->sprite.move());
+                listDog.forEach(sprite->sprite.move());
+                listCat.forEach(sprite->sprite.move());
 //                listChicken.forEach(sprite -> sprite.delayTimeForHealth());
 
                 listChicken.forEach(sprite -> sprite.updateUI());
@@ -162,12 +164,17 @@ public class Game extends Application implements Buff {
                 listCow.forEach(sprite -> sprite.updateUI());
                 listOstrich.forEach(sprite -> sprite.updateUI());
                 listCan.forEach(sprite -> sprite.updateUI());
+                listPan.forEach(sprite -> sprite.updateUI());
+                listDog.forEach(sprite -> sprite.updateUI());
+                listCat.forEach(sprite -> sprite.updateUI());
 
                 // check if sprite can be removed
                 listChicken.forEach(sprite -> sprite.checkRemovability());
                 listPig.forEach(sprite -> sprite.checkRemovability());
                 listCow.forEach(sprite -> sprite.checkRemovability());
                 listOstrich.forEach(sprite -> sprite.checkRemovability());
+
+
 
 
                 removeSprites(listChicken);
@@ -207,7 +214,6 @@ public class Game extends Application implements Buff {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                System.out.println("close");
                 event.consume();
                 Group group_cf;
                 Pane pane_cf;
@@ -308,6 +314,23 @@ public class Game extends Application implements Buff {
                 typeSent = 0;
             }
         });
+        img_BackMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            new Welcome().start(new Stage());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                playerData.saveJson(dataPlayer);
+                classStage.close();
+            }
+        });
     }
 
     void addText() {
@@ -365,6 +388,9 @@ public class Game extends Application implements Buff {
         updateListCow();
         updateListOstrich();
         updateListPig();
+        updatePanda();
+        updateDog();
+        updateCat();
     }
 
     void updateBuff() {
@@ -433,10 +459,6 @@ public class Game extends Application implements Buff {
         image_med_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/medicine_normal.png")));
         Image txt_monney = new Image(String.valueOf(classLoader.getResource("res/money_box.png")));
         image_med_sep = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/medicine_special.png")));
-        Text txt_help = new Text("Help");
-        txt_help.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
-        txt_help.relocate(77, 394);
-        txt_help.setFill(Color.YELLOW);
 
         money.setImage(txt_monney);
         money.setFitHeight(60);
@@ -475,7 +497,6 @@ public class Game extends Application implements Buff {
         playLayer.getChildren().add(backgroud);
         playLayer.getChildren().add(backgroud_l);
         playLayer.getChildren().add(backgroud_r);
-        playLayer.getChildren().add(txt_help);
         playLayer.getChildren().add(img_select);
         playLayer.getChildren().add(img_food_nol);
         playLayer.getChildren().add(img_food_sep);
@@ -530,6 +551,38 @@ public class Game extends Application implements Buff {
         }
         dataPlayer.getJoUser1().getJoChicken().setTotalNumber(dataPlayer.getJoUser1().getJoChicken().getListChicken().size());
     }
+
+    void updatePanda() {
+
+        int curent = listPan.size();
+        for (int i = curent; i < dataPlayer.getJoUser1().getJoPanda().getTotalNumber(); i++) {
+
+            Panda pets = new Panda(playLayer, Settings.PANDA,
+                    200, 200, 0, 0, 0, 0, 100, dataPlayer);
+            listPan.add(pets);
+        }
+    }
+    void updateDog() {
+
+        int curent = listDog.size();
+        for (int i = curent; i < dataPlayer.getJoUser1().getJoDog().getTotalNumber(); i++) {
+
+            Dog pets = new Dog(playLayer, Settings.DOG,
+                    200, 200, 0, 0, 0, 0, 100, dataPlayer);
+            listDog.add(pets);
+        }
+    }
+    void updateCat() {
+
+        int curent = listCat.size();
+        for (int i = curent; i < dataPlayer.getJoUser1().getJoDog().getTotalNumber(); i++) {
+
+            Cat pets = new Cat(playLayer, Settings.CAT,
+                    200, 200, 0, 0, 0, 0, 100, dataPlayer);
+            listCat.add(pets);
+        }
+    }
+
 
     void updateListPig() {
 
@@ -679,7 +732,7 @@ public class Game extends Application implements Buff {
             listGrass.add(gras);
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1, 1,dataPlayer, tmp);
+                    x, y, 0, 0, 0, 0, 1, 1, 1, dataPlayer);
             //
             //            // manage sprite
             listCan.add(can);
@@ -703,14 +756,13 @@ public class Game extends Application implements Buff {
     }
 
 
-
-    private void    checkDieChiken() {
+    private void checkDieChiken() {
         for (int i = 0; i < listChicken.size(); i++) {
             if (listChicken.get(i).getSick() < listChicken.get(i).timeDie) {
-                listChicken.get(i).setSick( listChicken.get(i).getSick()+1);
+                listChicken.get(i).setSick(listChicken.get(i).getSick() + 1);
                 System.out.println(listChicken.get(i).getSick());
             } else {
-            //    listChicken.get(i).setDeath(1);
+                //    listChicken.get(i).setDeath(1);
                 listChicken.get(i).setHealth(0);
 //
 //                listChicken.get(i).canMove = false;
@@ -727,13 +779,13 @@ public class Game extends Application implements Buff {
         isokGame = isOK;
         return typeSent;
     }
+
     private void checkCowDie() {
         for (int i = 0; i < listCow.size(); i++) {
             if (listCow.get(i).getSick() < listCow.get(i).timeDie) {
                 listCow.get(i).setSick(listCow.get(i).getSick() + 1);
 
-            }
-            else {
+            } else {
                 listCow.get(i).setHealth(0);
 //                listCow.get(i).hasDied = true;
 //                listCow.get(i).setDeath(1);
@@ -746,8 +798,7 @@ public class Game extends Application implements Buff {
             if (listPig.get(i).getSick() < listPig.get(i).timeDie) {
                 listPig.get(i).setSick(listPig.get(i).getSick() + 1);
 
-            }
-            else {
+            } else {
 //                listPig.get(i).hasDied = true;
                 listPig.get(i).setHealth(0);
 //                listPig.get(i).setDeath(1);
@@ -792,11 +843,11 @@ public class Game extends Application implements Buff {
 
                 listCow.get(i).remove();
                 dataPlayer.getJoUser1().setSpaceOut(
-                        dataPlayer.getJoUser1().getSpaceOut()+15);
+                        dataPlayer.getJoUser1().getSpaceOut() + 15);
                 dataPlayer.getJoUser1().getJoCow().getListCow().remove(i);
-                 dataPlayer.getJoUser1().getJoCow().setTotalNumber(
-                      dataPlayer.getJoUser1().getJoCow().getTotalNumber()-1);
-            } else{
+                dataPlayer.getJoUser1().getJoCow().setTotalNumber(
+                        dataPlayer.getJoUser1().getJoCow().getTotalNumber() - 1);
+            } else {
                 listCow.get(i).hasDied++;
             }
         }
@@ -804,10 +855,11 @@ public class Game extends Application implements Buff {
 
     private void removeOstrichdied() {
         for (int i = 0; i < listOstrich.size(); i++) {
-            if ((listOstrich.get(i).getSick() >= listOstrich.get(i).timeDie && listOstrich.get(i).hasDied >= 1000 + listOstrich.get(i).timeDie) || listOstrich.get(i).getDiedByStep() >=13000) {
+            if ((listOstrich.get(i).getSick() >= listOstrich.get(i).timeDie && listOstrich.get(i).hasDied >= 1000 + listOstrich.get(i).timeDie) || listOstrich.get(i).getDiedByStep() >= 13000) {
 
                 listOstrich.get(i).remove();
                 dataPlayer.getJoUser1().setSpaceOut(
+                        dataPlayer.getJoUser1().getSpaceOut() + 12);
                         dataPlayer.getJoUser1().getSpaceOut()+12);
                 dataPlayer.getJoUser1().getJoOstrich().getListOstrich().remove(i);
                 dataPlayer.getJoUser1().getJoOstrich().setTotalNumber(
