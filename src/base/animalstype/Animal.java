@@ -63,7 +63,7 @@ public abstract class Animal {
     double health;
     double sick;
     int step;
-    private static final int span = 100;
+    private static final int span = 1000;
 
     boolean removable = false;
     boolean isScale = false;
@@ -218,7 +218,7 @@ public abstract class Animal {
     }
 
     public void move() {
-
+        count++;
         if (sick < timeDie*0.7) {
 
             if (direction == Settings.ANIMAL_DOWN) {

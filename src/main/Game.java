@@ -156,6 +156,7 @@ public class Game extends Application implements Buff {
                 listPig.forEach(sprite -> sprite.updateUI());
                 listCow.forEach(sprite -> sprite.updateUI());
                 listOstrich.forEach(sprite -> sprite.updateUI());
+                listCan.forEach(sprite -> sprite.updateUI());
 
                 // check if sprite can be removed
                 listChicken.forEach(sprite -> sprite.checkRemovability());
@@ -633,7 +634,7 @@ public class Game extends Application implements Buff {
                     x, y, 0, 0, 0, 0, 1, 1, 1);
             //
             //            // manage sprite
-
+//            can.setOnDrag();
             listCan.add(can);
 
             //            dataPlayer.getJoUser1().getJoGrass().setTotalNumber(String.valueOf(Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber())+1));
@@ -826,7 +827,6 @@ public class Game extends Application implements Buff {
                 listCan.get(i).timeDieCan--;
             }else {
                 if(listCan.get(i).timeDieCan == 0) {
-                    System.out.println("chinh dz");
                     dataPlayer.getJoUser1().getJoGrass().getListGrass().get(i).setStep(2);
                     listCan.get(i).timeDieCan--;
                     break;
