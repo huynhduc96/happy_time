@@ -2,8 +2,10 @@ package base.grassstyle;
 
 import base.Settings;
 import base.jsonObject.DataPlayer;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
@@ -11,12 +13,21 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+
 import java.io.File;
+
+import static java.awt.SystemColor.info;
 
 /**
  * Created by hoang on 4/29/2017.
  */
 public abstract class Grass {
+    private String info;
     ImageView imageView;
     final int time = 200;
 
@@ -35,7 +46,7 @@ public abstract class Grass {
     double dx;
     double dy;
     double dr;
-
+    Text t;
     double health;
     double sick;
     int step;
@@ -83,6 +94,11 @@ public abstract class Grass {
         this.h = arrImage.get(n).getHeight(); // imageView.getBoundsInParent().getHeight();
 
         addToLayer();
+        t = new Text("dmm");
+        t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        t.setFill(Color.WHITE);
+        layer.getChildren().add(t);
+        t.setVisible(false);
     }
     private String getName(){
         String typeGrass = null;
@@ -147,6 +163,12 @@ public abstract class Grass {
 
     public ImageView getImageView() {
         return imageView;
+    }
+
+    public void updateUI() {
+        imageView.relocate(x, y);
+        t.relocate(x, y - 30);
+        imageView.setRotate(r);
     }
 
     public void setImageView(ImageView imageView) {
@@ -277,5 +299,23 @@ public abstract class Grass {
             _count += time;
         }
     }
+
+/*    public void setOnDrag(){
+
+        this.imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                info = "Vòng đời: " + step;
+                t.setText(info);
+                t.setVisible(true);
+            }
+        });
+        this.imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                t.setVisible(false);
+            }
+        });
+    }*/
 
 }

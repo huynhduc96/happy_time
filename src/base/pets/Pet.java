@@ -1,24 +1,14 @@
-package base.animalstype;
+package base.pets;
 
 import base.Settings;
-import javafx.animation.Animation;
 import base.jsonObject.DataPlayer;
 import base.productStyle.Product;
+import javafx.animation.Animation;
 import javafx.event.EventHandler;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.*;
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -30,12 +20,12 @@ import javafx.util.Duration;
 import main.Buff;
 
 import java.io.File;
-
+import java.util.*;
 
 /**
- * Created by huynh on 06-Apr-17.
+ * Created by huynh on 07-May-17.
  */
-public abstract class Animal {
+public abstract class Pet {
     private String info;
     ImageView imageView;
     final int time = 200;
@@ -51,17 +41,12 @@ public abstract class Animal {
     int type;
     int direction;
     Text t;
-    //CHICKEN =1
-    //COW =2
-    //PIG =3
-    private String typeProduct;
     double dx;
     double dy;
     double dr;
     private long count = 0;
     long end;
-    double health;
-    double sick;
+
     int step;
     private static final int span = 1000;
 
@@ -76,16 +61,6 @@ public abstract class Animal {
     int typeSent;
     public int timeDie;
     public double hasDied;
-
-    public int getDiedByStep() {
-        return diedByStep;
-    }
-
-    public void setDiedByStep(int diedByStep) {
-        this.diedByStep = diedByStep;
-    }
-
-    public int diedByStep;
     public Animation animation;
     boolean canMove = true;
     public Buff buff;
@@ -93,24 +68,18 @@ public abstract class Animal {
     ArrayList<Image> arrImage = new ArrayList<>();
     ClassLoader classLoader = this.getClass().getClassLoader();
 
-    public Animal(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr,
-                  double health, double sick, int step, DataPlayer data) {
+    public Pet(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr,
+             int step, DataPlayer data) {
         this.data = data;
         this.layer = layer;
         this.type = type;
         String typeAnimal = null;
-        if (type == Settings.CHIKEN) {
-            typeAnimal = "chicken";
-            typeProduct = "egg";
-        } else if (type == Settings.COW) {
-            typeAnimal = "cow";
-            typeProduct = "milk";
-        } else if (type == Settings.PIG) {
-            typeAnimal = "pig";
-            typeProduct = "meat";
-        } else if (type == Settings.OSTRICH) {
-            typeAnimal = "ostrich";
-            typeProduct = "feather";
+        if (type == Settings.PANDA) {
+            typeAnimal = "panda";
+        } else if (type == Settings.DOG) {
+            typeAnimal = "dog";
+        } else if (type == Settings.CAT) {
+            typeAnimal = "cat";
         }
         getNameImage(typeAnimal);
         this.x = x;
@@ -120,8 +89,6 @@ public abstract class Animal {
         this.dy = dy;
         this.dr = dr;
 
-        this.health = health;
-        this.sick = sick;
         this.step = step;
         // random phuong huong khi vao
         Random rand = new Random();
@@ -145,14 +112,12 @@ public abstract class Animal {
 
     private String getName() {
         String typeAnimal = null;
-        if (type == Settings.CHIKEN) {
-            typeAnimal = "chicken";
-        } else if (type == Settings.COW) {
-            typeAnimal = "cow";
-        } else if (type == Settings.PIG) {
-            typeAnimal = "pig";
-        } else if (type == Settings.OSTRICH) {
-            typeAnimal = "ostrich";
+        if (type == Settings.PANDA) {
+            typeAnimal = "panda";
+        } else if (type == Settings.DOG) {
+            typeAnimal = "dog";
+        } else if (type == Settings.CAT) {
+            typeAnimal = "cat";
         }
         return typeAnimal;
     }
@@ -162,8 +127,6 @@ public abstract class Animal {
     }
 
     public void getSound(String model) {
-        if (!(model.equals("hungry") || model.equals("die")
-                || model.equals("flyout") || model.equals("voice"))) return;
         String file_name = this.getName() + "_" + model + ".mp3";
         String musicFile = "src/res/sounds2/" + file_name;     // For example
         Media sound = new Media(new File(musicFile).toURI().toString());
@@ -184,20 +147,18 @@ public abstract class Animal {
 //        ANIMAL_DOWN_LEFT = 5;
 //        ANIMAL_UP_RIGHT = 6;
 //        ANIMAL_DOWN_RIGHT = 7;
-//        ANIMAL_EAT = 8;
-//        ANIMAL_DEATH = 9;
 
 
-        String tmg0 = "res/pets/" + s + "/up.dds.png";
-        String tmg1 = "res/pets/" + s + "/down.dds.png";
-        String tmg2 = "res/pets/" + s + "/left.dds.png";
-        String tmg3 = "res/pets/" + s + "/left.dds.png";
-        String tmg4 = "res/pets/" + s + "/up_left.dds.png";
-        String tmg5 = "res/pets/" + s + "/down_left.dds.png";
-        String tmg6 = "res/pets/" + s + "/up_left.dds.png";
-        String tmg7 = "res/pets/" + s + "/down_left.dds.png";
-        String tmg8 = "res/pets/" + s + "/eat.dds.png";
-        String tmg9 = "res/pets/" + s + "/death.dds.png";
+
+        String tmg0 = "res/need/" + s + "/up.dds.png";
+        String tmg1 = "res/need/" + s + "/down.dds.png";
+        String tmg2 = "res/need/" + s + "/left.dds.png";
+        String tmg3 = "res/need/" + s + "/left.dds.png";
+        String tmg4 = "res/need/" + s + "/up_left.dds.png";
+        String tmg5 = "res/need/" + s + "/down_left.dds.png";
+        String tmg6 = "res/need/" + s + "/up_left.dds.png";
+        String tmg7 = "res/need/" + s + "/down_left.dds.png";
+
         nameImage.add(tmg0);
         nameImage.add(tmg1);
         nameImage.add(tmg2);
@@ -206,8 +167,8 @@ public abstract class Animal {
         nameImage.add(tmg5);
         nameImage.add(tmg6);
         nameImage.add(tmg7);
-        nameImage.add(tmg8);
-        nameImage.add(tmg9);
+
+
 
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg0))));
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg1))));
@@ -217,8 +178,8 @@ public abstract class Animal {
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg5))));
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg6))));
         arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg7))));
-        arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg8))));
-        arrImage.add(new Image(String.valueOf(classLoader.getResource(tmg9))));
+
+
     }
 
     public abstract void addToLayer();
@@ -229,7 +190,6 @@ public abstract class Animal {
 
     public void move() {
         count++;
-        if (sick < timeDie*0.7) {
 
             if (direction == Settings.ANIMAL_DOWN) {
                 x += 0;
@@ -279,73 +239,6 @@ public abstract class Animal {
                 r += 0;
             }
             changeDirection();
-        } else if (timeDie * 0.7 <= sick && sick < timeDie) {
-
-                if (direction == Settings.ANIMAL_DOWN) {
-                    x += 0;
-                    y += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_UP) {
-                    x += 0;
-                    y -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_LEFT) {
-                    x -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y += 0;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_RIGHT) {
-                    x += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y += 0;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_UP_LEFT) {
-                    x -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_UP_RIGHT) {
-                    x += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_DOWN_LEFT) {
-                    x -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_DOWN_RIGHT) {
-                    x += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-                changeDirection();
-            }
-         else {
-            death++;
-        }
-
-        if(type != 3){
-            if((count % (type * span)) == 0){
-                Product tmp = new Product(layer, typeProduct, x, y);
-                prods.add(tmp);
-
-                tmp.setOnClick(data, prods);
-            }
-        }
-        if (count == 50000){
-            count = 1;
-        }
-        changeDirection();
     }
 
 
@@ -379,9 +272,6 @@ public abstract class Animal {
         }
     }
 
-    public boolean isAlive() {
-        return Double.compare(health, 0) > 0;
-    }
 
     public ImageView getView() {
         return imageView;
@@ -454,21 +344,6 @@ public abstract class Animal {
             }
         }
 
-        if (eat == 1) {
-            imageView.setImage(arrImage.get(Settings.ANIMAL_EAT));
-            eat = 0;
-        }
-
-        if (death == 1) {
-            imageView.setImage(arrImage.get(Settings.ANIMAL_DEATH));
-            animation.setDelay(Duration.millis(9000.0));
-        }
-
-        if(death> 20)
-        {
-            animation.stop();
-        }
-        System.out.println("===== cout===" + animation.getCycleCount());
 
         imageView.relocate(x, y);
         t.relocate(x, y - 30);
@@ -482,10 +357,6 @@ public abstract class Animal {
 
     public double getCenterY() {
         return y + h * 0.5;
-    }
-
-    public void kill() {
-        setHealth(0);
     }
 
     public int getTimeDie() {
@@ -586,21 +457,6 @@ public abstract class Animal {
         this.dr = dr;
     }
 
-    public double getHealth() {
-        return health;
-    }
-
-    public void setHealth(double health) {
-        this.health = health;
-    }
-
-    public double getSick() {
-        return sick;
-    }
-
-    public void setSick(double sick) {
-        this.sick = sick;
-    }
 
     public boolean isRemovable() {
         return removable;
@@ -662,8 +518,7 @@ public abstract class Animal {
             @Override
             public void handle(MouseEvent event) {
                 getSound("voice");
-                info = "Không đói :" + health + "\n" + "Ốm :" + sick +
-                        "\nVòng đời:" + step;
+                info = "vòng đời:" + step;
                 t.setText(info);
                 t.setVisible(true);
             }
@@ -674,41 +529,7 @@ public abstract class Animal {
                 t.setVisible(false);
             }
         });
-        this.imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                typeSent = buff.buffOk(1);
-                System.out.println("=====> type sent - tu Game " + typeSent);
-                if (typeSent > 0) {
-                    switch (typeSent) {
-                        case 1:
-                            health = health + 10;
-                            if (health > 100) {
-                                health = 100;
-                            }
-                            break;
-                        case 2:
-                            health = health + 20;
-                            if (health > 100) {
-                                health = 100;
-                            }
-                            break;
-                        case 3:
-                            sick = sick - 10;
-                            if (sick < 0) {
-                                sick = 0;
-                            }
-                            break;
-                        case 4:
-                            sick = sick - 20;
-                            if (sick < 0) {
-                                sick = 0;
-                            }
-                            break;
-                    }
-                }
-            }
-        });
+
     }
 
 }
