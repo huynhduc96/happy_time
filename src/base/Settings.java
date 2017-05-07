@@ -9,6 +9,7 @@ public class Settings {
   public static double SCENE_HEIGHT = 600;
 
   public static double ANIMAL_SPEED = 0.5;
+  public static double ANIMAL_SPEED_WHEN_DYING = 0.8;
 
 
   public static int CHIKEN = 1;
