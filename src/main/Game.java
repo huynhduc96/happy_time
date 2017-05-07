@@ -85,7 +85,6 @@ public class Game extends Application implements Buff {
 //    private HashMap<Can, ListGras>
 
     static Stage classStage = new Stage();
-    int page = 0;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -473,9 +472,6 @@ public class Game extends Application implements Buff {
         playLayer.getChildren().add(backgroud);
         playLayer.getChildren().add(backgroud_l);
         playLayer.getChildren().add(backgroud_r);
-        playLayer.getChildren().add(1, backgroud_l);
-        playLayer.getChildren().add(1, backgroud_r);
-        playLayer.getChildren().add(img_help);
         playLayer.getChildren().add(txt_help);
         playLayer.getChildren().add(img_select);
         playLayer.getChildren().add(img_food_nol);
@@ -683,7 +679,7 @@ public class Game extends Application implements Buff {
             listGrass.add(gras);
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1, 1);
+                    x, y, 0, 0, 0, 0, 1, 1, 1,dataPlayer);
             //
             //            // manage sprite
             listCan.add(can);
