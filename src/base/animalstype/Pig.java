@@ -31,7 +31,7 @@ public class Pig extends Animal {
             //animation.pause();
         }
         else {
-            Animation animation = new SpriteAnimation(imageView
+             animation = new SpriteAnimation(imageView
                     , Duration.millis(1000.0),
                     12, 4,
                     0, 0,
@@ -43,11 +43,6 @@ public class Pig extends Animal {
             this.layer.getChildren().add(this.imageView);
 //            animation.pause();
         }
-    }
-
-    @Override
-    public void stopAnimationWhenDied() {
-
     }
 
     @Override

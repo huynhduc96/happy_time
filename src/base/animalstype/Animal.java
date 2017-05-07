@@ -1,11 +1,7 @@
 package base.animalstype;
 
 import base.Settings;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.concurrent.ScheduledService;
-import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
+import javafx.animation.Animation;
 import javafx.event.EventHandler;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -19,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -27,14 +24,9 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import main.Buff;
 
-import javax.xml.ws.handler.MessageContext;
 import java.io.File;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 
 /**
@@ -43,7 +35,11 @@ import java.util.logging.LogRecord;
 public abstract class Animal {
     private String info;
     ImageView imageView;
+    final int time = 200;
 
+    // check time for animal state
+    Timer _t;
+    int _count = time;
 
     Pane layer;
     double x;
@@ -60,20 +56,6 @@ public abstract class Animal {
     double dr;
 
     double health;
-
-    public int getLife_cycle() {
-        return life_cycle;
-    }
-
-    public void setLife_cycle(int life_cycle) {
-        this.life_cycle = life_cycle;
-    }
-
-    // time of life cycle
-    int life_cycle;
-
-    // state
-
     double sick;
     int step;
 
@@ -83,18 +65,13 @@ public abstract class Animal {
     double w;
     double h;
 
-    public int getDeath() {
-        return death;
-    }
-
-    public void setDeath(int death) {
-        this.death = death;
-    }
-
-    private int death = 0;
+    int death = 0;
     int eat = 0;
-
+    int typeSent;
+    public int timeDie;
+    public Animation animation;
     boolean canMove = true;
+    public Buff buff;
     ArrayList<String> nameImage = new ArrayList<>();
     ArrayList<Image> arrImage = new ArrayList<>();
     ClassLoader classLoader = this.getClass().getClassLoader();
@@ -126,7 +103,7 @@ public abstract class Animal {
         this.step = step;
         // random phuong huong khi vao
         Random rand = new Random();
-        int n = rand.nextInt(9);
+        int n = rand.nextInt(7);
         this.direction = n;
         this.imageView = new ImageView(arrImage.get(n));
         this.imageView.setVisible(false);
@@ -137,14 +114,14 @@ public abstract class Animal {
         this.h = arrImage.get(n).getHeight(); // imageView.getBoundsInParent().getHeight();
 
         addToLayer();
-//        stopAnimationWhenDied();
         t = new Text("dmm");
         t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
-        t.setFill(Color.ORANGE);
+        t.setFill(Color.WHITE);
         layer.getChildren().add(t);
         t.setVisible(false);
     }
-    private String getName(){
+
+    private String getName() {
         String typeAnimal = null;
         if (type == Settings.CHIKEN) {
             typeAnimal = "chicken";
@@ -152,13 +129,18 @@ public abstract class Animal {
             typeAnimal = "cow";
         } else if (type == Settings.PIG) {
             typeAnimal = "pig";
-        } else  if (type == Settings.OSTRICH) {
+        } else if (type == Settings.OSTRICH) {
             typeAnimal = "ostrich";
         }
         return typeAnimal;
     }
-    public void getSound(String model){
-        if(!(model.equals("hungry") || model.equals("die")
+
+    public void addBuffListener(Buff buff) {
+        this.buff = buff;
+    }
+
+    public void getSound(String model) {
+        if (!(model.equals("hungry") || model.equals("die")
                 || model.equals("flyout") || model.equals("voice"))) return;
         String file_name = this.getName() + "_" + model + ".mp3";
         String musicFile = "src/res/sounds2/" + file_name;     // For example
@@ -169,6 +151,7 @@ public abstract class Animal {
         mediaPlayer.play();
 
     }
+
     void getNameImage(String s) {
 
 //        ANIMAL_UP = 0;
@@ -217,106 +200,107 @@ public abstract class Animal {
     }
 
     public abstract void addToLayer();
-    public abstract void stopAnimationWhenDied();
 
     public void removeFromLayer() {
         this.layer.getChildren().remove(this.imageView);
     }
+
     public void move() {
 
-        if (!canMove)
-            return;
+        if (sick < timeDie) {
 
-        if (direction == Settings.ANIMAL_DOWN) {
-            x += 0;
-            y += Settings.ANIMAL_SPEED;
-            r += 0;
+            if (direction == Settings.ANIMAL_DOWN) {
+                x += 0;
+                y += Settings.ANIMAL_SPEED;
+                r += 0;
+            }
+
+            if (direction == Settings.ANIMAL_UP) {
+                x += 0;
+                y -= Settings.ANIMAL_SPEED;
+                r += 0;
+            }
+
+            if (direction == Settings.ANIMAL_LEFT) {
+                x -= Settings.ANIMAL_SPEED;
+                y += 0;
+                r += 0;
+            }
+
+            if (direction == Settings.ANIMAL_RIGHT) {
+                x += Settings.ANIMAL_SPEED;
+                y += 0;
+                r += 0;
+            }
+
+            if (direction == Settings.ANIMAL_UP_LEFT) {
+                x -= Settings.ANIMAL_SPEED;
+                y -= Settings.ANIMAL_SPEED;
+                r += 0;
+            }
+
+            if (direction == Settings.ANIMAL_UP_RIGHT) {
+                x += Settings.ANIMAL_SPEED;
+                y -= Settings.ANIMAL_SPEED;
+                r += 0;
+            }
+
+            if (direction == Settings.ANIMAL_DOWN_LEFT) {
+                x -= Settings.ANIMAL_SPEED;
+                y += Settings.ANIMAL_SPEED;
+                r += 0;
+            }
+
+            if (direction == Settings.ANIMAL_DOWN_RIGHT) {
+                x += Settings.ANIMAL_SPEED;
+                y += Settings.ANIMAL_SPEED;
+                r += 0;
+            }
+            changeDirection();
+        } else {
+            death++;
         }
-
-        if (direction == Settings.ANIMAL_UP) {
-            x += 0;
-            y -= Settings.ANIMAL_SPEED;
-            r += 0;
-        }
-
-        if (direction == Settings.ANIMAL_LEFT) {
-            x -= Settings.ANIMAL_SPEED;
-            y += 0;
-            r += 0;
-        }
-
-        if (direction == Settings.ANIMAL_RIGHT) {
-            x += Settings.ANIMAL_SPEED;
-            y += 0;
-            r += 0;
-        }
-
-        if (direction == Settings.ANIMAL_UP_LEFT) {
-            x -= Settings.ANIMAL_SPEED;
-            y -= Settings.ANIMAL_SPEED;
-            r += 0;
-        }
-
-        if (direction == Settings.ANIMAL_UP_RIGHT) {
-            x += Settings.ANIMAL_SPEED;
-            y -= Settings.ANIMAL_SPEED;
-            r += 0;
-        }
-
-        if (direction == Settings.ANIMAL_DOWN_LEFT) {
-            x -= Settings.ANIMAL_SPEED;
-            y += Settings.ANIMAL_SPEED;
-            r += 0;
-        }
-
-        if (direction == Settings.ANIMAL_DOWN_RIGHT) {
-            x += Settings.ANIMAL_SPEED;
-            y += Settings.ANIMAL_SPEED;
-            r += 0;
-        }
-
-
-
-        changeDirection();
-
-
     }
 
+
     public void changeDirection() {
-        if (Double.compare(getX(), 600) > 0) {
-            while (direction != 2 && direction != 4 && direction != 5 ) {
+        if (Double.compare(getX(), 525) > 0) {
+            while (direction != 2 && direction != 4 && direction != 5) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getX(), 100) < 0) {
+        if (Double.compare(getX(), 120) < 0) {
             while (direction != 3 && direction != 6 && direction != 7) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getY(), 400) > 0) {
+        if (Double.compare(getY(), 375) > 0) {
             while (direction != 0 && direction != 4 && direction != 6) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getY(), 120) < 0) {
+        if (Double.compare(getY(), 140) < 0) {
             while (direction != 1 && direction != 5 && direction != 7) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
     }
+
     public boolean isAlive() {
         return Double.compare(health, 0) > 0;
     }
+
     public ImageView getView() {
         return imageView;
     }
+
     public void updateUI() {
 //        ANIMAL_UP = 0;
 //        ANIMAL_DOWN = 1;
@@ -328,67 +312,60 @@ public abstract class Animal {
 //        ANIMAL_DOWN_RIGHT = 7;
 //        ANIMAL_EAT = 8;
 //        ANIMAL_DEATH = 9;
-        switch (direction) {
-            case 0: // ANIMAL_UP = 0;
-                imageView.setImage(arrImage.get(Settings.ANIMAL_UP));
-                if (isScale) {
-                    isScale = false;
+
+        if (death == 0) {
+            switch (direction) {
+                case 0: // ANIMAL_UP = 0;
+                    imageView.setImage(arrImage.get(Settings.ANIMAL_UP));
+                    if (isScale) {
+                        isScale = false;
+                        imageView.setScaleX(-1);
+                    }
+                    break;
+                case 1: // ANIMAL_DOWN = 1;
+                    imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN));
+                    if (isScale) {
+                        isScale = false;
+                        imageView.setScaleX(1);
+                    }
+                    break;
+                case 2: // ANIMAL_LEFT = 2;
+                    imageView.setImage(arrImage.get(Settings.ANIMAL_LEFT));
+                    if (isScale) {
+                        isScale = false;
+                        imageView.setScaleX(1);
+                    }
+                    break;
+                case 3: // ANIMAL_RIGHT = 3;
+                    imageView.setImage(arrImage.get(Settings.ANIMAL_RIGHT));
+                    isScale = true;
                     imageView.setScaleX(-1);
-                }
-                break;
-            case 1: // ANIMAL_DOWN = 1;
-                imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN));
-                if (isScale) {
-                    isScale = false;
-                    imageView.setScaleX(1);
-                }
-                break;
-            case 2: // ANIMAL_LEFT = 2;
-                imageView.setImage(arrImage.get(Settings.ANIMAL_LEFT));
-                if (isScale) {
-                    isScale = false;
-                    imageView.setScaleX(1);
-                }
-                break;
-            case 3: // ANIMAL_RIGHT = 3;
-                imageView.setImage(arrImage.get(Settings.ANIMAL_RIGHT));
-                isScale = true;
-                imageView.setScaleX(-1);
-                break;
-            case 4: //ANIMAL_UP_LEFT = 4;
-                imageView.setImage(arrImage.get(Settings.ANIMAL_UP_LEFT));
-                if (isScale) {
-                    isScale = false;
-                    imageView.setScaleX(1);
-                }
-                break;
-            case 5: // ANIMAL_DOWN_LEFT = 5;
-                imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN_LEFT));
-                if (isScale) {
-                    isScale = false;
-                    imageView.setScaleX(1);
-                }
-                break;
-            case 6: // ANIMAL_UP_RIGHT = 6;
-                imageView.setImage(arrImage.get(Settings.ANIMAL_UP_RIGHT));
-                imageView.setScaleX(-1);
-                isScale = true;
-                break;
-            case 7: //  ANIMAL_DOWN_RIGHT = 7;
-                imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN_RIGHT));
-                imageView.setScaleX(-1);
-                isScale = true;
-                break;
-            case 8:
-                imageView.setImage(arrImage.get(Settings.ANIMAL_EAT));
-                imageView.setScaleX(-1);
-                isScale = true;
-                break;
-            case 9:
-                imageView.setImage(arrImage.get(Settings.ANIMAL_DEATH));
-                imageView.setScaleX(-1);
-                isScale = true;
-                break;
+                    break;
+                case 4: //ANIMAL_UP_LEFT = 4;
+                    imageView.setImage(arrImage.get(Settings.ANIMAL_UP_LEFT));
+                    if (isScale) {
+                        isScale = false;
+                        imageView.setScaleX(1);
+                    }
+                    break;
+                case 5: // ANIMAL_DOWN_LEFT = 5;
+                    imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN_LEFT));
+                    if (isScale) {
+                        isScale = false;
+                        imageView.setScaleX(1);
+                    }
+                    break;
+                case 6: // ANIMAL_UP_RIGHT = 6;
+                    imageView.setImage(arrImage.get(Settings.ANIMAL_UP_RIGHT));
+                    imageView.setScaleX(-1);
+                    isScale = true;
+                    break;
+                case 7: //  ANIMAL_DOWN_RIGHT = 7;
+                    imageView.setImage(arrImage.get(Settings.ANIMAL_DOWN_RIGHT));
+                    imageView.setScaleX(-1);
+                    isScale = true;
+                    break;
+            }
         }
 
         if (eat == 1) {
@@ -398,8 +375,14 @@ public abstract class Animal {
 
         if (death == 1) {
             imageView.setImage(arrImage.get(Settings.ANIMAL_DEATH));
-            death = 0;
+            animation.setDelay(Duration.millis(9000.0));
         }
+
+        if(death> 20)
+        {
+            animation.stop();
+        }
+        System.out.println("===== cout===" + animation.getCycleCount());
 
         imageView.relocate(x, y);
         t.relocate(x, y - 30);
@@ -417,6 +400,14 @@ public abstract class Animal {
 
     public void kill() {
         setHealth(0);
+    }
+
+    public int getTimeDie() {
+        return timeDie;
+    }
+
+    public void setTimeDie(int timeDie) {
+        this.timeDie = timeDie;
     }
 
     /**
@@ -459,6 +450,14 @@ public abstract class Animal {
 
     public void setX(double x) {
         this.x = x;
+    }
+
+    public int getDeath() {
+        return death;
+    }
+
+    public void setDeath(int death) {
+        this.death = death;
     }
 
     public double getY() {
@@ -549,13 +548,29 @@ public abstract class Animal {
         this.canMove = canMove;
     }
 
-    public void delayForDecreasingHealth(int _height) {
-        _height--;
-       System.out.println("Health Remaining " + _height);
-   }
-    
-    
-    public void setOnDrag(){
+    public boolean changeHungryStateOfAnimals() {
+        _t = new Timer();
+        _t.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (_count > 0) {
+                    _count--;
+                } else _t.cancel();
+            }
+        }, 1000, 1000);
+        if (_count == 0)
+            return true;
+        return false;
+    }
+
+    public void providedFoodWhenHungry() {
+        if (changeHungryStateOfAnimals()) {
+            _count += time;
+        }
+    }
+
+
+    public void setOnDrag() {
 
         this.imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -571,6 +586,41 @@ public abstract class Animal {
             @Override
             public void handle(MouseEvent event) {
                 t.setVisible(false);
+            }
+        });
+        this.imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                typeSent = buff.buffOk(1);
+                System.out.println("=====> type sent - tu Game " + typeSent);
+                if (typeSent > 0) {
+                    switch (typeSent) {
+                        case 1:
+                            health = health + 10;
+                            if (health > 100) {
+                                health = 100;
+                            }
+                            break;
+                        case 2:
+                            health = health + 20;
+                            if (health > 100) {
+                                health = 100;
+                            }
+                            break;
+                        case 3:
+                            sick = sick - 10;
+                            if (sick < 0) {
+                                sick = 0;
+                            }
+                            break;
+                        case 4:
+                            sick = sick - 20;
+                            if (sick < 0) {
+                                sick = 0;
+                            }
+                            break;
+                    }
+                }
             }
         });
     }

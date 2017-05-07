@@ -619,7 +619,7 @@ public class Game extends Application {
                 listChicken.get(i).setSick( listChicken.get(i).getSick()+1);
                 System.out.println(listChicken.get(i).getSick());
             } else {
-                listChicken.get(i).setDeath(1);
+            //    listChicken.get(i).setDeath(1);
                 listChicken.get(i).setHealth(0);
                 // dataPlayer.getJoUser1().getJoChicken().getListChicken().remove(i);
                 // listChicken.get(i).remove();
