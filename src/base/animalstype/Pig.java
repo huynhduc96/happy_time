@@ -19,6 +19,7 @@ public class Pig extends Animal {
         super(layer, type, x, y, r, dx, dy, dr, health, sick, step, data);
         this.timeDie = 4500;
         this.hasDied = 0;
+        this.diedByStep = 0;
     }
 
     @Override

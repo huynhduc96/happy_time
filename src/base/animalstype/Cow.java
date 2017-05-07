@@ -19,6 +19,7 @@ public class Cow extends Animal {
         super(layer, type, x, y, r, dx, dy, dr, health, sick, step, data);
         this.timeDie = 5000;
         this.hasDied = 0;
+        this.diedByStep = 0;
     }
 
     @Override
