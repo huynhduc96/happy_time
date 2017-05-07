@@ -8,6 +8,8 @@ import base.House.Store;
 import base.jsonObject.*;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -30,6 +32,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -166,6 +169,7 @@ public class Game extends Application implements Buff {
                 removeSprites(listCow);
                 removeSprites(listOstrich);
                 //checkDieChiken();
+                checkTiemDieCan();
             }
 
         };
@@ -614,16 +618,22 @@ public class Game extends Application implements Buff {
             int x = (postion + 3) * 50;
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1);
+                    x, y, 0, 0, 0, 0, 1, 1, 1);
             //
             //            // manage sprite
+
             listCan.add(can);
+
             //            dataPlayer.getJoUser1().getJoGrass().setTotalNumber(String.valueOf(Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber())+1));
             //            ListGras listGras = new ListGras(i, "1");
             //            dataPlayer.getJoUser1().getJoGrass().getListGrass().add(listGras);
 
         }
     }
+
+/*    void setStep() {
+        int i;
+    }*/
 
     void buyCan() {
         List<ListGras> listGrass = dataPlayer.getJoUser1().getJoGrass().getListGrass();
@@ -649,7 +659,7 @@ public class Game extends Application implements Buff {
             listGrass.add(gras);
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1);
+                    x, y, 0, 0, 0, 0, 1, 1, 1);
             //
             //            // manage sprite
             listCan.add(can);
@@ -705,5 +715,20 @@ public class Game extends Application implements Buff {
         System.out.println("lay ket qua da nhan duoc hay chua tu Animal :  " + isOK);
         isokGame = isOK;
         return typeSent;
+    }
+
+    public void checkTiemDieCan(){
+        for (int i = 0;i < listCan.size();i++){
+            if(listCan.get(i).timeDieCan > 0){
+                listCan.get(i).timeDieCan--;
+            }else {
+                if(listCan.get(i).timeDieCan == 0) {
+                    System.out.println("chinh dz");
+                    dataPlayer.getJoUser1().getJoGrass().getListGrass().get(i).setStep(2);
+                    listCan.get(i).timeDieCan--;
+                    break;
+                }
+            }
+        }
     }
 }
