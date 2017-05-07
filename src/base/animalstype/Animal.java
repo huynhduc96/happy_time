@@ -76,6 +76,16 @@ public abstract class Animal {
     int typeSent;
     public int timeDie;
     public double hasDied;
+
+    public int getDiedByStep() {
+        return diedByStep;
+    }
+
+    public void setDiedByStep(int diedByStep) {
+        this.diedByStep = diedByStep;
+    }
+
+    public int diedByStep;
     public Animation animation;
     boolean canMove = true;
     public Buff buff;
