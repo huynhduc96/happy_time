@@ -9,7 +9,8 @@ import javafx.util.Duration;
 /**
  * Created by huynh on 07-May-17.
  */
-public class Panda extends Pet {
+public class Panda extends Pet{
+
     public Panda(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr, int step, DataPlayer data) {
         super(layer, type, x, y, r, dx, dy, dr, step, data);
     }
@@ -32,4 +33,5 @@ public class Panda extends Pet {
     public void checkRemovability() {
 
     }
+
 }
