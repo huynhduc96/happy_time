@@ -39,7 +39,7 @@ public class Welcome extends Application {
     private DataPlayer player = new DataPlayer();
     private ImageView backgroud = new ImageView();
     private MediaPlayer mediaPlayer;
-    ImageView[] imgHelp = new ImageView[3];
+    ImageView[] imgHelp = new ImageView[4];
     int page =0;
     int count_cont;
   //  static Stage classStageW = new Stage();
@@ -213,7 +213,7 @@ public class Welcome extends Application {
                 button_truoc.setMinWidth(100);
                 button_truoc.relocate(170,490);
                 pane_help.getChildren().add(button_truoc);
-                Image image = new Image(getClass().getResourceAsStream("../res/help/1.png"),
+                Image image = new Image(getClass().getResourceAsStream("../res/help/1.jpg"),
                         640, 480, false, false);
                 ImageView bg = new ImageView();
                 bg.setImage(image);
@@ -233,9 +233,9 @@ public class Welcome extends Application {
                             pane_help.getChildren().remove(imgHelp[page]);
                             page--;
                         } else {
-                            pane_help.getChildren().add(imgHelp[2]);
+                            pane_help.getChildren().add(imgHelp[3]);
                             pane_help.getChildren().remove(imgHelp[page]);
-                            page=2;
+                            page=3;
                         }
                     }
                 });
@@ -243,7 +243,7 @@ public class Welcome extends Application {
                 button_sau.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        if (page<2){
+                        if (page<3){
                             pane_help.getChildren().add(imgHelp[page+1]);
                             pane_help.getChildren().remove(imgHelp[page]);
                             page++;
@@ -324,8 +324,8 @@ public class Welcome extends Application {
     }
 
     void addHelpImage() {
-        for (int i = 0; i < 3; i++) {
-            String temp = "res/help/" + (i + 1) + ".png";
+        for (int i = 0; i < 4; i++) {
+            String temp = "res/help/" + (i + 1) + ".jpg";
             Image image = new Image(String.valueOf(classLoader.getResource(
                     temp)));
             imgHelp[i] = new ImageView();

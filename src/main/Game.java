@@ -466,9 +466,9 @@ public class Game extends Application implements Buff {
         money.relocate(665, 20);
         money.setRotate(0);
         img_BackMenu.setImage(image_BackMenu);
-        img_BackMenu.setFitHeight(60);
-        img_BackMenu.setFitWidth(60);
-        img_BackMenu.relocate(77, 394);
+        img_BackMenu.setFitHeight(150);
+        img_BackMenu.setFitWidth(105);
+        img_BackMenu.relocate(30, 310);
         img_food_nol.setImage(image_food_nol);
         img_food_nol.setFitWidth(25);
         img_food_nol.setFitHeight(25);
