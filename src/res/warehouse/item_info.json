@@ -15,6 +15,11 @@
     "space": 15
   },
   {
+    "name": "panda",
+    "price": 150,
+    "space": 15
+  },
+  {
     "name": "grass",
     "price": 10,
     "space" : 1

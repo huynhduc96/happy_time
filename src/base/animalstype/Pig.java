@@ -27,7 +27,7 @@ public class Pig extends Animal {
     public void addToLayer() {
 
             animation = new SpriteAnimation(imageView
-                    , Duration.millis(5000.0),
+                    , Duration.millis(1000.0),
                     12, 4,
                     0, 0,
                     112, 112
