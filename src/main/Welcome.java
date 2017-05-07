@@ -52,6 +52,9 @@ public class Welcome extends Application {
 
 
         primaryStage.setScene(scene);
+        primaryStage.setMaxHeight(627);
+        primaryStage.setMaxWidth(805);
+        primaryStage.setResizable(false);
         primaryStage.show();
         getSoundOpening();
         playerData.getdataPlayer();

@@ -164,6 +164,9 @@ public class Store implements House {
                     root_store.getChildren().add(pane_store);
 
                     stage_store.setScene(new Scene(root_store, Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT));
+                    stage_store.setMaxHeight(627);
+                    stage_store.setMaxWidth(805);
+                    stage_store.setResizable(false);
                     stage_store.show();
                     ProductType t = new ProductType(pane_store, 1, data);
                     setCloseStage(stage_store);

@@ -115,6 +115,9 @@ public class Game extends Application implements Buff {
 
         addBack();
         primaryStage.setScene(scene);
+        primaryStage.setMaxHeight(627);
+        primaryStage.setMaxWidth(805);
+        primaryStage.setResizable(false);
         primaryStage.show();
         setClickStage(primaryStage);
 
