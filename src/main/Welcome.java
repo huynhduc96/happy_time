@@ -17,8 +17,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.awt.*;
 import java.awt.Button;
@@ -36,13 +39,19 @@ public class Welcome extends Application {
     private DataPlayer player = new DataPlayer();
     private ImageView backgroud = new ImageView();
     private MediaPlayer mediaPlayer;
+    ImageView[] imgHelp = new ImageView[3];
+    int page =0;
+    int count_cont;
+  //  static Stage classStageW = new Stage();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+  //      classStageW = primaryStage ;
         // make root scene
         Group root = new Group();
-
-
+        count_cont=0;
+        Game game = new Game();
         // add Pane play for player
         playLayer = new Pane();
         //add background
@@ -52,6 +61,9 @@ public class Welcome extends Application {
 
 
         primaryStage.setScene(scene);
+        primaryStage.setMaxHeight(627);
+        primaryStage.setMaxWidth(805);
+        primaryStage.setResizable(false);
         primaryStage.show();
         getSoundOpening();
         playerData.getdataPlayer();
@@ -65,11 +77,19 @@ public class Welcome extends Application {
         blank.relocate(317, 420);
         playLayer.getChildren().add(blank);
 
+        Image info_img = new Image(getClass().getResourceAsStream("../res/welcome/info.png"),
+                166, 35, false, false);
+        ImageView info = new ImageView();
+        info.setImage(info_img);
+        info.relocate(317, 470+50);
+        playLayer.getChildren().add(info);
+
         Text text = new Text();
         text.setText(name);
         text.relocate(330,430);
-        text.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
+        text.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 16));
         text.maxHeight(166);
+        text.setFill(Color.ORANGE);
         playLayer.getChildren().add(text);
 
         Image new_game_img = new Image(getClass().getResourceAsStream("../res/welcome/new.png"),
@@ -78,6 +98,9 @@ public class Welcome extends Application {
         ng.setImage(new_game_img);
         ng.relocate(502, 470);
         playLayer.getChildren().add(ng);
+        addHelpImage();
+
+
 
         ng.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -112,6 +135,41 @@ public class Welcome extends Application {
             }
         });
 
+        info.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("lc");
+                event.consume();
+                Group group_info;
+                Pane pane_info;
+                Stage stage_info;
+                group_info = new Group();
+                pane_info = new Pane();
+                stage_info = new Stage();
+                stage_info.setTitle("Info");
+                group_info.getChildren().add(pane_info);
+
+                Image info_bg = new Image(getClass().getResourceAsStream("../res/info.jpg"),
+                        800, 600, false, false);
+                ImageView bg = new ImageView();
+                bg.setImage(info_bg);
+                bg.relocate(0, 0);
+                group_info.getChildren().add(bg);
+
+
+                stage_info.setScene(new Scene(group_info, 800, 600));
+                stage_info.show();
+                stage_info.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        stage_info.close();
+                    }
+                });
+            }
+        });
+
+
+
 
         Image cont_game_img = new Image(getClass().getResourceAsStream("../res/welcome/cont.png"),
                 166, 35, false, false);
@@ -122,7 +180,7 @@ public class Welcome extends Application {
         cg.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Game game = new Game();
+
                 try {
                     game.start(Game.classStage);
                 } catch (Exception e) {
@@ -142,7 +200,72 @@ public class Welcome extends Application {
         hg.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Help");
+                event.consume();
+                Group group_help;
+                Pane pane_help;
+                Stage stage_help;
+                group_help = new Group();
+                pane_help = new Pane();
+                stage_help = new Stage();
+                stage_help.setTitle("Help");
+                group_help.getChildren().add(pane_help);
+                javafx.scene.control.Button button_truoc = new javafx.scene.control.Button("Trước");
+                button_truoc.setMinWidth(100);
+                button_truoc.relocate(170,490);
+                pane_help.getChildren().add(button_truoc);
+                Image image = new Image(getClass().getResourceAsStream("../res/help/1.png"),
+                        640, 480, false, false);
+                ImageView bg = new ImageView();
+                bg.setImage(image);
+                bg.relocate(0, 0);
+                pane_help.getChildren().add(bg);
+
+                javafx.scene.control.Button button_sau = new javafx.scene.control.Button("Sau");
+                button_sau.setMinWidth(100);
+                button_sau.relocate(370,490);
+                pane_help.getChildren().add(button_sau);
+
+                button_truoc.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if (page>0){
+                            pane_help.getChildren().add(imgHelp[page-1]);
+                            pane_help.getChildren().remove(imgHelp[page]);
+                            page--;
+                        } else {
+                            pane_help.getChildren().add(imgHelp[2]);
+                            pane_help.getChildren().remove(imgHelp[page]);
+                            page=2;
+                        }
+                    }
+                });
+
+                button_sau.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if (page<2){
+                            pane_help.getChildren().add(imgHelp[page+1]);
+                            pane_help.getChildren().remove(imgHelp[page]);
+                            page++;
+                        } else {
+                            pane_help.getChildren().add(imgHelp[0]);
+                            pane_help.getChildren().remove(imgHelp[page]);
+                            page=0;
+                        }
+                    }
+                });
+
+
+
+
+                stage_help.setScene(new Scene(group_help, 640, 550));
+                stage_help.show();
+                stage_help.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        stage_help.close();
+                    }
+                });
             }
         });
 
@@ -200,6 +323,19 @@ public class Welcome extends Application {
         player = gson.fromJson(jsonString, DataPlayer.class);
     }
 
+    void addHelpImage() {
+        for (int i = 0; i < 3; i++) {
+            String temp = "res/help/" + (i + 1) + ".png";
+            Image image = new Image(String.valueOf(classLoader.getResource(
+                    temp)));
+            imgHelp[i] = new ImageView();
+            imgHelp[i].setImage(image);
+            imgHelp[i].setFitHeight(480);
+            imgHelp[i].setFitWidth(640);
+            imgHelp[i].relocate(0, 0);
+        }
+    }
+
     public void saveJson(DataPlayer obj) {
         Gson gson = new Gson();
 
@@ -215,4 +351,6 @@ public class Welcome extends Application {
         }
 
     }
+
+    
 }

@@ -8,6 +8,8 @@ import base.House.Store;
 import base.jsonObject.*;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -30,6 +32,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -48,7 +51,6 @@ public class Game extends Application implements Buff {
     List<Cow> listCow = new ArrayList<>();
     List<Ostrich> listOstrich = new ArrayList<>();
     List<Can> listCan = new ArrayList<>();
-    ImageView[] imgHelp = new ImageView[3];
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
@@ -59,12 +61,12 @@ public class Game extends Application implements Buff {
     private ImageView backgroud = new ImageView();   //typeSent = 0;
     private ImageView backgroud_l = new ImageView();
     private ImageView backgroud_r = new ImageView();
-    private ImageView img_help = new ImageView();
     private ImageView img_select = new ImageView();
-    private ImageView img_food_nol = new ImageView(); //typeSent =1;
-    private ImageView img_food_sep = new ImageView(); //typeSent =2;
-    private ImageView img_medi_nol = new ImageView(); //typeSent =3;
-    private ImageView img_medi_sep = new ImageView(); //typeSent =4;
+    private ImageView img_food_nol = new ImageView();
+    private ImageView img_food_sep = new ImageView();
+    private ImageView img_medi_nol = new ImageView();
+    private ImageView img_medi_sep = new ImageView();
+    private ImageView img_BackMenu = new ImageView();
     private DataPlayer dataPlayer = null;
     private Image image_med_sep;
     private Image image_food_nol;
@@ -77,14 +79,15 @@ public class Game extends Application implements Buff {
     private Text txt_medi_sep;
     private int isokGame;
     private int typeSent = 0;
-    private int page = 0;
 
     static Stage classStage = new Stage();
-
+    int page = 0;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         classStage = primaryStage;
+
+
 
         // make root scene
         Group root = new Group();
@@ -115,6 +118,9 @@ public class Game extends Application implements Buff {
 
         addBack();
         primaryStage.setScene(scene);
+        primaryStage.setMaxHeight(627);
+        primaryStage.setMaxWidth(805);
+        primaryStage.setResizable(false);
         primaryStage.show();
         setClickStage(primaryStage);
 
@@ -162,6 +168,7 @@ public class Game extends Application implements Buff {
                 removeSprites(listPig);
                 removeSprites(listCow);
                 removeSprites(listOstrich);
+
                 checkDieChiken();
                 checkCowDie();
                 checkOstrichDie();
@@ -171,6 +178,10 @@ public class Game extends Application implements Buff {
                 removeCowdied();
                 removeOstrichdied();
                 removePigdied();
+
+                //checkDieChiken();
+                checkTiemDieCan();
+
             }
 
         };
@@ -399,15 +410,14 @@ public class Game extends Application implements Buff {
         addPig();
         addCan();
         addOstrich();
-        addHelpImage();
     }
 
     void addBack() {
         Image image_back = new Image(String.valueOf(classLoader.getResource("res/back.png")));
         Image image_back_left = new Image(String.valueOf(classLoader.getResource("res/back_left.png")));
         Image image_back_right = new Image(String.valueOf(classLoader.getResource("res/back_right.png")));
-        Image image_help = new Image(String.valueOf(classLoader.getResource("res/help.png")));
         Image image_sel = new Image(String.valueOf(classLoader.getResource("res/select.png")));
+        Image image_BackMenu = new Image(String.valueOf(classLoader.getResource("res/welcome/back.png")));
         image_food_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_normal.png")));
         image_food_sep = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_special.png")));
         image_med_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/medicine_normal.png")));
@@ -417,11 +427,16 @@ public class Game extends Application implements Buff {
         txt_help.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
         txt_help.relocate(77, 394);
         txt_help.setFill(Color.YELLOW);
+
         money.setImage(txt_monney);
         money.setFitHeight(60);
         money.setFitWidth(120);
         money.relocate(665, 20);
         money.setRotate(0);
+        img_BackMenu.setImage(image_BackMenu);
+        img_BackMenu.setFitHeight(60);
+        img_BackMenu.setFitWidth(60);
+        img_BackMenu.relocate(77, 394);
         img_food_nol.setImage(image_food_nol);
         img_food_nol.setFitWidth(25);
         img_food_nol.setFitHeight(25);
@@ -439,10 +454,6 @@ public class Game extends Application implements Buff {
         img_medi_sep.setFitHeight(25);
         img_medi_sep.relocate(37, 170);
         backgroud.setImage(image_back);
-        img_help.setImage(image_help);
-        img_help.relocate(50, 320);
-        img_help.setFitHeight(140);
-        img_help.setFitWidth(100);
         backgroud_l.setImage(image_back_left);
         backgroud_l.relocate(0, 335);
         backgroud_r.setImage(image_back_right);
@@ -454,14 +465,13 @@ public class Game extends Application implements Buff {
         playLayer.getChildren().add(backgroud);
         playLayer.getChildren().add(backgroud_l);
         playLayer.getChildren().add(backgroud_r);
-        playLayer.getChildren().add(img_help);
-        playLayer.getChildren().add(txt_help);
         playLayer.getChildren().add(img_select);
         playLayer.getChildren().add(img_food_nol);
         playLayer.getChildren().add(img_food_sep);
         playLayer.getChildren().add(img_medi_nol);
         playLayer.getChildren().add(img_medi_sep);
         playLayer.getChildren().add(money);
+        playLayer.getChildren().add(img_BackMenu);
     }
 
     private void removeSprites(List<? extends Animal> spriteList) {
@@ -487,7 +497,7 @@ public class Game extends Application implements Buff {
             int health = listChickens.get(i).getLife();
             int sick = listChickens.get(i).getSickness();
             Chicken chicken = new Chicken(playLayer, Settings.CHIKEN,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             chicken.setOnDrag();
             chicken.addBuffListener(this);
             listChicken.add(chicken);
@@ -502,7 +512,7 @@ public class Game extends Application implements Buff {
             ListChicken chickenOJ = new ListChicken(100, 0, 1);
             listChickens.add(chickenOJ);
             Chicken chicken = new Chicken(playLayer, Settings.CHIKEN,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             chicken.setOnDrag();
             chicken.addBuffListener(this);
             listChicken.add(chicken);
@@ -517,7 +527,7 @@ public class Game extends Application implements Buff {
             ListPig ob = new ListPig(100, 0, 1);
             list.add(ob);
             Pig animal = new Pig(playLayer, Settings.PIG,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             animal.setOnDrag();
             animal.addBuffListener(this);
             listPig.add(animal);
@@ -532,7 +542,7 @@ public class Game extends Application implements Buff {
             ListCow ob = new ListCow(100, 0, 1);
             list.add(ob);
             Cow animal = new Cow(playLayer, Settings.COW,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             animal.setOnDrag();
             animal.addBuffListener(this);
             listCow.add(animal);
@@ -547,7 +557,7 @@ public class Game extends Application implements Buff {
             ListOstrich ob = new ListOstrich(100, 0, 1);
             list.add(ob);
             Ostrich animal = new Ostrich(playLayer, Settings.OSTRICH,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             animal.setOnDrag();
             animal.addBuffListener(this);
 
@@ -571,7 +581,7 @@ public class Game extends Application implements Buff {
             double health = listPigs.get(i).getLife();
             double sick = listPigs.get(i).getSickness();
             Pig pig = new Pig(playLayer, Settings.PIG,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             pig.setOnDrag();
             pig.addBuffListener(this);
             listPig.add(pig);
@@ -587,7 +597,7 @@ public class Game extends Application implements Buff {
             double health = listCows.get(i).getLife();
             double sick = listCows.get(i).getSickness();
             Cow cow = new Cow(playLayer, Settings.COW,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             cow.setOnDrag();
             cow.addBuffListener(this);
             listCow.add(cow);
@@ -601,7 +611,7 @@ public class Game extends Application implements Buff {
             double health = listOstrichs.get(i).getLife();
             double sick = listOstrichs.get(i).getSickness();
             Ostrich ostrich = new Ostrich(playLayer, Settings.OSTRICH,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             ostrich.setOnDrag();
             ostrich.addBuffListener(this);
             listOstrich.add(ostrich);
@@ -620,16 +630,22 @@ public class Game extends Application implements Buff {
             int x = (postion + 3) * 50;
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1);
+                    x, y, 0, 0, 0, 0, 1, 1, 1);
             //
             //            // manage sprite
+
             listCan.add(can);
+
             //            dataPlayer.getJoUser1().getJoGrass().setTotalNumber(String.valueOf(Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber())+1));
             //            ListGras listGras = new ListGras(i, "1");
             //            dataPlayer.getJoUser1().getJoGrass().getListGrass().add(listGras);
 
         }
     }
+
+/*    void setStep() {
+        int i;
+    }*/
 
     void buyCan() {
         List<ListGras> listGrass = dataPlayer.getJoUser1().getJoGrass().getListGrass();
@@ -655,7 +671,7 @@ public class Game extends Application implements Buff {
             listGrass.add(gras);
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1);
+                    x, y, 0, 0, 0, 0, 1, 1, 1);
             //
             //            // manage sprite
             listCan.add(can);
@@ -678,18 +694,7 @@ public class Game extends Application implements Buff {
         mediaPlayer.play();
     }
 
-    void addHelpImage() {
-        for (int i = 0; i < 3; i++) {
-            String temp = "res/help/" + (i + 1) + ".png";
-            Image image = new Image(String.valueOf(classLoader.getResource(
-                    temp)));
-            imgHelp[i] = new ImageView();
-            imgHelp[i].setImage(image);
-            imgHelp[i].setFitHeight(480);
-            imgHelp[i].setFitWidth(640);
-            imgHelp[i].relocate(0, 0);
-        }
-    }
+
 
     private void    checkDieChiken() {
         for (int i = 0; i < listChicken.size(); i++) {
@@ -814,4 +819,19 @@ public class Game extends Application implements Buff {
     }
 
 
+
+    public void checkTiemDieCan(){
+        for (int i = 0;i < listCan.size();i++){
+            if(listCan.get(i).timeDieCan > 0){
+                listCan.get(i).timeDieCan--;
+            }else {
+                if(listCan.get(i).timeDieCan == 0) {
+                    System.out.println("chinh dz");
+                    dataPlayer.getJoUser1().getJoGrass().getListGrass().get(i).setStep(2);
+                    listCan.get(i).timeDieCan--;
+                    break;
+                }
+            }
+        }
+    }
 }

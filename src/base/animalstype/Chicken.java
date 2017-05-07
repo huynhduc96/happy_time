@@ -2,6 +2,8 @@ package base.animalstype;
 
 import base.Settings;
 import base.SpriteAnimation;
+import base.jsonObject.DataPlayer;
+import base.productStyle.Product;
 import javafx.animation.Animation;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -13,10 +15,10 @@ public class Chicken extends Animal {
 
 
     public Chicken(Pane layer, int type, double x, double y, double r, double dx, double dy,
-                   double dr, double health, double sick, int step) {
-        super(layer, type, x, y, r, dx, dy, dr, health, sick, step);
-        this.timeDie = 3000;
-        this.hasDied = 0;
+                   double dr, double health, double sick, int step, DataPlayer data) {
+        super(layer, type, x, y, r, dx, dy, dr, health, sick, step, data);
+            this.timeDie = 3000;
+            this.hasDied = 0;
     }
 
     @Override
@@ -42,4 +44,6 @@ public class Chicken extends Animal {
             setRemovable(true);
         }
     }
+
+
 }
