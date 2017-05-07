@@ -51,7 +51,6 @@ public class Game extends Application implements Buff {
     List<Cow> listCow = new ArrayList<>();
     List<Ostrich> listOstrich = new ArrayList<>();
     List<Can> listCan = new ArrayList<>();
-    ImageView[] imgHelp = new ImageView[3];
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
@@ -62,12 +61,12 @@ public class Game extends Application implements Buff {
     private ImageView backgroud = new ImageView();   //typeSent = 0;
     private ImageView backgroud_l = new ImageView();
     private ImageView backgroud_r = new ImageView();
-    private ImageView img_help = new ImageView();
     private ImageView img_select = new ImageView();
-    private ImageView img_food_nol = new ImageView(); //typeSent =1;
-    private ImageView img_food_sep = new ImageView(); //typeSent =2;
-    private ImageView img_medi_nol = new ImageView(); //typeSent =3;
-    private ImageView img_medi_sep = new ImageView(); //typeSent =4;
+    private ImageView img_food_nol = new ImageView();
+    private ImageView img_food_sep = new ImageView();
+    private ImageView img_medi_nol = new ImageView();
+    private ImageView img_medi_sep = new ImageView();
+    private ImageView img_BackMenu = new ImageView();
     private DataPlayer dataPlayer = null;
     private Image image_med_sep;
     private Image image_food_nol;
@@ -80,14 +79,15 @@ public class Game extends Application implements Buff {
     private Text txt_medi_sep;
     private int isokGame;
     private int typeSent = 0;
-    private int page = 0;
 
     static Stage classStage = new Stage();
-
+    int page = 0;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         classStage = primaryStage;
+
+
 
         // make root scene
         Group root = new Group();
@@ -398,15 +398,14 @@ public class Game extends Application implements Buff {
         addPig();
         addCan();
         addOstrich();
-        addHelpImage();
     }
 
     void addBack() {
         Image image_back = new Image(String.valueOf(classLoader.getResource("res/back.png")));
         Image image_back_left = new Image(String.valueOf(classLoader.getResource("res/back_left.png")));
         Image image_back_right = new Image(String.valueOf(classLoader.getResource("res/back_right.png")));
-        Image image_help = new Image(String.valueOf(classLoader.getResource("res/help.png")));
         Image image_sel = new Image(String.valueOf(classLoader.getResource("res/select.png")));
+        Image image_BackMenu = new Image(String.valueOf(classLoader.getResource("res/welcome/back.png")));
         image_food_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_normal.png")));
         image_food_sep = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_special.png")));
         image_med_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/medicine_normal.png")));
@@ -416,11 +415,16 @@ public class Game extends Application implements Buff {
         txt_help.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 18));
         txt_help.relocate(77, 394);
         txt_help.setFill(Color.YELLOW);
+
         money.setImage(txt_monney);
         money.setFitHeight(60);
         money.setFitWidth(120);
         money.relocate(665, 20);
         money.setRotate(0);
+        img_BackMenu.setImage(image_BackMenu);
+        img_BackMenu.setFitHeight(60);
+        img_BackMenu.setFitWidth(60);
+        img_BackMenu.relocate(77, 394);
         img_food_nol.setImage(image_food_nol);
         img_food_nol.setFitWidth(25);
         img_food_nol.setFitHeight(25);
@@ -438,10 +442,6 @@ public class Game extends Application implements Buff {
         img_medi_sep.setFitHeight(25);
         img_medi_sep.relocate(37, 170);
         backgroud.setImage(image_back);
-        img_help.setImage(image_help);
-        img_help.relocate(50, 320);
-        img_help.setFitHeight(140);
-        img_help.setFitWidth(100);
         backgroud_l.setImage(image_back_left);
         backgroud_l.relocate(0, 335);
         backgroud_r.setImage(image_back_right);
@@ -451,16 +451,15 @@ public class Game extends Application implements Buff {
         img_select.setFitHeight(200);
         img_select.setFitWidth(60);
         playLayer.getChildren().add(backgroud);
-        playLayer.getChildren().add(1,backgroud_l);
-        playLayer.getChildren().add(1, backgroud_r);
-        playLayer.getChildren().add(img_help);
-        playLayer.getChildren().add(txt_help);
+        playLayer.getChildren().add(backgroud_l);
+        playLayer.getChildren().add(backgroud_r);
         playLayer.getChildren().add(img_select);
         playLayer.getChildren().add(img_food_nol);
         playLayer.getChildren().add(img_food_sep);
         playLayer.getChildren().add(img_medi_nol);
         playLayer.getChildren().add(img_medi_sep);
         playLayer.getChildren().add(money);
+        playLayer.getChildren().add(img_BackMenu);
     }
 
     private void removeSprites(List<? extends Animal> spriteList) {
@@ -682,18 +681,7 @@ public class Game extends Application implements Buff {
         mediaPlayer.play();
     }
 
-    void addHelpImage() {
-        for (int i = 0; i < 3; i++) {
-            String temp = "res/help/" + (i + 1) + ".png";
-            Image image = new Image(String.valueOf(classLoader.getResource(
-                    temp)));
-            imgHelp[i] = new ImageView();
-            imgHelp[i].setImage(image);
-            imgHelp[i].setFitHeight(480);
-            imgHelp[i].setFitWidth(640);
-            imgHelp[i].relocate(0, 0);
-        }
-    }
+
 
     private void checkDieChiken() {
         for (int i = 0; i < listChicken.size(); i++) {
