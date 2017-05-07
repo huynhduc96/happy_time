@@ -34,6 +34,7 @@ public class Ostrich extends Animal {
 
 
 
+
     @Override
     public void checkRemovability() {
         if( Double.compare( getY(), Settings.SCENE_HEIGHT) > 0) {
