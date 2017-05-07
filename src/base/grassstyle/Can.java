@@ -10,8 +10,11 @@ import javafx.util.Duration;
  * Created by hoang on 4/29/2017.
  */
 public class Can extends Grass {
-    public Can(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr, double health, double sick) {
-        super(layer, type, x, y, r, dx, dy, dr, health, sick);
+    public int timeDieCan;
+    public Can(Pane layer, int type, double x, double y, double r, double dx, double dy,
+               double dr, double health, double sick, int step) {
+        super(layer, type, x, y, r, dx, dy, dr, health, sick, step);
+        timeDieCan = 360;
     }
     @Override
     public void addToLayer() {

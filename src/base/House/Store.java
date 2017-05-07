@@ -173,7 +173,6 @@ public class Store implements House {
                 }
                 tmp = false;
             }
-
         });
     }
 
