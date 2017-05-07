@@ -323,6 +323,12 @@ public class ProductType {
                     player.getJoUser1().getJoWarehouse()
                             .setMedicineSpecial(player.getJoUser1().getJoWarehouse().getMedicineSpecial() + 1);
                 }
+                if (nameItem.equals("panda")) {
+                    player.getJoUser1().getJoWarehouse()
+                            .setPanda(player.getJoUser1()
+                                    .getJoWarehouse().getPanda() + 1);
+                }
+
                 int size = layer.getChildren().size();
                 layer.getChildren().remove(5, size);
                 showItemCurType();
