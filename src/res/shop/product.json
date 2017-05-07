@@ -29,13 +29,18 @@
   "pet":[
     {
       "name": "cat",
-      "price": 120,
+      "price": 12000,
       "space" : 10
     },
     {
       "name": "dog",
-      "price": 130,
+      "price": 13000,
       "space" : 10
+    },
+    {
+      "name": "panda",
+      "price": 10000,
+      "space": 10
     }
   ],
   "skin":[

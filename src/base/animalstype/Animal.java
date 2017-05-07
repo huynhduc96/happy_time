@@ -478,7 +478,6 @@ public abstract class Animal {
         {
             animation.stop();
         }
-        System.out.println("===== cout===" + animation.getCycleCount());
 
         imageView.relocate(x, y);
         t.relocate(x, y - 30);
@@ -709,13 +708,13 @@ public abstract class Animal {
                             }
                             break;
                         case 3:
-                            sick = sick - 10;
+                            sick = sick - 3000;
                             if (sick < 0) {
                                 sick = 0;
                             }
                             break;
                         case 4:
-                            sick = sick - 20;
+                            sick = sick - 5000;
                             if (sick < 0) {
                                 sick = 0;
                             }

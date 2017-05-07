@@ -71,6 +71,7 @@ public class WareHouse implements House {
     private HashMap<String, Integer> item_space = new HashMap<>();
     private Text cur_money;
     private Text cur_space;
+    private  Text cur_jo_space;
 
     public WareHouse(Pane layer, double x, double y, double r) {
         this.layer = layer;
@@ -142,14 +143,19 @@ public class WareHouse implements House {
     private void initViewItem() {
         cur_money = new Text("" + data.getJoUser1().getJoMoney() + " $");
         cur_space = new Text("" + data.getJoUser1().getSpaceOut());
+        cur_jo_space = new Text("" + data.getJoUser1().getJoSpace());
         cur_space.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 25));
         cur_space.setFill(Color.GREENYELLOW);
         cur_space.relocate(620, 490);
         cur_money.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 25));
         cur_money.setFill(Color.YELLOW);
         cur_money.relocate(620, 420);
+        cur_jo_space.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 25));
+        cur_jo_space.setFill(Color.GREEN);
+        cur_jo_space.relocate(620, 350);
         pane_warehouse.getChildren().add(cur_money);
         pane_warehouse.getChildren().add(cur_space);
+        pane_warehouse.getChildren().add(cur_jo_space);
         addImageView("cow",
                 data.getJoUser1().getJoWarehouse().getCow(),
                 "getOut");
@@ -170,6 +176,9 @@ public class WareHouse implements House {
                 "getOut");
         addImageView("dog",
                 data.getJoUser1().getJoWarehouse().getDog(),
+                "getOut");
+        addImageView("panda",
+                data.getJoUser1().getJoWarehouse().getPanda(),
                 "getOut");
         addImageView("food_normal",
                 data.getJoUser1().getJoWarehouse().getFoodNormal(),
@@ -241,6 +250,7 @@ public class WareHouse implements House {
                         tmp_txt.setText("x" + cout_1[0]);
                         cur_money.setText(data.getJoUser1().getJoMoney() + " $");
                         cur_space.setText("" + data.getJoUser1().getSpaceOut());
+                        cur_jo_space.setText("" + data.getJoUser1().getJoSpace());
                     }
                 }
             });
@@ -259,6 +269,7 @@ public class WareHouse implements House {
                 tmp_txt.setText("x" + cout_1[0]);
                 cur_money.setText(data.getJoUser1().getJoMoney() + " $");
                 cur_space.setText("" + data.getJoUser1().getSpaceOut());
+                cur_jo_space.setText("" + data.getJoUser1().getJoSpace());
             }
         });
         pane_warehouse.getChildren().add(sale_tmp);
@@ -352,6 +363,13 @@ public class WareHouse implements House {
                     .getJoDog().getTotalNumber() + 1);
             result = data.getJoUser1().getJoWarehouse().getDog();
         }
+        if (name.equals("panda")) {
+            data.getJoUser1().getJoWarehouse()
+                    .setPanda(data.getJoUser1().getJoWarehouse().getPanda() - 1);
+            data.getJoUser1().getJoPanda().setTotalNumber(data.getJoUser1()
+                    .getJoPanda().getTotalNumber() + 1);
+            result = data.getJoUser1().getJoWarehouse().getPanda();
+        }
         if (name.equals("cat")) {
             data.getJoUser1().getJoWarehouse()
                     .setCat(data.getJoUser1().getJoWarehouse().getCat() - 1);
@@ -400,6 +418,11 @@ public class WareHouse implements House {
         if (name.equals("dog")) {
             data.getJoUser1().getJoWarehouse()
                     .setDog(data.getJoUser1().getJoWarehouse().getDog() - 1);
+            result = data.getJoUser1().getJoWarehouse().getDog();
+        }
+        if (name.equals("panda")) {
+            data.getJoUser1().getJoWarehouse()
+                    .setPanda(data.getJoUser1().getJoWarehouse().getPanda() - 1);
             result = data.getJoUser1().getJoWarehouse().getDog();
         }
         if (name.equals("cat")) {
