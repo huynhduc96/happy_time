@@ -69,6 +69,7 @@ public abstract class Animal {
     int eat = 0;
     int typeSent;
     public int timeDie;
+    public double hasDied;
     public Animation animation;
     boolean canMove = true;
     public Buff buff;
@@ -207,7 +208,7 @@ public abstract class Animal {
 
     public void move() {
 
-        if (sick < timeDie) {
+        if (sick < timeDie*0.7) {
 
             if (direction == Settings.ANIMAL_DOWN) {
                 x += 0;
@@ -257,7 +258,58 @@ public abstract class Animal {
                 r += 0;
             }
             changeDirection();
-        } else {
+        } else if (timeDie * 0.7 <= sick && sick < timeDie) {
+
+                if (direction == Settings.ANIMAL_DOWN) {
+                    x += 0;
+                    y += Settings.ANIMAL_SPEED_WHEN_DYING;
+                    r += 0;
+                }
+
+                if (direction == Settings.ANIMAL_UP) {
+                    x += 0;
+                    y -= Settings.ANIMAL_SPEED_WHEN_DYING;
+                    r += 0;
+                }
+
+                if (direction == Settings.ANIMAL_LEFT) {
+                    x -= Settings.ANIMAL_SPEED_WHEN_DYING;
+                    y += 0;
+                    r += 0;
+                }
+
+                if (direction == Settings.ANIMAL_RIGHT) {
+                    x += Settings.ANIMAL_SPEED_WHEN_DYING;
+                    y += 0;
+                    r += 0;
+                }
+
+                if (direction == Settings.ANIMAL_UP_LEFT) {
+                    x -= Settings.ANIMAL_SPEED_WHEN_DYING;
+                    y -= Settings.ANIMAL_SPEED_WHEN_DYING;
+                    r += 0;
+                }
+
+                if (direction == Settings.ANIMAL_UP_RIGHT) {
+                    x += Settings.ANIMAL_SPEED_WHEN_DYING;
+                    y -= Settings.ANIMAL_SPEED_WHEN_DYING;
+                    r += 0;
+                }
+
+                if (direction == Settings.ANIMAL_DOWN_LEFT) {
+                    x -= Settings.ANIMAL_SPEED_WHEN_DYING;
+                    y += Settings.ANIMAL_SPEED_WHEN_DYING;
+                    r += 0;
+                }
+
+                if (direction == Settings.ANIMAL_DOWN_RIGHT) {
+                    x += Settings.ANIMAL_SPEED_WHEN_DYING;
+                    y += Settings.ANIMAL_SPEED_WHEN_DYING;
+                    r += 0;
+                }
+                changeDirection();
+            }
+         else {
             death++;
         }
     }

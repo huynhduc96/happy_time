@@ -13,7 +13,9 @@ public class Cow extends Animal {
     public Cow(Pane layer, int type, double x, double y, double r, double dx,
                double dy, double dr, double health, double sick, int step) {
         super(layer, type, x, y, r, dx, dy, dr, health, sick, step);
-        timeDie = 700;
+        this.timeDie = 5000;
+        this.hasDied = 0;
+
     }
 
     @Override

@@ -14,7 +14,8 @@ public class Ostrich extends Animal {
     public Ostrich(Pane layer, int type, double x, double y, double r, double dx, double dy,
                    double dr, double health, double sick, int step) {
         super(layer, type, x, y, r, dx, dy, dr, health, sick, step);
-        timeDie = 600;
+        this.timeDie = 4000;
+        this.hasDied = 0;
     }
 
     @Override
