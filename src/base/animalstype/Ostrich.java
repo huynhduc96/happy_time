@@ -18,6 +18,8 @@ public class Ostrich extends Animal {
         this.timeDie = 4000;
         this.hasDied = 0;
         this.diedByStep = 0;
+        setHealth(1700);
+        this.diedByHungry = 0;
     }
 
     @Override

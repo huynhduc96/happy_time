@@ -5,9 +5,6 @@ import javafx.animation.Animation;
 import base.jsonObject.DataPlayer;
 import base.productStyle.Product;
 import javafx.event.EventHandler;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
@@ -64,7 +61,7 @@ public abstract class Animal {
     double sick;
     int step;
     private static final int span = 1000;
-
+    MediaPlayer mediaPlayer = null;
     boolean removable = false;
     boolean isScale = false;
     DataPlayer data;
@@ -86,6 +83,16 @@ public abstract class Animal {
     }
 
     public int diedByStep;
+
+    public int getDiedByHungry() {
+        return diedByHungry;
+    }
+
+    public void setDiedByHungry(int diedByHungry) {
+        this.diedByHungry = diedByHungry;
+    }
+
+    public int diedByHungry;
     public Animation animation;
     boolean canMove = true;
     public Buff buff;
@@ -160,16 +167,16 @@ public abstract class Animal {
     public void addBuffListener(Buff buff) {
         this.buff = buff;
     }
-
     public void getSound(String model) {
         if (!(model.equals("hungry") || model.equals("die")
                 || model.equals("flyout") || model.equals("voice"))) return;
         String file_name = this.getName() + "_" + model + ".mp3";
         String musicFile = "src/res/sounds2/" + file_name;     // For example
         Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(0.5); // volumn
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(2); // volumn
         mediaPlayer.setCycleCount(1); // times
+
         mediaPlayer.play();
 
     }

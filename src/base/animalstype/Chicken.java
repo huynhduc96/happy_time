@@ -20,6 +20,8 @@ public class Chicken extends Animal {
             this.timeDie = 3000;
             this.hasDied = 0;
             this.diedByStep = 0;
+            this.diedByHungry = 0;
+            setHealth(1500);
     }
 
     @Override
