@@ -70,7 +70,9 @@ public abstract class Animal {
     int death = 0;
     int eat = 0;
     int typeSent;
+    public int countHealthDie = 0;
     public int timeDie;
+    public int stepDie = 0;
     public double hasDied;
 
     public int getDiedByStep() {
@@ -240,122 +242,77 @@ public abstract class Animal {
         this.layer.getChildren().remove(this.imageView);
     }
 
+    void changespeed(double speed) {
+        if (direction == Settings.ANIMAL_DOWN) {
+            x += 0;
+            y += speed;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_UP) {
+            x += 0;
+            y -= speed;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_LEFT) {
+            x -= speed;
+            y += 0;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_RIGHT) {
+            x += speed;
+            y += 0;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_UP_LEFT) {
+            x -= speed;
+            y -= speed;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_UP_RIGHT) {
+            x += speed;
+            y -= speed;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_DOWN_LEFT) {
+            x -= speed;
+            y += speed;
+            r += 0;
+        }
+
+        if (direction == Settings.ANIMAL_DOWN_RIGHT) {
+            x += speed;
+            y += speed;
+            r += 0;
+        }
+        changeDirection();
+    }
+
     public void move() {
         count++;
-        if (sick < timeDie*0.7) {
-
-            if (direction == Settings.ANIMAL_DOWN) {
-                x += 0;
-                y += Settings.ANIMAL_SPEED;
-                r += 0;
-            }
-
-            if (direction == Settings.ANIMAL_UP) {
-                x += 0;
-                y -= Settings.ANIMAL_SPEED;
-                r += 0;
-            }
-
-            if (direction == Settings.ANIMAL_LEFT) {
-                x -= Settings.ANIMAL_SPEED;
-                y += 0;
-                r += 0;
-            }
-
-            if (direction == Settings.ANIMAL_RIGHT) {
-                x += Settings.ANIMAL_SPEED;
-                y += 0;
-                r += 0;
-            }
-
-            if (direction == Settings.ANIMAL_UP_LEFT) {
-                x -= Settings.ANIMAL_SPEED;
-                y -= Settings.ANIMAL_SPEED;
-                r += 0;
-            }
-
-            if (direction == Settings.ANIMAL_UP_RIGHT) {
-                x += Settings.ANIMAL_SPEED;
-                y -= Settings.ANIMAL_SPEED;
-                r += 0;
-            }
-
-            if (direction == Settings.ANIMAL_DOWN_LEFT) {
-                x -= Settings.ANIMAL_SPEED;
-                y += Settings.ANIMAL_SPEED;
-                r += 0;
-            }
-
-            if (direction == Settings.ANIMAL_DOWN_RIGHT) {
-                x += Settings.ANIMAL_SPEED;
-                y += Settings.ANIMAL_SPEED;
-                r += 0;
-            }
-            changeDirection();
-        } else if (timeDie * 0.7 <= sick && sick < timeDie) {
-
-                if (direction == Settings.ANIMAL_DOWN) {
-                    x += 0;
-                    y += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_UP) {
-                    x += 0;
-                    y -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_LEFT) {
-                    x -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y += 0;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_RIGHT) {
-                    x += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y += 0;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_UP_LEFT) {
-                    x -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_UP_RIGHT) {
-                    x += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_DOWN_LEFT) {
-                    x -= Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-
-                if (direction == Settings.ANIMAL_DOWN_RIGHT) {
-                    x += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    y += Settings.ANIMAL_SPEED_WHEN_DYING;
-                    r += 0;
-                }
-                changeDirection();
-            }
-         else {
+        if (sick < timeDie && health > 0 && step < 3) {
+            changespeed(Settings.ANIMAL_SPEED);
+        } else {
+            System.out.println("dcmmmmmm");
+            changespeed(0);
             death++;
         }
 
-        if(type != 3){
-            if((count % (type * span)) == 0){
+
+        if (type != 3) {
+            if ((count % (type * span)) == 0) {
                 Product tmp = new Product(layer, typeProduct, x, y);
                 prods.add(tmp);
 
                 tmp.setOnClick(data, prods);
             }
         }
-        if (count == 50000){
+        if (count == 50000) {
             count = 1;
         }
         changeDirection();
@@ -478,8 +435,7 @@ public abstract class Animal {
             animation.setDelay(Duration.millis(9000.0));
         }
 
-        if(death> 20)
-        {
+        if (death > 20) {
             animation.stop();
         }
 
@@ -495,7 +451,7 @@ public abstract class Animal {
     public void remove() {
         System.out.println(step);
         setRemovable(true);
-        if(type == 3 ){
+        if (type == 3) {
             Product tmp = new Product(layer, typeProduct, x, y);
             prods.add(tmp);
             tmp.setOnClick(data, prods);
@@ -619,7 +575,7 @@ public abstract class Animal {
             @Override
             public void handle(MouseEvent event) {
                 getSound("voice");
-                info = "Không đói :" + (int)health + "\n" + "Ốm :" + sick*100/timeDie +
+                info = "Không đói :" + (int) health + "\n" + "Ốm :" + sick * 100 / timeDie +
                         "\nVòng đời:" + step;
                 t.setText(info);
                 t.setVisible(true);
@@ -639,28 +595,40 @@ public abstract class Animal {
                 if (typeSent > 0) {
                     switch (typeSent) {
                         case 1:
-                            health = health + 10;
-                            if (health > 100) {
-                                health = 100;
+                            if (health > 0) {
+                                health = health + 10;
+                                if (health > 100) {
+                                    health = 100;
+                                }
                             }
+
                             break;
                         case 2:
-                            health = health + 20;
-                            if (health > 100) {
-                                health = 100;
+                            if (health > 0) {
+                                health = health + 20;
+                                if (health > 100) {
+                                    health = 100;
+                                }
                             }
+
                             break;
                         case 3:
-                            sick = sick - 3000;
-                            if (sick < 0) {
-                                sick = 0;
+                            if (sick < timeDie) {
+                                sick = sick - 3000;
+                                if (sick < 0) {
+                                    sick = 0;
+                                }
                             }
+
                             break;
                         case 4:
-                            sick = sick - 5000;
-                            if (sick < 0) {
-                                sick = 0;
+                            if (sick < timeDie) {
+                                sick = sick - 5000;
+                                if (sick < 0) {
+                                    sick = 0;
+                                }
                             }
+
                             break;
                     }
                 }
