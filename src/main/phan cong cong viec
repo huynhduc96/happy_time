@@ -1,9 +1,0 @@
-1 - Khung tiền :  viết thêm phần hiển thị số tiền ở góc phía trên - bên phải màn hình
-    sau mỗi hoạt động update số tiền vào DAtaPlayer->monney và show nó lên khung tiền
-2. Viết thêm class Grass - thêm các thuộc tính như animal
-3. viết phần Store - vẽ các item  ( thuốc,đồ ăn...) + giá cả ==> click vào đâu thì có màn hình chọn cái đó,sau đó
-nhập số lượng ==> tính là số tiền cần phải mua
-Check ngoại lệ không đủ tiền thì không mua đc
-Sau khi nhấn nút mua thì trừ tiền (trong dataplayer hoặc trong json)
-4. Viết phần warehouse : hiển thị số lượng các item đã có của player ( lấy data từ file json hoặc dataplayer)
-  sau khi bán hàng thì cập nhật

@@ -5,9 +5,6 @@ import javafx.animation.Animation;
 import base.jsonObject.DataPlayer;
 import base.productStyle.Product;
 import javafx.event.EventHandler;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
@@ -59,7 +56,6 @@ public abstract class Animal {
     double dy;
     double dr;
     private long count = 0;
-    long end;
     double health;
     double sick;
     int step;
@@ -97,7 +93,6 @@ public abstract class Animal {
 
     public int diedByHeight;
     public Animation animation;
-    boolean canMove = true;
     public Buff buff;
     ArrayList<String> nameImage = new ArrayList<>();
     ArrayList<Image> arrImage = new ArrayList<>();
@@ -151,6 +146,14 @@ public abstract class Animal {
         t.setFill(Color.WHITESMOKE);
         layer.getChildren().add(t);
         t.setVisible(false);
+    }
+
+    public int getStep() {
+        return step;
+    }
+
+    public void setStep(int step) {
+        this.step = step;
     }
 
     private String getName() {
@@ -470,6 +473,7 @@ public abstract class Animal {
         }
 
         if (death == 1) {
+            System.out.println("========================================================");
             imageView.setImage(arrImage.get(Settings.ANIMAL_DEATH));
             animation.setDelay(Duration.millis(9000.0));
         }
@@ -485,32 +489,13 @@ public abstract class Animal {
     }
 
 
-    public double getCenterX() {
-        return x + w * 0.5;
-    }
-
-    public double getCenterY() {
-        return y + h * 0.5;
-    }
-
-    public void kill() {
-        setHealth(0);
-    }
-
-    public int getTimeDie() {
-        return timeDie;
-    }
-
-    public void setTimeDie(int timeDie) {
-        this.timeDie = timeDie;
-    }
-
     /**
      * Set flag that the sprite can be removed from the UI.
      */
     public void remove() {
+        System.out.println(step);
         setRemovable(true);
-        if(type == 3 && step == 3){
+        if(type == 3 ){
             Product tmp = new Product(layer, typeProduct, x, y);
             prods.add(tmp);
             tmp.setOnClick(data, prods);
@@ -520,10 +505,6 @@ public abstract class Animal {
     /**
      * Set flag that the sprite can't move anymore.
      */
-    public void stopMovement() {
-        this.canMove = false;
-    }
-
 
     public abstract void checkRemovability();
 
@@ -550,14 +531,6 @@ public abstract class Animal {
 
     public void setX(double x) {
         this.x = x;
-    }
-
-    public int getDeath() {
-        return death;
-    }
-
-    public void setDeath(int death) {
-        this.death = death;
     }
 
     public double getY() {
@@ -624,30 +597,6 @@ public abstract class Animal {
         this.removable = removable;
     }
 
-    public double getW() {
-        return w;
-    }
-
-    public void setW(double w) {
-        this.w = w;
-    }
-
-    public double getH() {
-        return h;
-    }
-
-    public void setH(double h) {
-        this.h = h;
-    }
-
-    public boolean isCanMove() {
-        return canMove;
-    }
-
-    public void setCanMove(boolean canMove) {
-        this.canMove = canMove;
-    }
-
     public boolean changeHungryStateOfAnimals() {
         _t = new Timer();
         _t.scheduleAtFixedRate(new TimerTask() {
@@ -661,12 +610,6 @@ public abstract class Animal {
         if (_count == 0)
             return true;
         return false;
-    }
-
-    public void providedFoodWhenHungry() {
-        if (changeHungryStateOfAnimals()) {
-            _count += time;
-        }
     }
 
 

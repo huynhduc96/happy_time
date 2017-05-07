@@ -18,19 +18,7 @@ public class Player {
     public DataPlayer getPlayer() {
         return player;
     }
-
-    public void setPlayer(DataPlayer player) {
-        this.player = player;
-    }
-
-    public JsonObject getDataPlayer() {
-        return dataPlayer;
-    }
     private String jsonString;
-
-    public void setDataPlayer(JsonObject dataPlayer) {
-        this.dataPlayer = dataPlayer;
-    }
     void getdataPlayer(){
 
         Gson gson = new Gson();
@@ -69,22 +57,6 @@ public class Player {
         player= gson.fromJson(jsonString,DataPlayer.class);
     }
 
-    public void saveJson() {
-        JsonObject obj = data;
-        Gson gson = new Gson();
-
-        String json ;
-        json= gson.toJson(obj);
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(
-                System.getProperty("user.dir") + "/src/res/data/user.json", false))) {
-            bw.write(json);
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-
-    }
     public void saveJson(DataPlayer obj) {
         Gson gson = new Gson();
 

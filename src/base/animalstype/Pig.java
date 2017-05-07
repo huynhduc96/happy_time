@@ -1,5 +1,6 @@
 package base.animalstype;
 
+import base.Settings;
 import base.SpriteAnimation;
 import base.jsonObject.DataPlayer;
 import javafx.animation.Animation;
@@ -43,6 +44,8 @@ public class Pig extends Animal {
 
     @Override
     public void checkRemovability() {
-
+        if( Double.compare( getY(), Settings.SCENE_HEIGHT) > 0) {
+            setRemovable(true);
+        }
     }
 }

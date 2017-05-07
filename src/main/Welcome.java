@@ -40,17 +40,17 @@ public class Welcome extends Application {
     private ImageView backgroud = new ImageView();
     private MediaPlayer mediaPlayer;
     ImageView[] imgHelp = new ImageView[4];
-    int page =0;
+    int page = 0;
     int count_cont;
-  //  static Stage classStageW = new Stage();
+    //  static Stage classStageW = new Stage();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-  //      classStageW = primaryStage ;
+        //      classStageW = primaryStage ;
         // make root scene
         Group root = new Group();
-        count_cont=0;
+        count_cont = 0;
         Game game = new Game();
         // add Pane play for player
         playLayer = new Pane();
@@ -81,12 +81,12 @@ public class Welcome extends Application {
                 166, 35, false, false);
         ImageView info = new ImageView();
         info.setImage(info_img);
-        info.relocate(317, 470+50);
+        info.relocate(317, 470 + 50);
         playLayer.getChildren().add(info);
 
         Text text = new Text();
         text.setText(name);
-        text.relocate(330,430);
+        text.relocate(330, 430);
         text.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 16));
         text.maxHeight(166);
         text.setFill(Color.ORANGE);
@@ -99,7 +99,6 @@ public class Welcome extends Application {
         ng.relocate(502, 470);
         playLayer.getChildren().add(ng);
         addHelpImage();
-
 
 
         ng.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -169,8 +168,6 @@ public class Welcome extends Application {
         });
 
 
-
-
         Image cont_game_img = new Image(getClass().getResourceAsStream("../res/welcome/cont.png"),
                 166, 35, false, false);
         ImageView cg = new ImageView();
@@ -211,7 +208,7 @@ public class Welcome extends Application {
                 group_help.getChildren().add(pane_help);
                 javafx.scene.control.Button button_truoc = new javafx.scene.control.Button("Trước");
                 button_truoc.setMinWidth(100);
-                button_truoc.relocate(170,490);
+                button_truoc.relocate(170, 490);
                 pane_help.getChildren().add(button_truoc);
                 Image image = new Image(getClass().getResourceAsStream("../res/help/1.jpg"),
                         640, 480, false, false);
@@ -222,20 +219,20 @@ public class Welcome extends Application {
 
                 javafx.scene.control.Button button_sau = new javafx.scene.control.Button("Sau");
                 button_sau.setMinWidth(100);
-                button_sau.relocate(370,490);
+                button_sau.relocate(370, 490);
                 pane_help.getChildren().add(button_sau);
 
                 button_truoc.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        if (page>0){
-                            pane_help.getChildren().add(imgHelp[page-1]);
+                        if (page > 0) {
+                            pane_help.getChildren().add(imgHelp[page - 1]);
                             pane_help.getChildren().remove(imgHelp[page]);
                             page--;
                         } else {
                             pane_help.getChildren().add(imgHelp[3]);
                             pane_help.getChildren().remove(imgHelp[page]);
-                            page=3;
+                            page = 3;
                         }
                     }
                 });
@@ -243,19 +240,17 @@ public class Welcome extends Application {
                 button_sau.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        if (page<3){
-                            pane_help.getChildren().add(imgHelp[page+1]);
+                        if (page < 3) {
+                            pane_help.getChildren().add(imgHelp[page + 1]);
                             pane_help.getChildren().remove(imgHelp[page]);
                             page++;
                         } else {
                             pane_help.getChildren().add(imgHelp[0]);
                             pane_help.getChildren().remove(imgHelp[page]);
-                            page=0;
+                            page = 0;
                         }
                     }
                 });
-
-
 
 
                 stage_help.setScene(new Scene(group_help, 640, 550));
@@ -280,7 +275,7 @@ public class Welcome extends Application {
         playLayer.getChildren().add(backgroud);
     }
 
-    void getSoundOpening(){
+    void getSoundOpening() {
         // so epic
         String file_name = "src/res/sounds2/music_mainmenu.mp3";
         Media sound = new Media(new File(file_name).toURI().toString());
@@ -352,5 +347,5 @@ public class Welcome extends Application {
 
     }
 
-    
+
 }
