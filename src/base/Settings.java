@@ -17,6 +17,10 @@ public class Settings {
   public static int PIG = 3;
   public static int OSTRICH = 4;
 
+  public static int PANDA = 5;
+  public static int DOG = 6;
+  public static int CAT = 7;
+
   public static int ANIMAL_UP = 0;
   public static int ANIMAL_DOWN = 1;
   public static int ANIMAL_LEFT = 2;
