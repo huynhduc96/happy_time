@@ -57,7 +57,7 @@ public abstract class Animal {
     double health;
     double sick;
     int step;
-    private static final int span = 100;
+    private static final int span = 1000;
 
     boolean removable = false;
     boolean isScale = false;
@@ -257,15 +257,12 @@ public abstract class Animal {
         }
 
         if(type != 3){
-            end = System.currentTimeMillis();
             if((count % (type * span)) == 0){
-                System.out.println(count % (type * span));
                 Product tmp = new Product(layer, typeProduct, x, y);
                 prods.add(tmp);
 
                 tmp.setOnClick(data, prods);
             }
-            System.out.println(prods.size() + " " + count);
         }
         if (count == 50000){
             count = 1;
@@ -557,8 +554,8 @@ public abstract class Animal {
             @Override
             public void handle(MouseEvent event) {
                 getSound("voice");
-                info = "không đói:" + health + "\n" + "ốm:" + sick +
-                        "\nvòng đời:" + step;
+                info = "Không đói :" + health + "\n" + "Ốm :" + sick +
+                        "\nVòng đời:" + step;
                 t.setText(info);
                 t.setVisible(true);
             }

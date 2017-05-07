@@ -2,6 +2,8 @@ package base.grassstyle;
 
 import base.Settings;
 import base.SpriteAnimation;
+import base.jsonObject.DataPlayer;
+import base.productStyle.Product;
 import javafx.animation.Animation;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -12,8 +14,8 @@ import javafx.util.Duration;
 public class Can extends Grass {
     public int timeDieCan;
     public Can(Pane layer, int type, double x, double y, double r, double dx, double dy,
-               double dr, double health, double sick, int step) {
-        super(layer, type, x, y, r, dx, dy, dr, health, sick, step);
+               double dr, double health, double sick, int step, DataPlayer data) {
+        super(layer, type, x, y, r, dx, dy, dr, health, sick, step, data);
         timeDieCan = 360;
     }
     @Override
@@ -34,6 +36,12 @@ public class Can extends Grass {
         if( Double.compare( getY(), Settings.SCENE_HEIGHT) > 0) {
             setRemovable(true);
         }
+    }
+
+    public void dieToBorn(){
+        layer.getChildren().remove(imageView);
+        Product tmp = new Product(layer, "grass_product", x, y);
+        tmp.setOnClick(data);
     }
 }
     

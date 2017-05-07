@@ -63,6 +63,15 @@ public class Product {
             }
         });
     }
+    public void setOnClick(DataPlayer data){
+        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+//                layer.getChildren().remove(imageView);
+                harvest(type, data);
+            }
+        });
+    }
 
     public void harvest(String name, DataPlayer data, List prods){
         if(data.getJoUser1().getJoSpace() == 0){
@@ -75,6 +84,28 @@ public class Product {
             return ;
         }
         autoRemove(prods);
+        upToWarehouse(data, name);
+    }
+
+    public void harvest(String name, DataPlayer data){
+        if(data.getJoUser1().getJoSpace() == 0){
+            ButtonType loginButtonType = new ButtonType("Hiểu", ButtonBar.ButtonData.OK_DONE);
+            Dialog<String> dialog = new Dialog<>();
+            dialog.setContentText("Kho của bạn không đủ chỗ hihi");
+            dialog.getDialogPane().getButtonTypes().add(loginButtonType);
+            dialog.getDialogPane().lookupButton(loginButtonType);
+            dialog.show();
+            return ;
+        }
+        System.out.println(layer.getChildren().size());
+        layer.getChildren().remove(imageView);
+        System.out.println(layer.getChildren().size());
+//        imageView.setVisible(false);
+        System.out.println("địt địt địt địt");
+
+        upToWarehouse(data, name);
+    }
+    private void upToWarehouse(DataPlayer data, String name){
         if (name.equals("egg")) {
             data.getJoUser1().getJoWarehouse()
                     .setEgg(data.getJoUser1().getJoWarehouse().getEgg() + 1);
@@ -100,7 +131,6 @@ public class Product {
                 data.getJoUser1().getJoSpace() - 1);
 
     }
-
     public void autoRemove(List prods){
         layer.getChildren().remove(imageView);
         prods.remove(this);
