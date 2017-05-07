@@ -37,6 +37,7 @@ public abstract class Grass {
 
     double health;
     double sick;
+    int step;
 
     boolean removable = false;
     boolean isScale = false;
@@ -50,7 +51,7 @@ public abstract class Grass {
     ClassLoader classLoader = this.getClass().getClassLoader();
 
     public Grass(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr,
-                  double health, double sick) {
+                  double health, double sick, int step) {
         this.layer = layer;
         this.type = type;
         String typeGrass = null;
@@ -67,6 +68,7 @@ public abstract class Grass {
 
         this.health = health;
         this.sick = sick;
+        this.step = step;
 
         int n = 0;
         this.direction = n;

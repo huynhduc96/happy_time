@@ -1,6 +1,8 @@
 package base.animalstype;
 
 import base.Settings;
+import base.jsonObject.DataPlayer;
+import base.productStyle.Product;
 import javafx.event.EventHandler;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -10,10 +12,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -21,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import main.Buff;
 
 import java.io.File;
 
@@ -47,41 +48,51 @@ public abstract class Animal {
     //CHICKEN =1
     //COW =2
     //PIG =3
+    private String typeProduct;
     double dx;
     double dy;
     double dr;
-
+    private long count = 0;
+    long end;
     double health;
     double sick;
     int step;
+    private static final int span = 100;
 
     boolean removable = false;
     boolean isScale = false;
-
+    DataPlayer data;
     double w;
     double h;
-
+    private static List<Product> prods = new ArrayList<>();
     int death = 0;
     int eat = 0;
+    int typeSent;
 
     boolean canMove = true;
+    public Buff buff;
     ArrayList<String> nameImage = new ArrayList<>();
     ArrayList<Image> arrImage = new ArrayList<>();
     ClassLoader classLoader = this.getClass().getClassLoader();
 
     public Animal(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr,
-                  double health, double sick, int step) {
+                  double health, double sick, int step, DataPlayer data) {
+        this.data = data;
         this.layer = layer;
         this.type = type;
         String typeAnimal = null;
         if (type == Settings.CHIKEN) {
             typeAnimal = "chicken";
+            typeProduct = "egg";
         } else if (type == Settings.COW) {
             typeAnimal = "cow";
+            typeProduct = "milk";
         } else if (type == Settings.PIG) {
             typeAnimal = "pig";
+            typeProduct = "meat";
         } else if (type == Settings.OSTRICH) {
             typeAnimal = "ostrich";
+            typeProduct = "feather";
         }
         getNameImage(typeAnimal);
         this.x = x;
@@ -109,7 +120,7 @@ public abstract class Animal {
         addToLayer();
         t = new Text("dmm");
         t.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
-        t.setFill(Color.ORANGE);
+        t.setFill(Color.WHITESMOKE);
         layer.getChildren().add(t);
         t.setVisible(false);
     }
@@ -125,6 +136,9 @@ public abstract class Animal {
             typeAnimal = "ostrich";
         }
         return typeAnimal;
+    }
+    public void addBuffListener(Buff buff){
+        this.buff = buff;
     }
     public void getSound(String model){
         if(!(model.equals("hungry") || model.equals("die")
@@ -190,7 +204,7 @@ public abstract class Animal {
         this.layer.getChildren().remove(this.imageView);
     }
     public void move() {
-
+        count++;
         if (!canMove)
             return;
 
@@ -241,31 +255,46 @@ public abstract class Animal {
             y += Settings.ANIMAL_SPEED;
             r += 0;
         }
+
+        if(type != 3){
+            end = System.currentTimeMillis();
+            if((count % (type * span)) == 0){
+                System.out.println(count % (type * span));
+                Product tmp = new Product(layer, typeProduct, x, y);
+                prods.add(tmp);
+
+                tmp.setOnClick(data, prods);
+            }
+            System.out.println(prods.size() + " " + count);
+        }
+        if (count == 50000){
+            count = 1;
+        }
         changeDirection();
     }
     public void changeDirection() {
-        if (Double.compare(getX(), 600) > 0) {
+        if (Double.compare(getX(), 525) > 0) {
             while (direction != 2 && direction != 4 && direction != 5) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getX(), 100) < 0) {
+        if (Double.compare(getX(), 120) < 0) {
             while (direction != 3 && direction != 6 && direction != 7) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getY(), 400) > 0) {
+        if (Double.compare(getY(), 375) > 0) {
             while (direction != 0 && direction != 4 && direction != 6) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getY(), 120) < 0) {
+        if (Double.compare(getY(), 140) < 0) {
             while (direction != 1 && direction != 5 && direction != 7) {
                 Random a = new Random();
                 direction = a.nextInt(7);
@@ -521,6 +550,7 @@ public abstract class Animal {
         }
     }
 
+
     public void setOnDrag(){
 
         this.imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -537,6 +567,41 @@ public abstract class Animal {
             @Override
             public void handle(MouseEvent event) {
                 t.setVisible(false);
+            }
+        });
+        this.imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                typeSent=buff.buffOk(1);
+                System.out.println("=====> type sent - tu Game "+typeSent);
+                if(typeSent>0){
+                    switch (typeSent){
+                        case 1:
+                            health = health+10;
+                            if(health>100){
+                                health =100;
+                            }
+                            break;
+                        case 2:
+                            health = health+20;
+                            if(health>100){
+                                health =100;
+                            }
+                            break;
+                        case 3:
+                            sick = sick-10;
+                            if(sick<0){
+                                sick =0;
+                            }
+                            break;
+                        case 4:
+                            sick= sick-20;
+                            if(sick<0){
+                                sick =0;
+                            }
+                            break;
+                    }
+                }
             }
         });
     }

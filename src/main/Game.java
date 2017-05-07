@@ -8,6 +8,8 @@ import base.House.Store;
 import base.jsonObject.*;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -30,6 +32,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -40,7 +43,7 @@ import java.util.Random;
 /**
  * Created by huynh on 07-Apr-17.
  */
-public class Game extends Application {
+public class Game extends Application implements Buff {
     Pane playLayer;
     Scene scene;
     List<Chicken> listChicken = new ArrayList<>();
@@ -55,7 +58,7 @@ public class Game extends Application {
 
     Integer[] location = new Integer[10];
     private ImageView money = new ImageView();
-    private ImageView backgroud = new ImageView();
+    private ImageView backgroud = new ImageView();   //typeSent = 0;
     private ImageView backgroud_l = new ImageView();
     private ImageView backgroud_r = new ImageView();
     private ImageView img_select = new ImageView();
@@ -65,17 +68,18 @@ public class Game extends Application {
     private ImageView img_medi_sep = new ImageView();
     private ImageView img_BackMenu = new ImageView();
     private DataPlayer dataPlayer = null;
-    Image image_BackMenu;
-    Image image_med_sep;
-    Image image_food_nol;
-    Image image_food_sep;
-    Image image_med_nol;
-    Text txt_money;
-    Text txt_food_nol;
-    Text txt_food_sep;
-    Text txt_medi_nol;
-    Text txt_medi_sep;
-    Welcome welcome = new Welcome();
+    private Image image_med_sep;
+    private Image image_food_nol;
+    private Image image_food_sep;
+    private Image image_med_nol;
+    private Text txt_money;
+    private Text txt_food_nol;
+    private Text txt_food_sep;
+    private Text txt_medi_nol;
+    private Text txt_medi_sep;
+    private int isokGame;
+    private int typeSent = 0;
+    private int page = 0;
 
     static Stage classStage = new Stage();
     int page = 0;
@@ -115,6 +119,9 @@ public class Game extends Application {
 
         addBack();
         primaryStage.setScene(scene);
+        primaryStage.setMaxHeight(627);
+        primaryStage.setMaxWidth(805);
+        primaryStage.setResizable(false);
         primaryStage.show();
         setClickStage(primaryStage);
 
@@ -125,6 +132,7 @@ public class Game extends Application {
         addText();
 
         setOnclickItem();
+
 
         AnimationTimer gameLoop = new AnimationTimer() {
 
@@ -137,6 +145,7 @@ public class Game extends Application {
 
                 updateData();
                 updateText();
+                updateBuff();
 
                 listChicken.forEach(sprite -> sprite.move());
                 listCow.forEach(sprite -> sprite.move());
@@ -161,6 +170,7 @@ public class Game extends Application {
                 removeSprites(listCow);
                 removeSprites(listOstrich);
                 //checkDieChiken();
+                checkTiemDieCan();
             }
 
         };
@@ -171,7 +181,8 @@ public class Game extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    void setClickStage(Stage primaryStage){
+
+    void setClickStage(Stage primaryStage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
@@ -233,31 +244,47 @@ public class Game extends Application {
         img_food_nol.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                scene.setCursor(new ImageCursor(image_food_nol));
+                if (dataPlayer.getJoUser1().getJoWarehouse().getFoodNormal() > 0) {
+                    scene.setCursor(new ImageCursor(image_food_nol));
+                    typeSent = 1;
+                }
             }
         });
         img_food_sep.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                scene.setCursor(new ImageCursor(image_food_sep));
+                if (dataPlayer.getJoUser1().getJoWarehouse().getFoodSpecial() > 0) {
+                    scene.setCursor(new ImageCursor(image_food_sep));
+                    typeSent = 2;
+                }
+
             }
         });
         img_medi_nol.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                scene.setCursor(new ImageCursor(image_med_nol));
+                if (dataPlayer.getJoUser1().getJoWarehouse().getMedicineNormal() > 0) {
+                    scene.setCursor(new ImageCursor(image_med_nol));
+                    typeSent = 3;
+                }
+
             }
         });
         img_medi_sep.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                scene.setCursor(new ImageCursor(image_med_sep));
+                if (dataPlayer.getJoUser1().getJoWarehouse().getMedicineSpecial() > 0) {
+                    scene.setCursor(new ImageCursor(image_med_sep));
+                    typeSent = 4;
+                }
+
             }
         });
         backgroud.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 scene.setCursor(Cursor.DEFAULT);
+                typeSent = 0;
             }
         });
         img_BackMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -335,6 +362,52 @@ public class Game extends Application {
         updateListCow();
         updateListOstrich();
         updateListPig();
+    }
+
+    void updateBuff() {
+        if (typeSent > 0) {
+            if (isokGame > 0) {
+                switch (typeSent) {
+                    case 1:
+                        System.out.println("--- 1");
+                        if (dataPlayer.getJoUser1().getJoWarehouse().getFoodNormal() > 0) {
+                            dataPlayer.getJoUser1().getJoWarehouse().setFoodNormal(
+                                    dataPlayer.getJoUser1().getJoWarehouse().getFoodNormal() - 1
+                            );
+                        }
+                        isokGame = 0;
+                        break;
+                    case 2:
+                        System.out.println("----2");
+                        if (dataPlayer.getJoUser1().getJoWarehouse().getFoodSpecial() > 0) {
+                            dataPlayer.getJoUser1().getJoWarehouse().setFoodSpecial(
+                                    dataPlayer.getJoUser1().getJoWarehouse().getFoodSpecial() - 1
+                            );
+                        }
+                        isokGame = 0;
+                        break;
+                    case 3:
+                        System.out.println("----3");
+                        if (dataPlayer.getJoUser1().getJoWarehouse().getMedicineNormal() > 0) {
+                            dataPlayer.getJoUser1().getJoWarehouse().setMedicineNormal(
+                                    dataPlayer.getJoUser1().getJoWarehouse().getMedicineNormal() - 1
+                            );
+                        }
+                        isokGame = 0;
+                        break;
+                    case 4:
+                        System.out.println("----4");
+                        if (dataPlayer.getJoUser1().getJoWarehouse().getMedicineSpecial() > 0) {
+                            dataPlayer.getJoUser1().getJoWarehouse().setMedicineSpecial(
+                                    dataPlayer.getJoUser1().getJoWarehouse().getMedicineSpecial() - 1
+                            );
+                        }
+                        isokGame = 0;
+                        break;
+                }
+            }
+
+        }
     }
 
     void addFirst() {
@@ -431,8 +504,9 @@ public class Game extends Application {
             int health = listChickens.get(i).getLife();
             int sick = listChickens.get(i).getSickness();
             Chicken chicken = new Chicken(playLayer, Settings.CHIKEN,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             chicken.setOnDrag();
+            chicken.addBuffListener(this);
             listChicken.add(chicken);
         }
 
@@ -445,9 +519,9 @@ public class Game extends Application {
             ListChicken chickenOJ = new ListChicken(100, 0, 1);
             listChickens.add(chickenOJ);
             Chicken chicken = new Chicken(playLayer, Settings.CHIKEN,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             chicken.setOnDrag();
-
+            chicken.addBuffListener(this);
             listChicken.add(chicken);
         }
         dataPlayer.getJoUser1().getJoChicken().setTotalNumber(dataPlayer.getJoUser1().getJoChicken().getListChicken().size());
@@ -460,9 +534,9 @@ public class Game extends Application {
             ListPig ob = new ListPig(100, 0, 1);
             list.add(ob);
             Pig animal = new Pig(playLayer, Settings.PIG,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             animal.setOnDrag();
-
+            animal.addBuffListener(this);
             listPig.add(animal);
         }
         dataPlayer.getJoUser1().getJoPig().setTotalNumber(dataPlayer.getJoUser1().getJoPig().getListPig().size());
@@ -475,9 +549,9 @@ public class Game extends Application {
             ListCow ob = new ListCow(100, 0, 1);
             list.add(ob);
             Cow animal = new Cow(playLayer, Settings.COW,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             animal.setOnDrag();
-
+            animal.addBuffListener(this);
             listCow.add(animal);
         }
         dataPlayer.getJoUser1().getJoCow().setTotalNumber(dataPlayer.getJoUser1().getJoCow().getListCow().size());
@@ -490,9 +564,9 @@ public class Game extends Application {
             ListOstrich ob = new ListOstrich(100, 0, 1);
             list.add(ob);
             Ostrich animal = new Ostrich(playLayer, Settings.OSTRICH,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             animal.setOnDrag();
-
+            animal.addBuffListener(this);
             listOstrich.add(animal);
         }
         dataPlayer.getJoUser1().getJoOstrich().setTotalNumber(dataPlayer.getJoUser1().getJoOstrich().getListOstrich().size());
@@ -513,8 +587,9 @@ public class Game extends Application {
             double health = listPigs.get(i).getLife();
             double sick = listPigs.get(i).getSickness();
             Pig pig = new Pig(playLayer, Settings.PIG,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             pig.setOnDrag();
+            pig.addBuffListener(this);
             listPig.add(pig);
         }
 
@@ -528,8 +603,9 @@ public class Game extends Application {
             double health = listCows.get(i).getLife();
             double sick = listCows.get(i).getSickness();
             Cow cow = new Cow(playLayer, Settings.COW,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             cow.setOnDrag();
+            cow.addBuffListener(this);
             listCow.add(cow);
         }
     }
@@ -541,8 +617,9 @@ public class Game extends Application {
             double health = listOstrichs.get(i).getLife();
             double sick = listOstrichs.get(i).getSickness();
             Ostrich ostrich = new Ostrich(playLayer, Settings.OSTRICH,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             ostrich.setOnDrag();
+            ostrich.addBuffListener(this);
             listOstrich.add(ostrich);
         }
     }
@@ -559,16 +636,22 @@ public class Game extends Application {
             int x = (postion + 3) * 50;
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1);
+                    x, y, 0, 0, 0, 0, 1, 1, 1);
             //
             //            // manage sprite
+
             listCan.add(can);
+
             //            dataPlayer.getJoUser1().getJoGrass().setTotalNumber(String.valueOf(Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber())+1));
             //            ListGras listGras = new ListGras(i, "1");
             //            dataPlayer.getJoUser1().getJoGrass().getListGrass().add(listGras);
 
         }
     }
+
+/*    void setStep() {
+        int i;
+    }*/
 
     void buyCan() {
         List<ListGras> listGrass = dataPlayer.getJoUser1().getJoGrass().getListGrass();
@@ -590,11 +673,11 @@ public class Game extends Application {
             location[tmp] = 1;
             int y = 530;
             int x = (tmp + 3) * 50;
-            ListGras gras = new ListGras(tmp,1);
+            ListGras gras = new ListGras(tmp, 1);
             listGrass.add(gras);
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1);
+                    x, y, 0, 0, 0, 0, 1, 1, 1);
             //
             //            // manage sprite
             listCan.add(can);
@@ -634,4 +717,25 @@ public class Game extends Application {
         }
     }
 
+    @Override
+    public int buffOk(int isOK) {
+        System.out.println("lay ket qua da nhan duoc hay chua tu Animal :  " + isOK);
+        isokGame = isOK;
+        return typeSent;
+    }
+
+    public void checkTiemDieCan(){
+        for (int i = 0;i < listCan.size();i++){
+            if(listCan.get(i).timeDieCan > 0){
+                listCan.get(i).timeDieCan--;
+            }else {
+                if(listCan.get(i).timeDieCan == 0) {
+                    System.out.println("chinh dz");
+                    dataPlayer.getJoUser1().getJoGrass().getListGrass().get(i).setStep(2);
+                    listCan.get(i).timeDieCan--;
+                    break;
+                }
+            }
+        }
+    }
 }

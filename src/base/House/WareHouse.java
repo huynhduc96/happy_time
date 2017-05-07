@@ -1,7 +1,6 @@
 package base.House;
 
 
-
 import base.Settings;
 import base.jsonObject.DataPlayer;
 import com.google.gson.Gson;
@@ -27,6 +26,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import main.Player;
 
 import java.io.BufferedReader;
@@ -47,6 +47,7 @@ public class WareHouse implements House {
     ImageView imageView;
     Image imageWarehouse;
     Pane layer;
+    boolean tmp = true;
     double x;
     double y;
     static double item_x = 25, item_y = 110;
@@ -57,9 +58,9 @@ public class WareHouse implements House {
     ClassLoader classLoader = this.getClass().getClassLoader();
     private List<ImageView> item_image_view;
     private List<Image> item_image;
-    private  List<Button> sale_buton ;
-    private  List<Button> option_buton ;
-    private  List<Text> count_text = new ArrayList<>();
+    private List<Button> sale_buton;
+    private List<Button> option_buton;
+    private List<Text> count_text = new ArrayList<>();
     private static String item_prefix = "res/warehouse/item/";
     private Group root_warehouse;
     private Pane pane_warehouse;
@@ -70,6 +71,7 @@ public class WareHouse implements House {
     private HashMap<String, Integer> item_space = new HashMap<>();
     private Text cur_money;
     private Text cur_space;
+
     public WareHouse(Pane layer, double x, double y, double r) {
         this.layer = layer;
         initView();
@@ -87,7 +89,7 @@ public class WareHouse implements House {
         this.w = imageWarehouse.getWidth(); // imageView.getBoundsInParent().getWidth();
         this.h = imageWarehouse.getHeight(); // imageView.getBoundsInParent().getHeight();
 
-        this.layer.getChildren().add(this.imageView);
+        this.layer.getChildren().add( this.imageView);
 
     }
 
@@ -96,44 +98,48 @@ public class WareHouse implements House {
     }
 
 
-
-
     @Override
     public void setOnclick(DataPlayer data) {
         this.data = data;
         this.imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                item_image_view= new ArrayList<>();
-                item_image= new ArrayList<Image>();
-                sale_buton = new ArrayList<>();
-                option_buton = new ArrayList<>();
+                if (tmp == true) {
+                    item_image_view = new ArrayList<>();
+                    item_image = new ArrayList<Image>();
+                    sale_buton = new ArrayList<>();
+                    option_buton = new ArrayList<>();
 
 //                // bắt sự kiện click
-                String file_name = "src/res/sounds2/house_click.mp3";
-                Media sound = new Media(new File(file_name).toURI().toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(sound);
-                mediaPlayer.play();
-                root_warehouse = new Group();
-                pane_warehouse = new Pane();
-                stage_warehouse = new Stage();
-                stage_warehouse.setTitle("Nhà Kho");
-                Image store_font = new Image(String.valueOf(
-                        classLoader.getResource("res/warehouse/deport.png")));
-                backgroud_warehouse.setImage(store_font);
-                pane_warehouse.getChildren().add(0,backgroud_warehouse);
-                root_warehouse.getChildren().add(pane_warehouse);
+                    String file_name = "src/res/sounds2/house_click.mp3";
+                    Media sound = new Media(new File(file_name).toURI().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                    mediaPlayer.play();
+                    root_warehouse = new Group();
+                    pane_warehouse = new Pane();
+                    stage_warehouse = new Stage();
+                    stage_warehouse.setTitle("Nhà Kho");
+                    Image store_font = new Image(String.valueOf(
+                            classLoader.getResource("res/warehouse/deport.png")));
+                    backgroud_warehouse.setImage(store_font);
+                    pane_warehouse.getChildren().add(0, backgroud_warehouse);
+                    root_warehouse.getChildren().add(pane_warehouse);
 
-                stage_warehouse.setScene(new Scene(root_warehouse,
-                        Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT));
-
-                stage_warehouse.show();
-                initViewItem();
+                    stage_warehouse.setScene(new Scene(root_warehouse,
+                            Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT));
+                    stage_warehouse.setMaxHeight(627);
+                    stage_warehouse.setMaxWidth(805);
+                    stage_warehouse.setResizable(false);
+                    stage_warehouse.show();
+                    initViewItem();
+                    setCloseStage(stage_warehouse);
+                }
+                tmp = false;
             }
         });
     }
 
-    private void initViewItem(){
+    private void initViewItem() {
         cur_money = new Text("" + data.getJoUser1().getJoMoney() + " $");
         cur_space = new Text("" + data.getJoUser1().getSpaceOut());
         cur_space.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 25));
@@ -194,16 +200,16 @@ public class WareHouse implements House {
                 null);
     }
 
-    void addImageView(String name, int count, String option){
+    void addImageView(String name, int count, String option) {
         final int[] cout_1 = {count};
         loadDataStore();
         item_image.add(new Image(item_prefix + name + ".png", 25, 25,
                 false, false));
         double tmp_x = item_x + 260 * (item_image_view.size() / 13);
-        double tmp_y = item_y + 31.5 *  (item_image_view.size() % 13);
+        double tmp_y = item_y + 31.5 * (item_image_view.size() % 13);
         ImageView tmp = new ImageView(item_image.get(item_image.size() - 1));
 
-        Text tmp_txt = new Text("x"+ count);
+        Text tmp_txt = new Text("x" + count);
         tmp_txt.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 15));
         tmp_txt.setFill(Color.WHEAT);
         tmp_txt.relocate(tmp_x + 31, tmp_y + 6);
@@ -211,14 +217,14 @@ public class WareHouse implements House {
 
         Button sale_tmp = new Button();
         sale_tmp.setText("sale");
-        sale_tmp.relocate(tmp_x + 130, tmp_y );
-        if(count <= 0) sale_tmp.setVisible(false);
+        sale_tmp.relocate(tmp_x + 130, tmp_y);
+        if (count <= 0) sale_tmp.setVisible(false);
 
         Button op_tmp = new Button();
-        if(option != null){
+        if (option != null) {
 
             op_tmp.setText(option);
-            op_tmp.relocate(tmp_x + 170, tmp_y );
+            op_tmp.relocate(tmp_x + 170, tmp_y);
             if (cout_1[0] == 0) op_tmp.setVisible(false);
             op_tmp.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -246,11 +252,11 @@ public class WareHouse implements House {
             @Override
             public void handle(MouseEvent e) {
                 cout_1[0] = saleItem(name);
-                if(cout_1[0] <= 0) {
+                if (cout_1[0] <= 0) {
                     sale_tmp.setVisible(false);
                     if (option != null) op_tmp.setVisible(false);
                 }
-                tmp_txt.setText("x"+ cout_1[0]);
+                tmp_txt.setText("x" + cout_1[0]);
                 cur_money.setText(data.getJoUser1().getJoMoney() + " $");
                 cur_space.setText("" + data.getJoUser1().getSpaceOut());
             }
@@ -262,6 +268,7 @@ public class WareHouse implements House {
         count_text.add(tmp_txt);
         sale_buton.add(sale_tmp);
     }
+
     private void loadDataStore() {
         FileReader fileReader = null;
         try {
@@ -272,7 +279,7 @@ public class WareHouse implements House {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         Gson gson = new Gson();
         JsonArray data = gson.fromJson(bufferedReader, JsonObject.class).getAsJsonArray("item");
-        for (JsonElement i: data) {
+        for (JsonElement i : data) {
             String tmp_name = i.getAsJsonObject().get("name").getAsString();
             int tmp_price = i.getAsJsonObject().get("price").getAsInt();
             int tmp_space = i.getAsJsonObject().get("space").getAsInt();
@@ -280,9 +287,10 @@ public class WareHouse implements House {
             item_space.put(tmp_name, tmp_space);
         }
     }
-    private int excuteObject(String name){
+
+    private int excuteObject(String name) {
         int result = 0;
-        if(data.getJoUser1().getSpaceOut() < item_space.get(name)){
+        if (data.getJoUser1().getSpaceOut() < item_space.get(name)) {
             ButtonType loginButtonType = new ButtonType("Hiểu", ButtonBar.ButtonData.OK_DONE);
             Dialog<String> dialog = new Dialog<>();
             dialog.setContentText("Nông trại của bạn không đủ chỗ hihi");
@@ -295,7 +303,7 @@ public class WareHouse implements House {
             data.getJoUser1().getJoWarehouse()
                     .setChicken(data.getJoUser1().getJoWarehouse().getChicken() - 1);
             data.getJoUser1().getJoChicken().setTotalNumber(data.getJoUser1()
-                    .getJoChicken().getTotalNumber()+1);
+                    .getJoChicken().getTotalNumber() + 1);
 
             result = data.getJoUser1().getJoWarehouse().getChicken();
         }
@@ -303,25 +311,25 @@ public class WareHouse implements House {
             data.getJoUser1().getJoWarehouse()
                     .setCow(data.getJoUser1().getJoWarehouse().getCow() - 1);
             data.getJoUser1().getJoCow().setTotalNumber(data.getJoUser1()
-                    .getJoCow().getTotalNumber()+1);
+                    .getJoCow().getTotalNumber() + 1);
             result = data.getJoUser1().getJoWarehouse().getCow();
         }
         if (name.equals("pig")) {
             data.getJoUser1().getJoWarehouse()
                     .setPig(data.getJoUser1().getJoWarehouse().getPig() - 1);
             data.getJoUser1().getJoPig().setTotalNumber(data.getJoUser1()
-                    .getJoPig().getTotalNumber()+1);
+                    .getJoPig().getTotalNumber() + 1);
             result = data.getJoUser1().getJoWarehouse().getPig();
         }
         if (name.equals("ostric")) {
             data.getJoUser1().getJoWarehouse()
                     .setOstric(data.getJoUser1().getJoWarehouse().getOstric() - 1);
             data.getJoUser1().getJoOstrich().setTotalNumber(data.getJoUser1()
-                    .getJoOstrich().getTotalNumber()+1);
+                    .getJoOstrich().getTotalNumber() + 1);
             result = data.getJoUser1().getJoWarehouse().getOstric();
         }
         if (name.equals("grass")) {
-            if(data.getJoUser1().getJoGrass().getTotalNumber()  >= 10){
+            if (data.getJoUser1().getJoGrass().getTotalNumber() >= 10) {
                 ButtonType loginButtonType = new ButtonType("Hiểu", ButtonBar.ButtonData.OK_DONE);
                 Dialog<String> dialog = new Dialog<>();
                 dialog.setContentText("Trồng nhiều cần là phạm pháp hihi");
@@ -333,7 +341,7 @@ public class WareHouse implements House {
             data.getJoUser1().getJoWarehouse()
                     .setGrass(data.getJoUser1().getJoWarehouse().getGrass() - 1);
             data.getJoUser1().getJoGrass().setTotalNumber(data.getJoUser1()
-                    .getJoGrass().getTotalNumber()+1);
+                    .getJoGrass().getTotalNumber() + 1);
             result = data.getJoUser1().getJoWarehouse().getGrass();
             return result;
         }
@@ -341,14 +349,14 @@ public class WareHouse implements House {
             data.getJoUser1().getJoWarehouse()
                     .setDog(data.getJoUser1().getJoWarehouse().getDog() - 1);
             data.getJoUser1().getJoDog().setTotalNumber(data.getJoUser1()
-                    .getJoDog().getTotalNumber()+1);
+                    .getJoDog().getTotalNumber() + 1);
             result = data.getJoUser1().getJoWarehouse().getDog();
         }
         if (name.equals("cat")) {
             data.getJoUser1().getJoWarehouse()
                     .setCat(data.getJoUser1().getJoWarehouse().getCat() - 1);
             data.getJoUser1().getJoCat().setTotalNumber(data.getJoUser1()
-                    .getJoCat().getTotalNumber()+1);
+                    .getJoCat().getTotalNumber() + 1);
             result = data.getJoUser1().getJoWarehouse().getCat();
         }
         data.getJoUser1().setJoSpace(
@@ -360,7 +368,7 @@ public class WareHouse implements House {
         return result;
     }
 
-    private int saleItem(String name){
+    private int saleItem(String name) {
         int result = -1;
         if (name.equals("chicken")) {
             data.getJoUser1().getJoWarehouse()
@@ -454,7 +462,16 @@ public class WareHouse implements House {
 
         return result;
     }
-//
+
+    void setCloseStage(Stage stage_store) {
+        stage_store.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                tmp = true;
+                System.out.println("Dafuq" + tmp);
+            }
+        });
+    }
 
 }
 
