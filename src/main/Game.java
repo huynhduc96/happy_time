@@ -7,6 +7,7 @@ import base.grassstyle.Can;
 import base.House.Store;
 import base.jsonObject.*;
 
+import com.sun.deploy.panel.ITreeNode;
 import base.pets.Cat;
 import base.pets.Dog;
 import base.pets.Panda;
@@ -37,10 +38,8 @@ import javafx.scene.text.Text;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
+import javax.management.openmbean.OpenMBeanConstructorInfo;
+import java.util.*;
 
 
 /**
@@ -82,9 +81,10 @@ public class Game extends Application implements Buff {
     private Text txt_medi_sep;
     private int isokGame;
     private int typeSent = 0;
+    private int page = 0;
+//    private HashMap<Can, ListGras>
 
     static Stage classStage = new Stage();
-    int page = 0;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -472,6 +472,7 @@ public class Game extends Application implements Buff {
         playLayer.getChildren().add(backgroud);
         playLayer.getChildren().add(backgroud_l);
         playLayer.getChildren().add(backgroud_r);
+        playLayer.getChildren().add(txt_help);
         playLayer.getChildren().add(img_select);
         playLayer.getChildren().add(img_food_nol);
         playLayer.getChildren().add(img_food_sep);
@@ -637,7 +638,7 @@ public class Game extends Application implements Buff {
             int x = (postion + 3) * 50;
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1, 1);
+                    x, y, 0, 0, 0, 0, 1, 1, 1, dataPlayer);
             //
             //            // manage sprite
 //            can.setOnDrag();
@@ -678,7 +679,7 @@ public class Game extends Application implements Buff {
             listGrass.add(gras);
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1, 1);
+                    x, y, 0, 0, 0, 0, 1, 1, 1,dataPlayer);
             //
             //            // manage sprite
             listCan.add(can);
@@ -837,18 +838,39 @@ public class Game extends Application implements Buff {
 
 
 
-    public void checkTiemDieCan(){
-        for (int i = 0;i < listCan.size();i++){
-            if(listCan.get(i).timeDieCan > 0){
+    public void checkTiemDieCan() {
+        for (int i = 0; i < listCan.size(); i++) {
+            ListGras tmp = dataPlayer.getJoUser1().getJoGrass().getListGrass().get(i);
+            if (listCan.get(i).timeDieCan > 0) {
                 listCan.get(i).timeDieCan--;
-            }else {
-                if(listCan.get(i).timeDieCan == 0) {
-                    dataPlayer.getJoUser1().getJoGrass().getListGrass().get(i).setStep(2);
-                    listCan.get(i).timeDieCan--;
-                    break;
-                }
+            } else if (listCan.get(i).timeDieCan == 0) {
+                tmp.setStep(2);
+                listCan.get(i).timeDieCan--;
+                dataPlayer.getJoUser1().getJoGrass().getListGrass().remove(tmp);
+                dataPlayer.getJoUser1().getJoGrass().setTotalNumber(
+                        dataPlayer.getJoUser1().getJoGrass().getTotalNumber() - 1
+                );
+                listCan.get(i).dieToBorn();
+                listCan.remove(i);
+                break;
             }
-        }
+
+
+    }
+//        Iterator itr = dataPlayer.getJoUser1().getJoGrass().
+//                getListGrass().iterator();
+//        while (itr.hasNext()) {
+//            Can elementCan = (Can) itr.next();
+//            if (elementCan.timeDieCan > 0) elementCan.timeDieCan--;
+//            else {
+//                if (elementCan.timeDieCan == 0) {
+//                    elementCan.remove();
+//                    elementCan.dieToBorn(elementCan);
+//                    break;
+//                }
+//            }
+
+//        }
     }
 
 

@@ -61,9 +61,10 @@ public abstract class Grass {
     ArrayList<String> nameImage = new ArrayList<>();
     ArrayList<Image> arrImage = new ArrayList<>();
     ClassLoader classLoader = this.getClass().getClassLoader();
-
+    DataPlayer data;
     public Grass(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr,
-                  double health, double sick, int step) {
+                 double health, double sick, int step, DataPlayer data) {
+        this.data = data;
         this.layer = layer;
         this.type = type;
         String typeGrass = null;
