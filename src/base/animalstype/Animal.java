@@ -250,28 +250,28 @@ public abstract class Animal {
         changeDirection();
     }
     public void changeDirection() {
-        if (Double.compare(getX(), 600) > 0) {
+        if (Double.compare(getX(), 525) > 0) {
             while (direction != 2 && direction != 4 && direction != 5) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getX(), 100) < 0) {
+        if (Double.compare(getX(), 120) < 0) {
             while (direction != 3 && direction != 6 && direction != 7) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getY(), 400) > 0) {
+        if (Double.compare(getY(), 375) > 0) {
             while (direction != 0 && direction != 4 && direction != 6) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getY(), 120) < 0) {
+        if (Double.compare(getY(), 140) < 0) {
             while (direction != 1 && direction != 5 && direction != 7) {
                 Random a = new Random();
                 direction = a.nextInt(7);

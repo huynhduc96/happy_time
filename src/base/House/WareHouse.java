@@ -127,7 +127,9 @@ public class WareHouse implements House {
 
                     stage_warehouse.setScene(new Scene(root_warehouse,
                             Settings.SCENE_WIDTH, Settings.SCENE_HEIGHT));
-
+                    stage_warehouse.setMaxHeight(627);
+                    stage_warehouse.setMaxWidth(805);
+                    stage_warehouse.setResizable(false);
                     stage_warehouse.show();
                     initViewItem();
                     setCloseStage(stage_warehouse);
