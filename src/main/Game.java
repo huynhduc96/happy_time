@@ -79,7 +79,6 @@ public class Game extends Application implements Buff {
     private Text txt_medi_sep;
     private int isokGame;
     private int typeSent = 0;
-    private int page = 0;
 
     static Stage classStage = new Stage();
     int page = 0;
@@ -287,24 +286,6 @@ public class Game extends Application implements Buff {
                 typeSent = 0;
             }
         });
-        img_BackMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Your class that extends Application
-                        try {
-                            new Welcome().start(new Stage());
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                playerData.saveJson(dataPlayer);
-                classStage.close();
-            }
-        });
     }
 
     void addText() {
@@ -424,7 +405,7 @@ public class Game extends Application implements Buff {
         Image image_back_left = new Image(String.valueOf(classLoader.getResource("res/back_left.png")));
         Image image_back_right = new Image(String.valueOf(classLoader.getResource("res/back_right.png")));
         Image image_sel = new Image(String.valueOf(classLoader.getResource("res/select.png")));
-        image_BackMenu = new Image(String.valueOf(classLoader.getResource("res/welcome/back.png")));
+        Image image_BackMenu = new Image(String.valueOf(classLoader.getResource("res/welcome/back.png")));
         image_food_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_normal.png")));
         image_food_sep = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/food_special.png")));
         image_med_nol = new Image(String.valueOf(classLoader.getResource("res/warehouse/item/medicine_normal.png")));
