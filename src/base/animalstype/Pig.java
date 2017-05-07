@@ -20,6 +20,7 @@ public class Pig extends Animal {
         this.timeDie = 4500;
         this.hasDied = 0;
         this.diedByStep = 0;
+        this.diedByHeight = 0;
     }
 
     @Override

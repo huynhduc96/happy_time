@@ -12,33 +12,27 @@ public class ListCow {
 
     @SerializedName("life")
     @Expose
-    private Integer life;
+    private double life;
     @SerializedName("sickness")
     @Expose
-    private Integer sickness;
+    private double sickness;
     @SerializedName("step")
     @Expose
     private Integer step;
 
-    public ListCow(Integer life, Integer sickness, Integer step) {
-        this.life = life;
-        this.sickness = sickness;
-        this.step = step;
-    }
-
-    public Integer getLife() {
+    public double getLife() {
         return life;
     }
 
-    public void setLife(Integer life) {
+    public void setLife(double life) {
         this.life = life;
     }
 
-    public Integer getSickness() {
+    public double getSickness() {
         return sickness;
     }
 
-    public void setSickness(Integer sickness) {
+    public void setSickness(double sickness) {
         this.sickness = sickness;
     }
 
@@ -50,4 +44,9 @@ public class ListCow {
         this.step = step;
     }
 
+    public ListCow(double life, double sickness, Integer step) {
+        this.life = life;
+        this.sickness = sickness;
+        this.step = step;
+    }
 }

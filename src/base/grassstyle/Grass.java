@@ -56,14 +56,16 @@ public abstract class Grass {
 
     double w;
     double h;
-
+    int locate;
     boolean canMove = true;
     ArrayList<String> nameImage = new ArrayList<>();
     ArrayList<Image> arrImage = new ArrayList<>();
     ClassLoader classLoader = this.getClass().getClassLoader();
     DataPlayer data;
-    public Grass(Pane layer, int type, double x, double y, double r, double dx, double dy, double dr,
-                 double health, double sick, int step, DataPlayer data) {
+    public Grass(Pane layer, int type, double x, double y, double r, double dx, double dy,
+                 double dr, double health, double sick, int step,
+                 DataPlayer data, int locate) {
+        this.locate = locate;
         this.data = data;
         this.layer = layer;
         this.type = type;
@@ -106,6 +108,10 @@ public abstract class Grass {
             typeGrass = "grass";
         }
         return typeGrass;
+    }
+
+    public int getLocate() {
+        return locate;
     }
 
     void getNameImage(String s) {
