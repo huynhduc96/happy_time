@@ -451,8 +451,8 @@ public class Game extends Application implements Buff {
         img_select.setFitHeight(200);
         img_select.setFitWidth(60);
         playLayer.getChildren().add(backgroud);
-        playLayer.getChildren().add(backgroud_l);
-        playLayer.getChildren().add(backgroud_r);
+        playLayer.getChildren().add(1,backgroud_l);
+        playLayer.getChildren().add(1, backgroud_r);
         playLayer.getChildren().add(img_help);
         playLayer.getChildren().add(txt_help);
         playLayer.getChildren().add(img_select);
@@ -486,7 +486,7 @@ public class Game extends Application implements Buff {
             int health = listChickens.get(i).getLife();
             int sick = listChickens.get(i).getSickness();
             Chicken chicken = new Chicken(playLayer, Settings.CHIKEN,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             chicken.setOnDrag();
             chicken.addBuffListener(this);
             listChicken.add(chicken);
@@ -501,7 +501,7 @@ public class Game extends Application implements Buff {
             ListChicken chickenOJ = new ListChicken(100, 0, 1);
             listChickens.add(chickenOJ);
             Chicken chicken = new Chicken(playLayer, Settings.CHIKEN,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             chicken.setOnDrag();
             chicken.addBuffListener(this);
             listChicken.add(chicken);
@@ -516,7 +516,7 @@ public class Game extends Application implements Buff {
             ListPig ob = new ListPig(100, 0, 1);
             list.add(ob);
             Pig animal = new Pig(playLayer, Settings.PIG,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             animal.setOnDrag();
             animal.addBuffListener(this);
             listPig.add(animal);
@@ -531,7 +531,7 @@ public class Game extends Application implements Buff {
             ListCow ob = new ListCow(100, 0, 1);
             list.add(ob);
             Cow animal = new Cow(playLayer, Settings.COW,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             animal.setOnDrag();
             animal.addBuffListener(this);
             listCow.add(animal);
@@ -546,7 +546,7 @@ public class Game extends Application implements Buff {
             ListOstrich ob = new ListOstrich(100, 0, 1);
             list.add(ob);
             Ostrich animal = new Ostrich(playLayer, Settings.OSTRICH,
-                    200, 200, 0, 0, 0, 0, 100, 0, 1);
+                    200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
             animal.setOnDrag();
             animal.addBuffListener(this);
             listOstrich.add(animal);
@@ -569,7 +569,7 @@ public class Game extends Application implements Buff {
             double health = listPigs.get(i).getLife();
             double sick = listPigs.get(i).getSickness();
             Pig pig = new Pig(playLayer, Settings.PIG,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             pig.setOnDrag();
             pig.addBuffListener(this);
             listPig.add(pig);
@@ -585,7 +585,7 @@ public class Game extends Application implements Buff {
             double health = listCows.get(i).getLife();
             double sick = listCows.get(i).getSickness();
             Cow cow = new Cow(playLayer, Settings.COW,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             cow.setOnDrag();
             cow.addBuffListener(this);
             listCow.add(cow);
@@ -599,7 +599,7 @@ public class Game extends Application implements Buff {
             double health = listOstrichs.get(i).getLife();
             double sick = listOstrichs.get(i).getSickness();
             Ostrich ostrich = new Ostrich(playLayer, Settings.OSTRICH,
-                    200, 200, 0, 0, 0, 0, health, sick, step);
+                    200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             ostrich.setOnDrag();
             ostrich.addBuffListener(this);
             listOstrich.add(ostrich);
