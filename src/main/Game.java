@@ -7,6 +7,9 @@ import base.grassstyle.Can;
 import base.House.Store;
 import base.jsonObject.*;
 
+import base.pets.Cat;
+import base.pets.Dog;
+import base.pets.Panda;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -131,7 +134,9 @@ public class Game extends Application implements Buff {
         addText();
 
         setOnclickItem();
-
+        Panda cac = new Panda(playLayer, Settings.PANDA, 200, 200, 0, 0, 0, 0,3, dataPlayer);
+        Dog cac1 = new Dog(playLayer, Settings.DOG, 200, 200, 0, 0, 0, 0,3, dataPlayer);
+//        Cat cac2 = new Cat(playLayer, Settings.CAT, 200, 200, 0, 0, 0, 0,3, dataPlayer);
 
         AnimationTimer gameLoop = new AnimationTimer() {
 
