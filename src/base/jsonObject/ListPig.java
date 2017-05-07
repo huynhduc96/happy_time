@@ -12,33 +12,27 @@ public class ListPig {
 
     @SerializedName("life")
     @Expose
-    private int life;
+    private double life;
     @SerializedName("sickness")
     @Expose
-    private int sickness;
+    private double sickness;
     @SerializedName("step")
     @Expose
     private int step;
 
-    public ListPig(int life, int sickness, int step) {
-        this.life = life;
-        this.sickness = sickness;
-        this.step = step;
-    }
-
-    public int getLife() {
+    public double getLife() {
         return life;
     }
 
-    public void setLife(int life) {
+    public void setLife(double life) {
         this.life = life;
     }
 
-    public int getSickness() {
+    public double getSickness() {
         return sickness;
     }
 
-    public void setSickness(int sickness) {
+    public void setSickness(double sickness) {
         this.sickness = sickness;
     }
 
@@ -47,6 +41,12 @@ public class ListPig {
     }
 
     public void setStep(int step) {
+        this.step = step;
+    }
+
+    public ListPig(double life, double sickness, int step) {
+        this.life = life;
+        this.sickness = sickness;
         this.step = step;
     }
 }

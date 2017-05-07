@@ -20,6 +20,7 @@ public class Cow extends Animal {
         this.timeDie = 5000;
         this.hasDied = 0;
         this.diedByStep = 0;
+        this.diedByHeight = 0;
     }
 
     @Override

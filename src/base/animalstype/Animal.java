@@ -86,6 +86,16 @@ public abstract class Animal {
     }
 
     public int diedByStep;
+
+    public int getDiedByHeight() {
+        return diedByHeight;
+    }
+
+    public void setDiedByHeight(int diedByHeight) {
+        this.diedByHeight = diedByHeight;
+    }
+
+    public int diedByHeight;
     public Animation animation;
     boolean canMove = true;
     public Buff buff;
@@ -501,6 +511,11 @@ public abstract class Animal {
      */
     public void remove() {
         setRemovable(true);
+        if(type == 3 && step == 3){
+            Product tmp = new Product(layer, typeProduct, x, y);
+            prods.add(tmp);
+            tmp.setOnClick(data, prods);
+        }
     }
 
     /**
@@ -662,7 +677,7 @@ public abstract class Animal {
             @Override
             public void handle(MouseEvent event) {
                 getSound("voice");
-                info = "Không đói :" + health + "\n" + "Ốm :" + sick +
+                info = "Không đói :" + (int)health + "\n" + "Ốm :" + sick*100/timeDie +
                         "\nVòng đời:" + step;
                 t.setText(info);
                 t.setVisible(true);

@@ -10,14 +10,13 @@ public class ListDog {
 
     @SerializedName("life")
     @Expose
-    private Integer life;
+    private double life;
 
-    public Integer getLife() {
+    public double getLife() {
         return life;
     }
 
-    public void setLife(Integer life) {
+    public void setLife(double life) {
         this.life = life;
     }
-
 }

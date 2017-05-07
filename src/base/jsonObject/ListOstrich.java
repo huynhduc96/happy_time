@@ -10,33 +10,33 @@ public class ListOstrich {
 
     @SerializedName("life")
     @Expose
-    private Integer life;
+    private Double life;
     @SerializedName("sickness")
     @Expose
-    private Integer sickness;
+    private Double sickness;
     @SerializedName("step")
     @Expose
     private Integer step;
 
-    public ListOstrich(Integer life, Integer sickness, Integer step) {
+    public ListOstrich(Double life, Double sickness, Integer step) {
         this.life = life;
         this.sickness = sickness;
         this.step = step;
     }
 
-    public Integer getLife() {
+    public Double getLife() {
         return life;
     }
 
-    public void setLife(Integer life) {
+    public void setLife(Double life) {
         this.life = life;
     }
 
-    public Integer getSickness() {
+    public Double getSickness() {
         return sickness;
     }
 
-    public void setSickness(Integer sickness) {
+    public void setSickness(Double sickness) {
         this.sickness = sickness;
     }
 

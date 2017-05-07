@@ -180,6 +180,9 @@ public class Game extends Application implements Buff {
                 checkOstrichDie();
                 checkPigDie();
 
+
+                checkDiedByHealth();
+
                 checkDiedbyStep();
                 removeChickendied();
                 removeCowdied();
@@ -502,8 +505,8 @@ public class Game extends Application implements Buff {
         List<ListChicken> listChickens = dataPlayer.getJoUser1().getJoChicken().getListChicken();
         for (int i = 0; i < listChickens.size(); i++) {
             int step = listChickens.get(i).getStep();
-            int health = listChickens.get(i).getLife();
-            int sick = listChickens.get(i).getSickness();
+            double health = listChickens.get(i).getLife();
+            double sick = listChickens.get(i).getSickness();
             Chicken chicken = new Chicken(playLayer, Settings.CHIKEN,
                     200, 200, 0, 0, 0, 0, health, sick, step, dataPlayer);
             chicken.setOnDrag();
@@ -562,7 +565,7 @@ public class Game extends Application implements Buff {
 
         List<ListOstrich> list = dataPlayer.getJoUser1().getJoOstrich().getListOstrich();
         for (int i = list.size(); i < dataPlayer.getJoUser1().getJoOstrich().getTotalNumber(); i++) {
-            ListOstrich ob = new ListOstrich(100, 0, 1);
+            ListOstrich ob = new ListOstrich(100.0, 0.0, 1);
             list.add(ob);
             Ostrich animal = new Ostrich(playLayer, Settings.OSTRICH,
                     200, 200, 0, 0, 0, 0, 100, 0, 1, dataPlayer);
@@ -638,15 +641,12 @@ public class Game extends Application implements Buff {
             int x = (postion + 3) * 50;
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1, 1, dataPlayer);
+                    x, y, 0, 0, 0, 0, 1,
+                    1, 1, dataPlayer, postion);
             //
             //            // manage sprite
 //            can.setOnDrag();
             listCan.add(can);
-
-            //            dataPlayer.getJoUser1().getJoGrass().setTotalNumber(String.valueOf(Integer.parseInt(dataPlayer.getJoUser1().getJoGrass().getTotalNumber())+1));
-            //            ListGras listGras = new ListGras(i, "1");
-            //            dataPlayer.getJoUser1().getJoGrass().getListGrass().add(listGras);
 
         }
     }
@@ -679,7 +679,7 @@ public class Game extends Application implements Buff {
             listGrass.add(gras);
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1, 1,dataPlayer);
+                    x, y, 0, 0, 0, 0, 1, 1, 1,dataPlayer, tmp);
             //
             //            // manage sprite
             listCan.add(can);
@@ -712,11 +712,7 @@ public class Game extends Application implements Buff {
             } else {
             //    listChicken.get(i).setDeath(1);
                 listChicken.get(i).setHealth(0);
-//                listChicken.get(i).hasDied = true;
-                // dataPlayer.getJoUser1().getJoChicken().getListChicken().remove(i);
-                // listChicken.get(i).remove();
-                // dataPlayer.getJoUser1().getJoChicken().setTotalNumber(dataPlayer.getJoUser1().getJoChicken().getTotalNumber() - 1);
-
+//
 //                listChicken.get(i).canMove = false;
                 break;
 
@@ -813,6 +809,7 @@ public class Game extends Application implements Buff {
                 listOstrich.get(i).remove();
                 dataPlayer.getJoUser1().setSpaceOut(
                         dataPlayer.getJoUser1().getSpaceOut()+12);
+                dataPlayer.getJoUser1().getJoOstrich().getListOstrich().remove(i);
                 dataPlayer.getJoUser1().getJoOstrich().setTotalNumber(
                       dataPlayer.getJoUser1().getJoOstrich().getTotalNumber()-1);
             } else{
@@ -828,8 +825,10 @@ public class Game extends Application implements Buff {
                 listPig.get(i).remove();
                 dataPlayer.getJoUser1().setSpaceOut(
                         dataPlayer.getJoUser1().getSpaceOut()+13);
+                dataPlayer.getJoUser1().getJoPig().getListPig().remove(i);
                 dataPlayer.getJoUser1().getJoPig().setTotalNumber(
                      dataPlayer.getJoUser1().getJoPig().getTotalNumber()-1);
+
             } else{
                 listPig.get(i).hasDied++;
             }
@@ -851,6 +850,7 @@ public class Game extends Application implements Buff {
                         dataPlayer.getJoUser1().getJoGrass().getTotalNumber() - 1
                 );
                 listCan.get(i).dieToBorn();
+                location[listCan.get(i).getLocate()] = 0;
                 listCan.remove(i);
                 break;
             }
@@ -876,21 +876,111 @@ public class Game extends Application implements Buff {
 
     public void checkDiedbyStep() {
         for (int i = 0 ;i < listChicken.size(); i++) {
-            if  (listChicken.get(i).getDiedByStep() < 10000)
-                listChicken.get(i).setDiedByStep(listChicken.get(i).getDiedByStep()+1);
+            if  (listChicken.get(i).getDiedByStep() < 10000) {
+                listChicken.get(i).setDiedByStep(listChicken.get(i).getDiedByStep() + 1);
+                if (listChicken.get(i).getDiedByStep() == 5000)
+                dataPlayer.getJoUser1().getJoChicken().getListChicken().get(i).setStep(2);
+                else if (listChicken.get(i).getDiedByStep() == 9000)
+                    dataPlayer.getJoUser1().getJoChicken().getListChicken().get(i).setStep(3);
+
+            }
         }
         for (int i = 0 ;i < listOstrich.size(); i++) {
-            if  (listOstrich.get(i).getDiedByStep() < 13000)
-                listOstrich.get(i).setDiedByStep(listOstrich.get(i).getDiedByStep()+1);
+            if  (listOstrich.get(i).getDiedByStep() < 13000) {
+                listOstrich.get(i).setDiedByStep(listOstrich.get(i).getDiedByStep() + 1);
+                if (listOstrich.get(i).getDiedByStep() == 6500)
+                    dataPlayer.getJoUser1().getJoOstrich().getListOstrich().get(i).setStep(2);
+                else if (listOstrich.get(i).getDiedByStep() == 12500)
+                    dataPlayer.getJoUser1().getJoOstrich().getListOstrich().get(i).setStep(3);
+            }
         }
         for (int i = 0 ;i < listPig.size(); i++) {
-            if  (listPig.get(i).getDiedByStep() < 14000)
-                listPig.get(i).setDiedByStep(listPig.get(i).getDiedByStep()+1);
+            if  (listPig.get(i).getDiedByStep() < 14000) {
+                listPig.get(i).setDiedByStep(listPig.get(i).getDiedByStep() + 1);
+                if (listPig.get(i).getDiedByStep() == 7000)
+                    dataPlayer.getJoUser1().getJoPig().getListPig().get(i).setStep(2);
+                else if (listPig.get(i).getDiedByStep() == 13000)
+                    dataPlayer.getJoUser1().getJoPig().getListPig().get(i).setStep(3);
+            }
         }
 
         for (int i = 0 ;i < listCow.size(); i++) {
-            if  (listCow.get(i).getDiedByStep() < 15000)
-                listCow.get(i).setDiedByStep(listCow.get(i).getDiedByStep()+1);
+            if (listCow.get(i).getDiedByStep() < 15000) {
+                listCow.get(i).setDiedByStep(listCow.get(i).getDiedByStep() + 1);
+
+
+                if (listCow.get(i).getDiedByStep() == 7500)
+                    dataPlayer.getJoUser1().getJoCow().getListCow().get(i).setStep(2);
+                else if (listCow.get(i).getDiedByStep() == 14500)
+                    dataPlayer.getJoUser1().getJoCow().getListCow().get(i).setStep(3);
+            }
         }
+    }
+
+    public void checkDiedByHealth() {
+        for (int i = 0; i < listChicken.size(); i++) {
+            if (listChicken.get(i).getDiedByHeight() > 0) {
+//                listChicken.get(i).setDiedByHeight(listChicken.get(i).getDiedByHeight()+1);
+                listChicken.get(i).setHealth(listChicken.get(i).getHealth()-0.1);
+                dataPlayer.getJoUser1().getJoChicken().getListChicken().get(i).setLife(
+                        dataPlayer.getJoUser1().getJoChicken().getListChicken().get(i).getLife()-0.1);
+            }
+            else {
+                listChicken.get(i).remove();
+                dataPlayer.getJoUser1().setSpaceOut(
+                        dataPlayer.getJoUser1().getSpaceOut()+10);
+                dataPlayer.getJoUser1().getJoChicken().getListChicken().remove(i);
+                dataPlayer.getJoUser1().getJoChicken().setTotalNumber(dataPlayer.getJoUser1().getJoChicken().getTotalNumber()-1);
+            }
+        }
+
+        for (int i = 0; i < listCow.size(); i++) {
+            if (listCow.get(i).getHealth() > 0) {
+                listCow.get(i).setDiedByHeight(listCow.get(i).getDiedByHeight()+1);
+                listCow.get(i).setHealth(listCow.get(i).getHealth()-0.05);
+                dataPlayer.getJoUser1().getJoCow().getListCow().get(i).setLife(
+                        dataPlayer.getJoUser1().getJoCow().getListCow().get(i).getLife()-0.05);
+            }
+            else {
+                listCow.get(i).remove();
+                dataPlayer.getJoUser1().setSpaceOut(
+                        dataPlayer.getJoUser1().getSpaceOut()+15);
+                dataPlayer.getJoUser1().getJoCow().getListCow().remove(i);
+                dataPlayer.getJoUser1().getJoCow().setTotalNumber(dataPlayer.getJoUser1().getJoCow().getTotalNumber()-1);
+            }
+        }
+
+        for (int i = 0; i < listPig.size(); i++) {
+            if (listPig.get(i).getDiedByHeight() > 0) {
+//                listPig.get(i).setDiedByHeight(listPig.get(i).getDiedByHeight()+1);
+                listPig.get(i).setHealth(listPig.get(i).getHealth()-0.04);
+                dataPlayer.getJoUser1().getJoPig().getListPig().get(i).setLife(
+                        dataPlayer.getJoUser1().getJoPig().getListPig().get(i).getLife()-0.04);
+            }
+            else {
+                listPig.get(i).remove();
+                dataPlayer.getJoUser1().setSpaceOut(
+                        dataPlayer.getJoUser1().getSpaceOut()+13);
+                dataPlayer.getJoUser1().getJoPig().getListPig().remove(i);
+                dataPlayer.getJoUser1().getJoPig().setTotalNumber(dataPlayer.getJoUser1().getJoPig().getTotalNumber()-1);
+            }
+        }
+
+        for (int i = 0; i < listOstrich.size(); i++) {
+            if (listOstrich.get(i).getHealth() > 0) {
+//                listOstrich.get(i).setDiedByHeight(listOstrich.get(i).getDiedByHeight()+1);
+                listCow.get(i).setHealth(listCow.get(i).getHealth()-0.07);
+                dataPlayer.getJoUser1().getJoOstrich().getListOstrich().get(i).setLife(
+                        dataPlayer.getJoUser1().getJoOstrich().getListOstrich().get(i).getLife()-0.07);
+            }
+            else {
+                listOstrich.get(i).remove();
+                dataPlayer.getJoUser1().setSpaceOut(
+                        dataPlayer.getJoUser1().getSpaceOut()+12);
+                dataPlayer.getJoUser1().getJoOstrich().getListOstrich().remove(i);
+                dataPlayer.getJoUser1().getJoOstrich().setTotalNumber(dataPlayer.getJoUser1().getJoOstrich().getTotalNumber()-1);
+            }
+        }
+
     }
 }
