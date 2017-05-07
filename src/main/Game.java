@@ -53,6 +53,9 @@ public class Game extends Application implements Buff {
     List<Cow> listCow = new ArrayList<>();
     List<Ostrich> listOstrich = new ArrayList<>();
     List<Can> listCan = new ArrayList<>();
+    List<Panda> listPan = new ArrayList<>();
+    List<Dog> listDog = new ArrayList<>();
+    List<Cat> listCat = new ArrayList<>();
     //get location to load url image
     ClassLoader classLoader = this.getClass().getClassLoader();
     Player playerData = new Player();
@@ -151,6 +154,9 @@ public class Game extends Application implements Buff {
                 listCow.forEach(sprite -> sprite.move());
                 listPig.forEach(sprite -> sprite.move());
                 listOstrich.forEach(sprite -> sprite.move());
+                listPan.forEach(sprite->sprite.move());
+                listDog.forEach(sprite->sprite.move());
+                listCat.forEach(sprite->sprite.move());
 //                listChicken.forEach(sprite -> sprite.delayTimeForHealth());
 
                 listChicken.forEach(sprite -> sprite.updateUI());
@@ -158,12 +164,17 @@ public class Game extends Application implements Buff {
                 listCow.forEach(sprite -> sprite.updateUI());
                 listOstrich.forEach(sprite -> sprite.updateUI());
                 listCan.forEach(sprite -> sprite.updateUI());
+                listPan.forEach(sprite -> sprite.updateUI());
+                listDog.forEach(sprite -> sprite.updateUI());
+                listCat.forEach(sprite -> sprite.updateUI());
 
                 // check if sprite can be removed
                 listChicken.forEach(sprite -> sprite.checkRemovability());
                 listPig.forEach(sprite -> sprite.checkRemovability());
                 listCow.forEach(sprite -> sprite.checkRemovability());
                 listOstrich.forEach(sprite -> sprite.checkRemovability());
+
+
 
 
                 removeSprites(listChicken);
@@ -306,7 +317,6 @@ public class Game extends Application implements Buff {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        // Your class that extends Application
                         try {
                             new Welcome().start(new Stage());
                         } catch (Exception e) {
@@ -375,6 +385,9 @@ public class Game extends Application implements Buff {
         updateListCow();
         updateListOstrich();
         updateListPig();
+        updatePanda();
+        updateDog();
+        updateCat();
     }
 
     void updateBuff() {
@@ -535,6 +548,38 @@ public class Game extends Application implements Buff {
         }
         dataPlayer.getJoUser1().getJoChicken().setTotalNumber(dataPlayer.getJoUser1().getJoChicken().getListChicken().size());
     }
+
+    void updatePanda() {
+
+        int curent = listPan.size();
+        for (int i = curent; i < dataPlayer.getJoUser1().getJoPanda().getTotalNumber(); i++) {
+
+            Panda pets = new Panda(playLayer, Settings.PANDA,
+                    200, 200, 0, 0, 0, 0, 100, dataPlayer);
+            listPan.add(pets);
+        }
+    }
+    void updateDog() {
+
+        int curent = listDog.size();
+        for (int i = curent; i < dataPlayer.getJoUser1().getJoDog().getTotalNumber(); i++) {
+
+            Dog pets = new Dog(playLayer, Settings.DOG,
+                    200, 200, 0, 0, 0, 0, 100, dataPlayer);
+            listDog.add(pets);
+        }
+    }
+    void updateCat() {
+
+        int curent = listCat.size();
+        for (int i = curent; i < dataPlayer.getJoUser1().getJoDog().getTotalNumber(); i++) {
+
+            Cat pets = new Cat(playLayer, Settings.CAT,
+                    200, 200, 0, 0, 0, 0, 100, dataPlayer);
+            listCat.add(pets);
+        }
+    }
+
 
     void updateListPig() {
 

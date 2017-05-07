@@ -243,28 +243,28 @@ public abstract class Pet {
 
 
     public void changeDirection() {
-        if (Double.compare(getX(), 525) > 0) {
+        if (Double.compare(getX(), 650) > 0) {
             while (direction != 2 && direction != 4 && direction != 5) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getX(), 120) < 0) {
+        if (Double.compare(getX(), 30) < 0) {
             while (direction != 3 && direction != 6 && direction != 7) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getY(), 375) > 0) {
+        if (Double.compare(getY(), 450) > 0) {
             while (direction != 0 && direction != 4 && direction != 6) {
                 Random a = new Random();
                 direction = a.nextInt(7);
             }
         }
 
-        if (Double.compare(getY(), 140) < 0) {
+        if (Double.compare(getY(), 30) < 0) {
             while (direction != 1 && direction != 5 && direction != 7) {
                 Random a = new Random();
                 direction = a.nextInt(7);

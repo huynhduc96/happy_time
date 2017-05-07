@@ -34,6 +34,9 @@ public class JoUser1 {
     @SerializedName("jo_pig")
     @Expose
     private JoPig joPig;
+    @SerializedName("jo_panda")
+    @Expose
+    private JoPanda joPanda;
     @SerializedName("jo_ostrich")
     @Expose
     private JoOstrich joOstrich;
@@ -46,6 +49,14 @@ public class JoUser1 {
     @SerializedName("space_out")
     @Expose
     private Integer spaceOut;
+
+    public JoPanda getJoPanda() {
+        return joPanda;
+    }
+
+    public void setJoPanda(JoPanda joPanda) {
+        this.joPanda = joPanda;
+    }
 
     public String getJoUserName() {
         return joUserName;

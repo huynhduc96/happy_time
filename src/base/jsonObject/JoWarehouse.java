@@ -42,6 +42,9 @@ public class JoWarehouse {
     @SerializedName("chicken")
     @Expose
     private Integer chicken;
+    @SerializedName("panda")
+    @Expose
+    private Integer panda;
     @SerializedName("cow")
     @Expose
     private Integer cow;
@@ -57,6 +60,14 @@ public class JoWarehouse {
     @SerializedName("feather")
     @Expose
     private Integer feather;
+
+    public Integer getPanda() {
+        return panda;
+    }
+
+    public void setPanda(Integer panda) {
+        this.panda = panda;
+    }
 
     public Integer getFeather() {
         return feather;
