@@ -89,7 +89,7 @@ public class WareHouse implements House {
         this.w = imageWarehouse.getWidth(); // imageView.getBoundsInParent().getWidth();
         this.h = imageWarehouse.getHeight(); // imageView.getBoundsInParent().getHeight();
 
-        this.layer.getChildren().add(this.imageView);
+        this.layer.getChildren().add( this.imageView);
 
     }
 
