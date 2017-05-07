@@ -732,7 +732,7 @@ public class Game extends Application implements Buff {
             listGrass.add(gras);
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1, 1, dataPlayer);
+                    x, y, 0, 0, 0, 0, 1, 1, 1, dataPlayer,tmp);
             //
             //            // manage sprite
             listCan.add(can);
@@ -860,7 +860,6 @@ public class Game extends Application implements Buff {
                 listOstrich.get(i).remove();
                 dataPlayer.getJoUser1().setSpaceOut(
                         dataPlayer.getJoUser1().getSpaceOut() + 12);
-                        dataPlayer.getJoUser1().getSpaceOut()+12);
                 dataPlayer.getJoUser1().getJoOstrich().getListOstrich().remove(i);
                 dataPlayer.getJoUser1().getJoOstrich().setTotalNumber(
                       dataPlayer.getJoUser1().getJoOstrich().getTotalNumber()-1);
