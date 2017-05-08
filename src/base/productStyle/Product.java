@@ -101,7 +101,6 @@ public class Product {
         layer.getChildren().remove(imageView);
         System.out.println(layer.getChildren().size());
 //        imageView.setVisible(false);
-        System.out.println("địt địt địt địt");
 
         upToWarehouse(data, name);
     }

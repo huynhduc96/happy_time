@@ -698,8 +698,7 @@ public class Game extends Application implements Buff {
             int x = (postion + 3) * 50;
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1,
-                    1, 1, dataPlayer, postion);
+                    x, y, 0,  dataPlayer, postion);
             //
             //            // manage sprite
 //            can.setOnDrag();
@@ -736,7 +735,7 @@ public class Game extends Application implements Buff {
             listGrass.add(gras);
 
             Can can = new Can(playLayer, Settings.CAN,
-                    x, y, 0, 0, 0, 0, 1, 1, 1, dataPlayer,tmp);
+                    x, y, 0, dataPlayer,tmp);
             //
             //            // manage sprite
             listCan.add(can);
@@ -803,9 +802,7 @@ public class Game extends Application implements Buff {
                 listPig.get(i).setSick(listPig.get(i).getSick() + 1);
 
             } else {
-//                listPig.get(i).hasDied = true;
-//                listPig.get(i).setHealth(0);
-//                listPig.get(i).setDeath(1);
+
             }
         }
     }
@@ -817,9 +814,7 @@ public class Game extends Application implements Buff {
 
             }
             else {
-//                listOstrich.get(i).hasDied = true;
-//                listOstrich.get(i).setHealth(0);
-//                listOstrich.get(i).setDeath(1);
+
             }
         }
     }
@@ -925,34 +920,20 @@ public class Game extends Application implements Buff {
                 break;
             }
 
-
+        }
     }
-//        Iterator itr = dataPlayer.getJoUser1().getJoGrass().
-//                getListGrass().iterator();
-//        while (itr.hasNext()) {
-//            Can elementCan = (Can) itr.next();
-//            if (elementCan.timeDieCan > 0) elementCan.timeDieCan--;
-//            else {
-//                if (elementCan.timeDieCan == 0) {
-//                    elementCan.remove();
-//                    elementCan.dieToBorn(elementCan);
-//                    break;
-//                }
-//            }
 
-//        }
-    }
 
 
     public void checkDiedbyStep() {
         for (int i = 0 ;i < listChicken.size(); i++) {
             if  (listChicken.get(i).getDiedByStep() < 10000) {
                 listChicken.get(i).setDiedByStep(listChicken.get(i).getDiedByStep() + 1);
-                if (listChicken.get(i).getDiedByStep() >= 5000) {
+                if (listChicken.get(i).getDiedByStep() >= 500) {
                     listChicken.get(i).setStep(2);
                     dataPlayer.getJoUser1().getJoChicken().getListChicken().get(i).setStep(2);
                 }
-                else if (listChicken.get(i).getDiedByStep() >= 9000) {
+                if (listChicken.get(i).getDiedByStep() >= 900) {
                     listChicken.get(i).setStep(3);
                     dataPlayer.getJoUser1().getJoChicken().getListChicken().get(i).setStep(3);
                 }
@@ -965,21 +946,21 @@ public class Game extends Application implements Buff {
                     listOstrich.get(i).setStep(2);
                     dataPlayer.getJoUser1().getJoOstrich().getListOstrich().get(i).setStep(2);
                 }
-                else if (listOstrich.get(i).getDiedByStep() == 12500) {
+                if (listOstrich.get(i).getDiedByStep() == 12500) {
                     listOstrich.get(i).setStep(3);
                     dataPlayer.getJoUser1().getJoOstrich().getListOstrich().get(i).setStep(3);
                 }
                 }
         }
         for (int i = 0 ;i < listPig.size(); i++) {
-            if  (listPig.get(i).getDiedByStep() < 1002 && listPig.size() > 0) {
-                System.out.println("aaa" + listPig.get(i).getDiedByStep());
+            if  (listPig.get(i).getDiedByStep() < 4100 ) {
+      //          System.out.println("aaa" + listPig.get(i).getDiedByStep());
                 listPig.get(i).setDiedByStep(listPig.get(i).getDiedByStep() + 1);
-                if (listPig.get(i).getDiedByStep() >= 500 && listPig.size() > 0){
+                if (listPig.get(i).getDiedByStep() >= 2000){
                     dataPlayer.getJoUser1().getJoPig().getListPig().get(i).setStep(2);
                     listPig.get(i).setStep(2);
                 }
-                else if (listPig.get(i).getDiedByStep() == 1000 && listPig.size() > 0) {
+                if (listPig.get(i).getDiedByStep() >= 4000 ) {
                     dataPlayer.getJoUser1().getJoPig().getListPig().get(i).setStep(3);
                     listPig.get(i).setStep(3);
 
@@ -993,11 +974,11 @@ public class Game extends Application implements Buff {
                 listCow.get(i).setDiedByStep(listCow.get(i).getDiedByStep() + 1);
 
 
-                if (listCow.get(i).getDiedByStep() == 750) {
+                if (listCow.get(i).getDiedByStep() >= 750) {
                     dataPlayer.getJoUser1().getJoCow().getListCow().get(i).setStep(2);
                     listCow.get(i).setStep(2);
                 }
-                else if (listCow.get(i).getDiedByStep() == 1450) {
+                if (listCow.get(i).getDiedByStep() >= 1450) {
                     listCow.get(i).setStep(2);
                     dataPlayer.getJoUser1().getJoCow().getListCow().get(i).setStep(3);
                 }

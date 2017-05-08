@@ -2,9 +2,7 @@
   "jo_user1": {
     "jo_user_name": "",
     "jo_warehouse": {
-      "grass_product": 10,
-      "feather": 10,
-      "grass": 0,
+      "grass": 2,
       "egg": 0,
       "meat": 0,
       "milk": 0,
@@ -14,61 +12,47 @@
       "food_special": 0,
       "dog": 0,
       "cat": 0,
-      "chicken": 0,
+      "chicken": 1,
+      "panda": 0,
       "cow": 0,
       "ostric": 0,
-      "pig": 0
+      "pig": 0,
+      "grass_product": 0,
+      "feather": 0
     },
     "jo_dog": {
       "total_number": 0,
-      "list_dog": [
-      ]
+      "list_dog": []
     },
     "jo_cat": {
       "total_number": 0,
-      "list_cat": [
-      ]
+      "list_cat": []
     },
     "jo_grass": {
-      "total_number": 2,
-      "list_grass": [
-        {
-          "position": 0,
-          "step": 1
-        },
-        {
-          "position": 1,
-          "step": 2
-        }
-      ]
+      "total_number": 0,
+      "list_grass": []
     },
     "jo_chicken": {
-      "total_number": 1,
-      "list_chicken": [
-        {
-          "life": 100,
-          "sickness": 0,
-          "step": 1
-        }
-      ]
+      "total_number": 0,
+      "list_chicken": []
     },
     "jo_cow": {
       "total_number": 0,
-      "list_cow": [
-      ]
+      "list_cow": []
     },
     "jo_pig": {
       "total_number": 0,
-      "list_pig": [
-      ]
+      "list_pig": []
+    },
+    "jo_panda": {
+      "total_number": 0
     },
     "jo_ostrich": {
       "total_number": 0,
-      "list_ostrich": [
-      ]
+      "list_ostrich": []
     },
-    "jo_money": 200,
-    "jo_space": 55,
-    "space_out": 20
+    "jo_money": 68480,
+    "jo_space": 9499,
+    "space_out": 978
   }
 }

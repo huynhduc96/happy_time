@@ -28,36 +28,33 @@ import java.io.File;
  * Created by Thanh Chinh on 21-Apr-17.
  */
 public class Store implements House {
-    // --------------------------------------------------------------------------------
-    /* Class nay phai viet lai toan bo day nhe */
+
     private ImageView backgroud_store = new ImageView();
-    DataPlayer dataPlayer;
-    ImageView imageView;
-    Image imageStore;
-    Pane layer;
-    boolean showStore = true;
-    boolean tmp = true;
-    double x;
-    double y;
-    int type;
-
-    double w;
-    double h;
-    boolean canMove = false;
-    Image imageStore_1;
-    Image imageStore_2;
-
-    Image imgSyringe_1;
-    Image imgSyringe_2;
-
-    ImageView imageView_1 = new ImageView();
-    ImageView imageView_2 = new ImageView();
-
-    ImageView imgViewSyringe_1 = new ImageView();
-    ImageView imgViewSyringe_2 = new ImageView();
+    private DataPlayer dataPlayer;
+    private ImageView imageView;
+    private Image imageStore;
+    private Pane layer;
+    private boolean tmp = true;
+    double x, y;
 
 
-    ClassLoader classLoader = this.getClass().getClassLoader();
+    private double w;
+    private double h;
+
+    private Image imageStore_1;
+    private Image imageStore_2;
+
+    private Image imgSyringe_1;
+    private Image imgSyringe_2;
+
+    private ImageView imageView_1 = new ImageView();
+    private ImageView imageView_2 = new ImageView();
+
+    private ImageView imgViewSyringe_1 = new ImageView();
+    private ImageView imgViewSyringe_2 = new ImageView();
+
+
+    private ClassLoader classLoader = this.getClass().getClassLoader();
 
     private Group root_store;
     private Pane pane_store;
@@ -87,7 +84,7 @@ public class Store implements House {
         this.layer.getChildren().add(imgViewSyringe_2);
     }
 
-    void initView() {
+    private void initView() {
         imageStore = new Image(String.valueOf(classLoader.getResource("res/03.dds.png")));
         imageStore_1 = new Image(String.valueOf(classLoader.getResource("res/products/flour/normal.dds.png")));
         imageStore_2 = new Image(String.valueOf(classLoader.getResource("res/products/sourCream/normal.dds.png")));
@@ -111,31 +108,6 @@ public class Store implements House {
         imgViewSyringe_2.relocate(340, 100);
         imgViewSyringe_2.setVisible(false);
     }
-
-    void setShowViewStore(boolean isVisible) {
-        if (!isVisible) {
-            this.imageView.setVisible(false);
-            this.imageView_2.setVisible(false);
-            this.imageView_1.setVisible(false);
-        } else {
-            this.imageView.setVisible(true);
-            this.imageView_2.setVisible(true);
-            this.imageView_1.setVisible(true);
-        }
-    }
-
-    void setShowItem(boolean isVisible) {
-        if (isVisible) {
-            this.imgViewSyringe_1.setVisible(false);
-            this.imgViewSyringe_2.setVisible(false);
-        } else {
-            this.imgViewSyringe_1.setVisible(true);
-            this.imgViewSyringe_2.setVisible(true);
-
-        }
-
-    }
-
 
     @Override
     public void setOnclick(DataPlayer data) {
@@ -177,7 +149,7 @@ public class Store implements House {
     }
 
 
-    void setCloseStage(Stage stage_store) {
+    private void setCloseStage(Stage stage_store) {
         stage_store.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
