@@ -34,31 +34,31 @@ import java.io.File;
  */
 public abstract class Animal {
     private String info;
-    ImageView imageView;
+    protected  ImageView imageView;
     final int time = 200;
 
     // check time for animal state
     Timer _t;
     int _count = time;
 
-    Pane layer;
-    double x;
-    double y;
-    double r;
-    int type;
-    int direction;
+    protected Pane layer;
+    protected double x;
+    protected double y;
+    protected double r;
+    private int type;
+    private int direction;
     Text t;
     //CHICKEN =1
     //COW =2
     //PIG =3
     private String typeProduct;
-    double dx;
-    double dy;
-    double dr;
+    private double dx;
+    private double dy;
+    private double dr;
     private long count = 0;
-    double health;
-    double sick;
-    int step;
+    private double health;
+    private double sick;
+    private int step;
     private static final int span = 1000;
 
     boolean removable = false;
@@ -298,7 +298,6 @@ public abstract class Animal {
         if (sick < timeDie && health > 0 && step < 3) {
             changespeed(Settings.ANIMAL_SPEED);
         } else {
-            System.out.println("dcmmmmmm");
             changespeed(0);
             death++;
         }
@@ -451,7 +450,7 @@ public abstract class Animal {
     public void remove() {
         System.out.println(step);
         setRemovable(true);
-        if (type == 3) {
+        if (type == 3 && step == 3) {
             Product tmp = new Product(layer, typeProduct, x, y);
             prods.add(tmp);
             tmp.setOnClick(data, prods);
@@ -575,7 +574,7 @@ public abstract class Animal {
             @Override
             public void handle(MouseEvent event) {
                 getSound("voice");
-                info = "Không đói :" + (int) health + "\n" + "Ốm :" + sick * 100 / timeDie +
+                info = "Không đói :" + (int) health + "\n" + "Ốm :" + (int)(sick * 100 / timeDie) +
                         "\nVòng đời:" + step;
                 t.setText(info);
                 t.setVisible(true);
